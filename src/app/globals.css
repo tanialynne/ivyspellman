@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+/* Custom CSS Variables for theming */
+@theme {
+  --color-ivy-gold: #d4af37;
+  --color-ivy-gold-light: #c6b56f;
+  --color-ivy-cream: #f5f1e8;
+  --color-ivy-dark: #0d0d0d;
+  --color-ivy-dark-light: #141414;
+  --color-ivy-gray: #b8b8b8;
+}
+
+/* Base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-ivy-dark);
+    color: var(--color-ivy-cream);
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  /* Font utilities */
+  .font-cormorant {
+    font-family: var(--font-cormorant), serif;
+  }
+
+  .font-raleway {
+    font-family: var(--font-raleway), sans-serif;
+  }
+
+  .font-allura {
+    font-family: var(--font-allura), cursive;
+  }
+
+  /* Legacy aliases for compatibility */
+  .font-lora {
+    font-family: var(--font-raleway), sans-serif;
+  }
+
+  .font-montserrat {
+    font-family: var(--font-raleway), sans-serif;
+  }
+
+  /* Gold gradient text */
+  .text-gradient-gold {
+    background: linear-gradient(180deg, #d4af37 0%, #c6b56f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Custom scrollbar - elegant dark theme */
+:root {
+  --track: #0d0d0d;
+  --thumb: #d4af37;
+  --thumb-hover: #c6b56f;
+}
+
+html {
+  scrollbar-color: var(--thumb) var(--track);
+  scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--track);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--thumb);
+  border-radius: 4px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--thumb-hover);
+}
+
+/* Decorative button styles */
+.btn-decorative {
+  position: relative;
+  background: #141414;
+  border: none;
+  padding: 1rem 2rem;
+  color: #f5f1e8;
+  font-family: var(--font-cormorant), serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-decorative::before,
+.btn-decorative::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #d4af37 10%,
+    #d4af37 90%,
+    transparent 100%
+  );
+}
+
+.btn-decorative::before {
+  top: 4px;
+}
+
+.btn-decorative::after {
+  bottom: 4px;
+}
+
+.btn-decorative:hover {
+  background: #1a1a1a;
+}
+
+/* Card styles with gold border */
+.card-elegant {
+  background: #141414;
+  border: 0.5px solid #c6b56f;
+  position: relative;
+}
+
+.card-elegant::before {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  border: 0.5px solid #c6b56f;
+  pointer-events: none;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus states for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid #d4af37 !important;
+  outline-offset: 2px !important;
+}
+
+/* Remove default focus for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Link underline style */
+.link-underline {
+  text-decoration: underline;
+  text-decoration-color: #c6b56f;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.3s ease;
+}
+
+.link-underline:hover {
+  text-decoration-color: #d4af37;
+}
