@@ -252,7 +252,7 @@ That was the magic.`,
     excerpt:
       "This isn't a ritual. It's magical triage. Use in case of Mondays, in-laws, or that coworker who replies-all.",
     featuredImage: BLOG_PLACEHOLDER,
-    publishedAt: "November 2, 2024",
+    publishedAt: "November 2, 2025",
     readingTime: "4 min read",
     content: `### You Will Need
 
@@ -317,7 +317,7 @@ Now go forth and survive until bedtime.`,
     excerpt:
       "Your ancestors didn't dress up as slutty cats. They set extra places at the table and left the porch light on. Here's how to actually honor them.",
     featuredImage: BLOG_PLACEHOLDER,
-    publishedAt: "October 29, 2024",
+    publishedAt: "October 29, 2025",
     readingTime: "5 min read",
     content: `Every October, someone asks me how to "celebrate Samhain properly."
 
@@ -377,7 +377,7 @@ They're always closer than you think.`,
     excerpt:
       "I didn't inherit my grandmother's grimoire. I got her risotto spoon—warped, burnt on one edge, and apparently enchanted as hell.",
     featuredImage: BLOG_PLACEHOLDER,
-    publishedAt: "October 15, 2024",
+    publishedAt: "October 15, 2025",
     readingTime: "5 min read",
     content: `My grandmother was not a witch.
 
@@ -431,7 +431,7 @@ My grandmother would just tell me to stir counterclockwise next time.
     excerpt:
       "You missed the full moon. Again. Here's why that's fine and what to do instead of spiraling about your \"failed practice.\"",
     featuredImage: BLOG_PLACEHOLDER,
-    publishedAt: "September 22, 2024",
+    publishedAt: "September 22, 2025",
     readingTime: "5 min read",
     content: `It's the full moon and you forgot. Again.
 
@@ -507,7 +507,7 @@ The waning moon is for rest anyway.`,
     excerpt:
       "I googled \"spontaneous internal combustion spiritual meaning\" at 3 AM. The internet had opinions. So did my endocrinologist.",
     featuredImage: BLOG_PLACEHOLDER,
-    publishedAt: "September 8, 2024",
+    publishedAt: "September 8, 2025",
     readingTime: "5 min read",
     content: `I woke up at 3:17 AM absolutely certain my body had decided to exit the mortal plane via internal fire.
 
@@ -567,7 +567,7 @@ Both things can be true.`,
     excerpt:
       "The instructions said to meditate on what I wanted to release. I did not expect to release feelings about kitchenware.",
     featuredImage: BLOG_PLACEHOLDER,
-    publishedAt: "August 21, 2024",
+    publishedAt: "August 21, 2025",
     readingTime: "5 min read",
     content: `The spiritual bath recipe I found online required:
 - Epsom salt (got it)
