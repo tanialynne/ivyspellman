@@ -10,6 +10,55 @@ interface NewsletterProps {
   variant?: "default" | "compact";
 }
 
+const KIT_OPTIONS = JSON.stringify({
+  settings: {
+    after_subscribe: {
+      action: "message",
+      success_message: "Welcome to the coven! Check your email.",
+      redirect_url: "",
+    },
+    analytics: {
+      google: null,
+      fathom: null,
+      facebook: null,
+      segment: null,
+      pinterest: null,
+      sparkloop: null,
+      googletagmanager: null,
+    },
+    modal: {
+      trigger: "timer",
+      scroll_percentage: null,
+      timer: 5,
+      devices: "all",
+      show_once_every: 15,
+    },
+    powered_by: {
+      show: false,
+      url: "https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic",
+    },
+    recaptcha: { enabled: false },
+    return_visitor: { action: "show", custom_content: "" },
+    slide_in: {
+      display_in: "bottom_right",
+      trigger: "timer",
+      scroll_percentage: null,
+      timer: 5,
+      devices: "all",
+      show_once_every: 15,
+    },
+    sticky_bar: {
+      display_in: "top",
+      trigger: "timer",
+      scroll_percentage: null,
+      timer: 5,
+      devices: "all",
+      show_once_every: 15,
+    },
+  },
+  version: "5",
+});
+
 /**
  * Newsletter signup component with Kit integration
  * Default variant: Full-width with parchment-style background
@@ -18,41 +67,60 @@ interface NewsletterProps {
 export default function Newsletter({ variant = "default" }: NewsletterProps) {
   if (variant === "compact") {
     return (
-      <div className="flex flex-col items-center lg:items-start gap-5 w-full max-w-full lg:max-w-[282px]">
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-[10px]">
-          <h3 className="font-lora font-semibold text-lg text-ivy-cream">
-            {NEWSLETTER_CONTENT.footerTitle}
-          </h3>
-          <p className="font-lora text-sm text-ivy-cream leading-relaxed whitespace-pre-line">
-            {NEWSLETTER_CONTENT.footerDescription}
-          </p>
-        </div>
+      <>
+        {/* Kit Form Script */}
+        <Script src="https://f.convertkit.com/ckjs/ck.5.js" strategy="lazyOnload" />
 
-        <form
-          action={`https://app.kit.com/forms/${NEWSLETTER_CONTENT.formId}/subscriptions`}
-          className="seva-form formkit-form relative w-full max-w-[320px] lg:max-w-none"
-          method="post"
-          data-sv-form={NEWSLETTER_CONTENT.formId}
-          data-uid={NEWSLETTER_CONTENT.formId}
-          data-format="inline"
-          data-version="5"
-        >
-          <input
-            type="email"
-            name="email_address"
-            placeholder={NEWSLETTER_CONTENT.placeholder}
-            className="w-full h-[40px] px-[14px] py-[10px] bg-transparent border border-ivy-cream text-ivy-cream font-lora text-sm placeholder:text-ivy-cream/70 focus:border-ivy-gold transition-colors"
-            required
-            autoComplete="email"
-          />
-          <button
-            type="submit"
-            className="absolute right-0 top-0 h-[40px] px-[22px] bg-ivy-dark-light border border-ivy-cream text-ivy-cream font-lora text-sm hover:bg-ivy-dark transition-colors"
+        <div className="flex flex-col items-center lg:items-start gap-5 w-full max-w-full lg:max-w-[282px]">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-[10px]">
+            <h3 className="font-lora font-semibold text-lg text-ivy-cream">
+              {NEWSLETTER_CONTENT.footerTitle}
+            </h3>
+            <p className="font-lora text-sm text-ivy-cream leading-relaxed whitespace-pre-line">
+              {NEWSLETTER_CONTENT.footerDescription}
+            </p>
+          </div>
+
+          <form
+            action={`https://app.kit.com/forms/${NEWSLETTER_CONTENT.formId}/subscriptions`}
+            className="seva-form formkit-form relative w-full max-w-[320px] lg:max-w-none"
+            method="post"
+            data-sv-form={NEWSLETTER_CONTENT.formId}
+            data-uid={NEWSLETTER_CONTENT.formId}
+            data-format="inline"
+            data-version="5"
+            data-options={KIT_OPTIONS}
           >
-            {NEWSLETTER_CONTENT.submitText}
-          </button>
-        </form>
-      </div>
+            <ul
+              className="formkit-alert formkit-alert-error"
+              data-element="errors"
+              data-group="alert"
+            ></ul>
+            <div data-element="fields" data-stacked="false" className="seva-fields formkit-fields relative">
+              <input
+                type="email"
+                name="email_address"
+                placeholder={NEWSLETTER_CONTENT.placeholder}
+                className="formkit-input w-full h-[40px] px-[14px] pr-[100px] py-[10px] bg-transparent border border-ivy-cream text-ivy-cream font-lora text-sm placeholder:text-ivy-cream/70 focus:border-ivy-gold transition-colors"
+                required
+                autoComplete="email"
+              />
+              <button
+                type="submit"
+                data-element="submit"
+                className="formkit-submit absolute right-0 top-0 h-[40px] px-[22px] bg-ivy-dark-light border border-ivy-cream text-ivy-cream font-lora text-sm hover:bg-ivy-dark transition-colors"
+              >
+                <span className="formkit-spinner hidden">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <span>{NEWSLETTER_CONTENT.submitText}</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </>
     );
   }
 
@@ -105,7 +173,7 @@ export default function Newsletter({ variant = "default" }: NewsletterProps) {
                   data-uid={NEWSLETTER_CONTENT.formId}
                   data-format="inline"
                   data-version="5"
-                  data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Welcome to the coven! Check your email.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}'
+                  data-options={KIT_OPTIONS}
                 >
                   <ul
                     className="formkit-alert formkit-alert-error"
