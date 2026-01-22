@@ -65,7 +65,7 @@ export const ABOUT_CONTENT = {
   theWork: {
     title: "The Work",
     description:
-      "These books are for the women who dimmed themselves to fit. The ones who kept their options open because choosing felt too risky. The control freaks and the chaos magnets and everyone in between. Magic doesn't require perfection. Just intention, humor, and a maybe some wine.",
+      "These books are for the women who dimmed themselves to fit. The ones who kept their options open because choosing felt too risky. The control freaks and the chaos magnets and everyone in between. Magic doesn't require perfection. Just intention, humor, and maybe some wine.",
   },
   ctaCards: {
     books: {
