@@ -26,7 +26,7 @@ export const metadata: Metadata = {
  */
 function BooksHero() {
   return (
-    <section className="relative bg-ivy-dark pt-32 pb-20 md:pb-32 overflow-hidden">
+    <section className="relative bg-ivy-dark pt-32 pb-12 md:pb-16 max-h-[400px] overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between gap-12">
           {/* Text Content */}
@@ -49,8 +49,8 @@ function BooksHero() {
             </p>
           </div>
 
-          {/* Decorative Book Stack Image */}
-          <div className="hidden lg:block relative w-[407px] h-[299px]">
+          {/* Decorative Book Stack Image - 20% smaller */}
+          <div className="hidden lg:block relative w-[326px] h-[239px]">
             <Image
               src={IMAGES.booksIcon}
               alt=""

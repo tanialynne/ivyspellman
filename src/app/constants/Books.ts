@@ -220,12 +220,12 @@ export const BOOKS: Book[] = [
 ];
 
 export const BOOKS_SECTION = {
-  title: "Books By Ivy Spellman",
+  title: "Hot Flashes & Hexes",
   linkText: "Learn More",
 };
 
 export const BOOKS_PAGE = {
   heroTitle: "Books",
   heroSubtitle: "Spells, stories, and messy magic in print.",
-  sectionTitle: "Books By Ivy Spellman",
+  sectionTitle: "Hot Flashes & Hexes",
 };
