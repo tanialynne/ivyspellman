@@ -38,7 +38,7 @@ export default function NotFound() {
         <div className="absolute top-[112px] left-[32px] right-[32px] bottom-[52px] md:top-[111px] md:left-[68px] md:right-[68px] md:bottom-[118px] border border-ivy-cream/30 pointer-events-none" />
 
         {/* Main Content */}
-        <div className="relative z-10 max-w-[600px] mx-auto px-6 md:px-12 text-center">
+        <div className="relative z-10 max-w-[600px] mx-auto px-12 md:px-12 text-center">
           <div className="flex flex-col items-center gap-8">
             {/* Decorative Divider */}
             <Image
