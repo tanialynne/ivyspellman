@@ -38,7 +38,7 @@ export default function Hero() {
       </div>
 
       {/* Main Content - Centered vertically in frame */}
-      <div className="relative z-10 text-center px-6 max-w-2xl mx-auto flex flex-col justify-center min-h-screen py-32">
+      <div className="relative z-10 text-center px-12 md:px-6 max-w-2xl mx-auto flex flex-col justify-center min-h-screen py-32">
         {/* Star Ornament */}
         <div className="flex justify-center mb-8">
           <Image
