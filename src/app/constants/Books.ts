@@ -185,8 +185,8 @@ export const BOOKS: Book[] = [
     longDescription:
       "Valentina Torres has run her vineyard with iron will and meticulous spreadsheets since her husband died twenty-three years ago. She doesn't date. She doesn't lose control. She definitely doesn't believe in magic—no matter what her vines keep doing when she's angry. Then Ronan Burke arrives three days early, with a dog who howls at dirt, a smile that makes her want to commit violence, and knowledge about her land that he shouldn't have. He lied to get onto her property. He dug up something ancient. And now the magic she's been ignoring her whole life won't stay buried. Neither will the feelings she's controlled for two decades.",
     coverImage: "/images/Uncorked-Undone-Generic.jpg",
-    buyLink: "https://www.amazon.com/dp/B0GFDLCKSN",
-    comingSoon: true,
+    buyLink:
+      "https://www.amazon.com/Uncorked-Undone-Romantic-Fantasy-Midlife-ebook/dp/B0GL3C2F9K",
     whatThisBookIs: [
       "A slow-burn romance about a control obsessive learning to let things grow wild",
       "Including herself",
@@ -214,6 +214,86 @@ export const BOOKS: Book[] = [
         quote:
           "The best LOL book that had me in tears with the humor. An absolutely brilliant read—I laughed so hard I cried.",
         author: "Cher",
+      },
+    ],
+  },
+  {
+    id: "4",
+    title: "Sparks & Sticky Notes",
+    slug: "sparks-and-sticky-notes",
+    description:
+      "She fixed everything—except her own life. Now her hot flashes are fixing things on their own. Badly.",
+    longDescription:
+      "Gemma Hartley has spent her entire life being the person everyone calls. Leaky faucet? She's there. Marriage falling apart? She'll mediate. Career crisis? She has a color-coded sticky note system for that.\n\nThen her husband left her for his life coach, her company \"restructured\" her out of a job, and her mother moved in. Temporarily. Three months ago.\n\nNow she's in Fairhaven, renovating a fixer-upper cottage because she saw it online at 2 AM after her fourth panic attack of the week. Fresh start. New project. Same compulsive need to make everything perfect.\n\nExcept her hot flashes have started making things fix themselves. Wrong. The broken lamp now floats. The leaky sink dispenses wine. And the grumpy artist next door? The one with the forearms and the deliberately broken sculptures? She just \"repaired\" three months of his work into smooth, meaningless spheres.\n\nHe is not amused.\n\nGemma doesn't need a sculptor who thinks broken things are beautiful. She needs a plan, a label maker, and possibly an exorcist.\n\nToo bad the magic has other ideas. And so does her cat.",
+    coverImage: "/images/Sparks--Sticky-Notes-Kindle.jpg",
+    buyLink: "https://www.amazon.com/gp/product/B0GT48ZQZP",
+    whatThisBookIs: [
+      "A cozy witch romcom about a compulsive fixer who can't fix herself",
+      "A fixer-upper cottage with a mind of its own",
+      "A grumpy sculptor who thinks broken things are beautiful",
+      "Hot flashes that repair things in the worst possible way",
+    ],
+    youllLikeThisIf: [
+      "You've ever organized your feelings into color-coded categories",
+      "You appreciate a love interest with forearms and strong opinions about imperfection",
+      "You want a heroine who needs to learn that not everything is a project",
+      "You believe cats always know more than they're letting on",
+    ],
+    testimonials: [
+      {
+        quote:
+          "I started smiling on the first paragraph and kept smiling the whole way through. This is a frigging adorable book.",
+        author: "Megan",
+      },
+      {
+        quote:
+          "A balm for my brain foggy, slightly sweaty, and definitely overwhelmed soul. Wonderfully funny without losing any of the poignance.",
+        author: "Sarah",
+      },
+      {
+        quote:
+          "Pure comical chaos. I could relate in so many ways—it kept me engaged and I finished it in one day.",
+        author: "Brittany",
+      },
+    ],
+  },
+  {
+    id: "5",
+    title: "Nice Girls Finish Hexed",
+    slug: "nice-girls-finish-hexed",
+    description:
+      "The nicest woman in Fairhaven never said no. Now her hot flashes are saying everything she didn't. Loudly.",
+    longDescription:
+      "Ellie Whitfield has been the nicest woman in Fairhaven for thirty years. She runs the historical society, volunteers for everything, and has never once said no to anything. She left her husband quietly after twenty-three years, and he was genuinely shocked because she'd never mentioned being unhappy.\n\nNow her hot flashes have activated revelation magic that makes hidden things visible. When her temperature spikes, the world around her starts giving up its secrets. Painted-over water damage glows through fresh walls. Buried objects push to the surface. Old documents fill in their own redacted sections. And the truths she's been suppressing for three decades start falling out of her mouth.\n\nThe quiet, private man renovating the old hardware store? The one who deflects personal questions like a professional and listens to the whole sentence before responding? Her magic wants to strip every one of his polite non-answers away.\n\nEllie doesn't need a man with secrets. She needs everyone to stop asking her for favors and possibly a muzzle.\n\nToo bad the magic has opinions. And so does her dog.",
+    coverImage: "/images/Nice-Girls-FInished-Hexed-Cover.jpg",
+    comingSoon: true,
+    whatThisBookIs: [
+      "A cozy witch romcom about the nicest woman alive finally losing her filter",
+      "Revelation magic that exposes every secret in a ten-foot radius",
+      "An elderly golden retriever with devastating comedic timing",
+      "A quiet man with careful hands and a past he'd rather keep buried",
+    ],
+    youllLikeThisIf: [
+      "You've ever smiled through something you should have screamed about",
+      "You appreciate a love interest who listens to the whole sentence before responding",
+      "You want to watch a people-pleaser discover that the word 'no' is a complete sentence",
+      "You believe dogs always know more than they're letting on",
+    ],
+    testimonials: [
+      {
+        quote:
+          "I started smiling on the first paragraph and kept smiling the whole way through. This is a frigging adorable book.",
+        author: "Megan",
+      },
+      {
+        quote:
+          "Brilliantly written, laugh-out-loud read. The writing is sharp and clever—several paragraphs so funny I had to reread them.",
+        author: "Cher",
+      },
+      {
+        quote:
+          "A charming and delightfully quirky cozy witch romance with strong character chemistry and plenty of charm.",
+        author: "Dayna",
       },
     ],
   },

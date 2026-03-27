@@ -42,7 +42,7 @@ export const HERO_CONTENT = {
 export const NEWSLETTER_CONTENT = {
   title: "Join the Coven",
   description:
-    "Spells, stories, and the occasional emotional breakdown about kitchenware. For witches who've given up on toxic positivity but haven't given up on magic. Letters from the forest.",
+    "Spells, stories, and the occasional emotional breakdown about kitchenware. For witches who've given up on toxic positivity but haven't given up on magic. Letters from the forest.\n\nSign up and get The Familiar's Report—a free short story told from Luna's POV on the events of Don't Hex the Handyman.",
   buttonText: "Whisper To Me",
   disclaimer: "Your email stays between us and the trees",
   footerTitle: "Join the Coven",
@@ -65,7 +65,7 @@ export const ABOUT_CONTENT = {
   theWork: {
     title: "The Work",
     description:
-      "These books are for the women who dimmed themselves to fit. The ones who kept their options open because choosing felt too risky. The control freaks and the chaos magnets and everyone in between. Magic doesn't require perfection. Just intention, humor, and maybe some wine.",
+      "I write these books because they make me laugh. I publish them because I hope they'll make you laugh too—and maybe feel a little less alone while you're at it. These books are for the women who dimmed themselves to fit. The ones who kept their options open because choosing felt too risky. The control freaks and the chaos magnets and everyone in between. Magic doesn't require perfection. Just intention, humor, and maybe some wine.",
   },
   ctaCards: {
     books: {
@@ -113,7 +113,7 @@ export const LEAD_MAGNET_CONTENT = {
       {
         quote:
           "If you're in that middle part of life where everything is changing—this is the book for you.",
-        author: "Megan",
+        author: "Bri",
       },
     ],
   },

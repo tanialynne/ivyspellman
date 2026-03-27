@@ -27,8 +27,71 @@ export interface BlogPost {
 // Placeholder image for all blog posts
 const BLOG_PLACEHOLDER = "/images/blog-placeholder.jpg";
 
+// Import long-form content from separate file
+import { MACHA_CONTENT, CIRCE_CONTENT, SPRING_CONTENT, STARTING_LINE_CONTENT, SELF_CARE_CONTENT } from "./BlogContent";
+
 // All blog posts - sorted by date (newest first)
 export const ALL_POSTS: BlogPost[] = [
+  {
+    id: "10",
+    title: "The Race I Shouldn't Have Won",
+    slug: "the-race-i-shouldnt-have-won",
+    category: "SHORT FICTION",
+    excerpt:
+      "A retelling of the myth of Macha. She was a goddess pretending to be ordinary. Her husband bet her body at the king's fair. She won the race. She cursed every man who watched.",
+    featuredImage: BLOG_PLACEHOLDER,
+    publishedAt: "March 27, 2026",
+    readingTime: "16 min read",
+    content: MACHA_CONTENT,
+  },
+  {
+    id: "12",
+    title: "Spring Doesn't Care That You're Not Ready",
+    slug: "spring-doesnt-care-youre-not-ready",
+    category: "SEASONAL MAGIC",
+    excerpt:
+      "The crocuses are pushing through whether you've finished grieving winter or not. Maybe that's the point.",
+    featuredImage: BLOG_PLACEHOLDER,
+    publishedAt: "March 12, 2026",
+    readingTime: "5 min read",
+    content: SPRING_CONTENT,
+  },
+  {
+    id: "14",
+    title: "The Pigs I Made",
+    slug: "the-pigs-i-made",
+    category: "SHORT FICTION",
+    excerpt:
+      "A retelling of the myth of Circe. She turned men into pigs. They all deserved it. Well. Most of them deserved it.",
+    featuredImage: BLOG_PLACEHOLDER,
+    publishedAt: "February 26, 2026",
+    readingTime: "15 min read",
+    content: CIRCE_CONTENT,
+  },
+  {
+    id: "13",
+    title: "The Starting Line Is Wherever You're Standing",
+    slug: "starting-line-wherever-youre-standing",
+    category: "DAILY PRACTICE",
+    excerpt:
+      "Every self-help book wants you to prove you're broken enough to deserve fixing. Nope. You just need to be here.",
+    featuredImage: BLOG_PLACEHOLDER,
+    publishedAt: "February 12, 2026",
+    readingTime: "3 min read",
+    content: STARTING_LINE_CONTENT,
+  },
+  {
+    id: "11",
+    title: "The Bare Minimum Self-Care Spell (For When You've Got Nothing Left)",
+    slug: "bare-minimum-self-care-spell",
+    category: "SELF-CARE MAGIC",
+    excerpt:
+      "You don't need a spa day. You need someone to tell you that brushing your teeth counts as a cleansing ritual. So here I am, telling you.",
+    featuredImage: BLOG_PLACEHOLDER,
+    publishedAt: "January 29, 2026",
+    readingTime: "5 min read",
+    content: SELF_CARE_CONTENT,
+  },
   {
     id: "1",
     title: "Why I Stopped Making New Year's Resolutions and Started Writing Eulogies Instead",
