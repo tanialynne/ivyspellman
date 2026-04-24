@@ -72,7 +72,7 @@ export const ALL_REVIEWS = [
  */
 export function getRandomTestimonials(
   count: number,
-  reviews: typeof ALL_REVIEWS = ALL_REVIEWS
+  reviews: typeof ALL_REVIEWS = ALL_REVIEWS,
 ): typeof ALL_REVIEWS {
   // Shuffle the reviews array
   const shuffled = [...reviews].sort(() => Math.random() - 0.5);
@@ -303,7 +303,7 @@ export const BOOKS: Book[] = [
     title: "Flight Risk & Broomsticks",
     slug: "flight-risk-and-broomsticks",
     description:
-      "She's spent her whole life leaving. The inherited house has other plans. So does the parrot. And the farmer with the kind eyes.",
+      "She's spent her whole life leaving. The inherited house has other plans. So does the parrot.",
     longDescription:
       "Kit Holloway has spent her entire life leaving. Lease renewed? She's out. Relationship getting serious? She's packed. Two years at a corporate job in Charlotte was the longest she'd ever stayed, and it felt like a prison sentence.\n\nThen her great-aunt Mabel left her a 1940s colonial on Pine Street, and the house she planned to flip and sell started transforming every time a buyer walked through.\n\nNow the kitchen is mid-century modern by morning and Victorian by afternoon. The phone charger keeps turning into a rotary cord. Every time she carries her suitcase to the car, it ends up back by the front door, full of roses. And the parrot her aunt left her keeps broadcasting every incriminating thing she's ever muttered.\n\nThe local farmer? The one with the kind eyes who watched her turn his tomatoes into sunflowers and said, \"I think we're past money\"? He's not running.\n\nKit doesn't need a third-generation farmer with deep roots. She needs a working phone and a suitcase that stays packed.\n\nToo bad the magic has other ideas. And so does the bird.",
     coverImage: "/images/Flight-Risk--Broomsticks-Cover-Web.jpg",
