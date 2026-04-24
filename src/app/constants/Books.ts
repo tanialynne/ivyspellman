@@ -266,7 +266,8 @@ export const BOOKS: Book[] = [
     longDescription:
       "Ellie Whitfield has been the nicest woman in Fairhaven for thirty years. She runs the historical society, volunteers for everything, and has never once said no to anything. She left her husband quietly after twenty-three years, and he was genuinely shocked because she'd never mentioned being unhappy.\n\nNow her hot flashes have activated revelation magic that makes hidden things visible. When her temperature spikes, the world around her starts giving up its secrets. Painted-over water damage glows through fresh walls. Buried objects push to the surface. Old documents fill in their own redacted sections. And the truths she's been suppressing for three decades start falling out of her mouth.\n\nThe quiet, private man renovating the old hardware store? The one who deflects personal questions like a professional and listens to the whole sentence before responding? Her magic wants to strip every one of his polite non-answers away.\n\nEllie doesn't need a man with secrets. She needs everyone to stop asking her for favors and possibly a muzzle.\n\nToo bad the magic has opinions. And so does her dog.",
     coverImage: "/images/Nice-Girls-FInished-Hexed-Cover.jpg",
-    comingSoon: true,
+    buyLink:
+      "https://www.amazon.com/Nice-Girls-Finish-Hexed-Romantic-ebook/dp/B0GX2TSWC9",
     whatThisBookIs: [
       "A cozy witch romcom about the nicest woman alive finally losing her filter",
       "Revelation magic that exposes every secret in a ten-foot radius",
@@ -294,6 +295,46 @@ export const BOOKS: Book[] = [
         quote:
           "A charming and delightfully quirky cozy witch romance with strong character chemistry and plenty of charm.",
         author: "Dayna",
+      },
+    ],
+  },
+  {
+    id: "6",
+    title: "Flight Risk & Broomsticks",
+    slug: "flight-risk-and-broomsticks",
+    description:
+      "She's spent her whole life leaving. The inherited house has other plans. So does the parrot. And the farmer with the kind eyes.",
+    longDescription:
+      "Kit Holloway has spent her entire life leaving. Lease renewed? She's out. Relationship getting serious? She's packed. Two years at a corporate job in Charlotte was the longest she'd ever stayed, and it felt like a prison sentence.\n\nThen her great-aunt Mabel left her a 1940s colonial on Pine Street, and the house she planned to flip and sell started transforming every time a buyer walked through.\n\nNow the kitchen is mid-century modern by morning and Victorian by afternoon. The phone charger keeps turning into a rotary cord. Every time she carries her suitcase to the car, it ends up back by the front door, full of roses. And the parrot her aunt left her keeps broadcasting every incriminating thing she's ever muttered.\n\nThe local farmer? The one with the kind eyes who watched her turn his tomatoes into sunflowers and said, \"I think we're past money\"? He's not running.\n\nKit doesn't need a third-generation farmer with deep roots. She needs a working phone and a suitcase that stays packed.\n\nToo bad the magic has other ideas. And so does the bird.",
+    coverImage: "/images/Flight-Risk--Broomsticks-Cover-Web.jpg",
+    comingSoon: true,
+    whatThisBookIs: [
+      "A cozy witch romcom about a commitment-phobe with a shape-shifting house",
+      "A 1940s colonial with strong opinions about decor—and her love life",
+      "A parrot who broadcasts every muttered thought at the worst possible moment",
+      "A third-generation farmer who doesn't flinch when the tomatoes turn into sunflowers",
+    ],
+    youllLikeThisIf: [
+      "You've ever kept a suitcase half-packed 'just in case'",
+      "You appreciate a love interest with dirt under his nails and deep roots",
+      "You want to watch a lifelong runner finally stay",
+      "You believe parrots always know more than they're letting on",
+    ],
+    testimonials: [
+      {
+        quote:
+          "A balm for my brain foggy, slightly sweaty, and definitely overwhelmed soul. Wonderfully funny without losing any of the poignance.",
+        author: "Sarah",
+      },
+      {
+        quote:
+          "A great story about believing and trusting in yourself. I loved how calm Liam was despite Cassie's chaos!",
+        author: "Suzanne",
+      },
+      {
+        quote:
+          "Pure comical chaos. I could relate in so many ways—it kept me engaged and I finished it in one day.",
+        author: "Brittany",
       },
     ],
   },
