@@ -387,6 +387,8 @@ And every January, I watch women I love spiral into shame by February because th
 
 Here's what I've learned. You can't build a new life on top of an unburied body.
 
+I learned this the hard way the year after my mother died. I'd been trying to set January goals all through that grief and failing at every single one, until one Sunday in March I sat on my kitchen floor with a flat tire of a planner and realized I was trying to build forward when I needed to bury something first.
+
 I stopped making resolutions five years ago. Now I write eulogies instead, not for people but for the versions of myself that died in the previous year.
 
 This January, I sat down with a glass of wine and my journal, and I wrote eulogies for:
@@ -440,7 +442,9 @@ The answer might surprise you. It usually has nothing to do with losing ten poun
     featuredImage: BLOG_PLACEHOLDER,
     publishedAt: "December 18, 2025",
     readingTime: "5 min read",
-    content: `Let's get something out of the way. Most of what you've read about "ancient Yule traditions" is Victorian nonsense layered on top of Christian appropriation layered on top of best guesses about what our pagan ancestors actually did.
+    content: `I spent the first solstice after my divorce alone in this cabin with one candle, a glass of red, and absolutely no idea what I was doing. I had a shelf of inherited books about ancient Yule practices, seventeen Pinterest tabs open, and a fresh certainty that I was going to do this wrong. What I actually needed was for someone to tell me I could just sit there in the dark and that it counted. So that's what I'm telling you, in case nobody has.
+
+Let's get something out of the way. Most of what you've read about "ancient Yule traditions" is Victorian nonsense layered on top of Christian appropriation layered on top of best guesses about what our pagan ancestors actually did.
 
 The Yule log was probably a thing, but not the Pinterest version. Decorating trees is a relatively recent tradition that got grafted onto older practices. And that thing about staying up all night to "keep the sun alive"? Honestly, our ancestors were probably just trying to stay warm and not die. Sometimes survival looks like magic because it kind of is.
 
@@ -572,7 +576,13 @@ But she wasn't watching. She was finally, finally doing the thing, and that was 
     featuredImage: BLOG_PLACEHOLDER,
     publishedAt: "November 2, 2025",
     readingTime: "4 min read",
-    content: `### You Will Need
+    content: `I came up with this spell in a Trader Joe's bathroom on a Tuesday in 2022. My ex had just called to say he was taking the dog for the weekend, which was not actually his weekend, and I had a cart full of frozen things slowly thawing in the parking lot. I locked myself in the family bathroom (mercifully empty) and stood there for what I now realize was about three minutes. By the time I came out, I had handled it, which is different from solving it.
+
+I have used this spell since then in airports, at my mother's funeral, at the DMV, at a Christmas dinner I should have left forty minutes earlier, and once during a small panic attack in the hardware store while picking out drawer pulls. It works because it doesn't ask you to feel better. It just gives you a small structure to lean against until you can move again.
+
+Here is everything you need.
+
+### You Will Need
 
 - A beverage (any temperature, any type, even if it's cold coffee you reheated twice and forgot about again)
 - Approximately three minutes
@@ -742,6 +752,8 @@ You had plans, you were going to do a whole ritual, you had the candles and the 
 And instead, you fell asleep at 9 PM watching a show you don't even like, woke up at 2 AM with a crick in your neck and a deep sense of personal failure, and now the moon has been full for six hours without your participation.
 
 Welcome to the club. We have snacks.
+
+For the record, I have been a practicing witch for twenty-three years and I forgot the moon last month. My friend Marian called and asked me to help her reorganize her freezer at 9 PM on a Tuesday. I came home with three pints of homemade soup, a hangover I had not earned, and a deep sense of accomplishment that had nothing to do with charging crystals. Looked up in my driveway and realized the full moon had been full for six hours without my emotional involvement. The moon was fine. I was fine. The soup was excellent.
 
 Here's the thing nobody tells you about moon phases. **The moon does not require your attendance.**
 
