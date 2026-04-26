@@ -9,7 +9,10 @@ export type BlogCategory =
   | "DAILY PRACTICE"
   | "SEASONAL MAGIC"
   | "SELF-CARE MAGIC"
-  | "SHORT FICTION";
+  | "SHORT FICTION"
+  | "FIELD NOTES FROM THE FOREST"
+  | "LOVE & OTHER DISASTERS"
+  | "THE WORD \"NO\" AND OTHER SPELLS";
 
 export interface BlogPost {
   id: string;
@@ -32,6 +35,222 @@ import { MACHA_CONTENT, CIRCE_CONTENT, SPRING_CONTENT, STARTING_LINE_CONTENT, SE
 
 // All blog posts - sorted by date (newest first)
 export const ALL_POSTS: BlogPost[] = [
+  {
+    id: "17",
+    title: "The Bake Sale Industrial Complex",
+    slug: "bake-sale-industrial-complex",
+    category: "THE WORD \"NO\" AND OTHER SPELLS",
+    excerpt:
+      "You didn't volunteer for most of it. You just didn't refuse hard enough, early enough. Now your name is next to it in a spreadsheet somebody else made.",
+    featuredImage: BLOG_PLACEHOLDER,
+    publishedAt: "April 21, 2026",
+    readingTime: "7 min read",
+    content: `I want to tell you about the sheet cake.
+
+Not all of the sheet cakes. One specific sheet cake. You'll understand.
+
+It was for the spring fundraiser at my kid's school — this was years ago now, a different me — and I had said yes to it at 11 PM on a Tuesday via a group text, in the specific voice you use when you have already said yes before you've finished reading the sentence. "Happy to!" I wrote. I put the exclamation point. I even, god help me, put a little cake emoji.
+
+I did not want to bake a sheet cake. I did not have time to bake a sheet cake. What I had was a job, two kids, a mother in decline, a husband whose idea of contributing was asking me where the Tupperware was, and a standing commitment to three other things that week, one of which involved a hot glue gun.
+
+I bought the cake at Costco.
+
+I did not tell anyone. I transferred it to one of my own pans — a pan I specifically owned for the purpose of transferring Costco cakes into. I wiped down the edges. I added strawberries I had cut up myself, to give the impression of personal involvement. I drove it to the school with the windows open so the car wouldn't smell like commerce.
+
+It won a ribbon.
+
+The other mothers asked me for the recipe.
+
+I smiled and told them it was my grandmother's.
+
+My grandmother was Eastern European and, to my knowledge, never made a single cake in her life. She made a kind of cheese noodle thing that made the house smell like feet. But she was dead, and the dead can't contradict you, and that is one of the underreported benefits of grief.
+
+I drove home smiling. And then I sat in my own driveway for eleven minutes before I went inside.
+
+I want to be clear: nothing was wrong. I had pulled it off. I had won a ribbon. I had what the world calls "having it together." I just could not, in that specific moment, summon the energy it was going to require to walk into my house and be the person my family was expecting. Cheerful. Cake-winning. Coordinating.
+
+I remember thinking: *I just need another minute. I'll be right in. I just need another minute.*
+
+I sat there until the minute passed. Then I went inside.
+
+That was, I think now, the first crack.
+
+---
+
+Here is the thing nobody tells you about the bake sale:
+
+The bake sale is not about the bake sale.
+
+The bake sale is one tile in a mosaic. It lives next to the signup genius for field trip snacks, which lives next to the group text about teacher appreciation week, which lives next to the email chain about the PTA auction, which lives next to the carpool rotation you somehow became the coordinator of, which lives next to your mother-in-law's birthday gift — which you are buying, on behalf of the entire family, including your husband, whose mother it is.
+
+You did not volunteer for most of these jobs. You just did not refuse hard enough, early enough, and now your name is next to them in a spreadsheet somebody else made.
+
+Nobody ever sat you down and said: *Congratulations, you are now the institutional memory of four extended families and a second-grade classroom.* It happened the way all the big things in a woman's life happen — through a thousand small acquiescences, each of which looked reasonable on its own.
+
+"I can do that."
+"Sure, no problem."
+"Happy to."
+"Don't worry about it."
+"I'll take care of it."
+
+Cake emoji. Cake emoji. Cake emoji.
+
+---
+
+The first time I said "actually, I can't," I was forty-three, and I said it to a woman named Susan.
+
+Susan is not her real name. Susan is the name I am giving her here because there is always a Susan, and if you have ever been in any kind of volunteer ecosystem, you know exactly which Susan I mean.
+
+Susan wanted me to chair the silent auction.
+
+I had chaired the silent auction the year before. And the year before that. The first year, I had said yes because I'd just moved to the district and wanted to meet people. The second year, I had said yes because Susan had mentioned, in front of other mothers, how "wonderful" I had been, and I could not find the exit ramp on the sentence.
+
+The third year, Susan called me in July.
+
+And I heard myself say, out loud, in my own kitchen: "Actually, I can't this year."
+
+There was a silence on the line so long I briefly thought the call had dropped. And then Susan said, in a tone I had not heard from her before: "Oh. Okay."
+
+That was it. That was the whole thing.
+
+Nobody cried. Nobody un-invited me to anything. The silent auction went on without me. I heard through the grapevine that it was fine. Possibly more than fine. Possibly — and this is where I still have to sit with some complicated feelings — better, because somebody else brought a different set of skills and nobody had to manage my creeping resentment on top of everything else.
+
+The sky did not fall.
+
+The sky, in fact, did not even flicker.
+
+It turned out the sky had never been the thing holding up my yes.
+
+I had been.
+
+---
+
+I am not writing this to tell you to stop volunteering. Some of the best hours of my life have been spent in folding chairs with other women, assembling something nobody was paying us to assemble. That is a real magic. I still do it. I choose it now.
+
+*Choose it* being the operative words.
+
+What I am writing this to tell you is: if you are currently sitting in your car in a parking lot, gathering the energy to walk into a room and be the version of yourself everyone expects, you are not broken. You are not ungrateful. You are not failing at being a good woman.
+
+You are a person with a finite amount of hours on earth who has been spending them, in small quiet denominations, on other people's priorities.
+
+It is okay to count them.
+
+It is okay to say: *I only have a few thousand Tuesdays left. I am not spending this one on a sheet cake for a woman whose name I had to give a fake name to in an essay.*
+
+You are allowed to go home.
+
+You are allowed to buy the cake at Costco.
+
+You are, if it comes to it, allowed to say no.
+
+The ribbons don't mean what you were told they meant.
+
+The sky is fine.`,
+  },
+  {
+    id: "16",
+    title: "I Don't Miss Him. I Miss Having Someone to Yell at About the Thermostat.",
+    slug: "miss-someone-to-yell-at-about-the-thermostat",
+    category: "LOVE & OTHER DISASTERS",
+    excerpt:
+      "Nobody warns you about the mundane loneliness. Nobody's shoes by the door. The milk running out being your fault now. A weighted blanket that does not shift when it dreams.",
+    featuredImage: BLOG_PLACEHOLDER,
+    publishedAt: "April 14, 2026",
+    readingTime: "4 min read",
+    content: `Let me be clear about something upfront: I don't miss him.
+
+I really don't. I don't miss the specific rhythm of his breathing at 3 AM. I don't miss the sound of him clearing his throat before he said anything important, a verbal tic I used to find endearing and then, toward the end, began to suspect was the sound of him rehearsing a lie.
+
+I don't miss the way he pronounced "espresso." I don't miss the car magazines on the coffee table. I don't miss being asked, routinely, if I was "sure about that haircut."
+
+I don't miss him.
+
+I miss the shape of him.
+
+Which is a different thing. A much weirder thing. Nobody warns you about it, probably because it doesn't sound sad enough to write a song about.
+
+Here is what I actually miss:
+
+I miss having somebody to yell at about the thermostat. I kept it at exactly 68 for three weeks after he left, because he always wanted it at 72, and I felt smug, and then I realized I had been setting it to 68 as a small daily victory in a war nobody was fighting anymore. It just feels cold in here now. There is no war. There is just me, in a sweater, in a house that is exactly the temperature I want it to be.
+
+I miss having somebody to blame for the milk. When the milk is out, it is my fault now. This is upsetting.
+
+I miss shoes by the door. Not his specifically. Any shoes. A pair of shoes by the door is a sign that somebody lives here besides you. My shoes alone look like a still life titled *Woman Came Home And Died.*
+
+I miss complaining about a snore. I do not miss the snore. I miss having a snore as an agenda item. You cannot imagine how much narrative structure a snore provides until it is gone.
+
+I miss the weight. The weight of another person on the other side of the mattress. I bought a weighted blanket. It is not the same. A weighted blanket does not shift when it dreams.
+
+I miss being able to say *we.* I am single, a divorcée, a party of one, and those are all accurate words, and none of them have the casual gravity of "we're thinking of going" or "we'll pass on the wedding" or even "we're not really into that."
+
+I miss having someone to be annoyed by. I have a cat now. She is lovely. She is not, structurally, annoying. She is indifferent, which is a different skill set.
+
+Here is the part I am still working out: none of this is about him.
+
+If he came back tomorrow, I would not let him back into this house. I would not rehire him for the position. The position, in fact, has been dissolved. There is no position.
+
+But sometimes, at 9 PM on a Tuesday, when nothing is wrong and nothing is right and the freezer is making that sound I am probably going to have to deal with eventually, I feel the absence of the shape. Not the man. The shape.
+
+Somebody built that shape into the architecture of my life over two decades, and then one day he took it with him, and now there is a man-shaped hole in my kitchen and it whistles when the wind hits it wrong.
+
+I am sure this passes.
+
+People tell me it passes. The women who have already been through it get a certain look in their eyes when they say it, though. A look that suggests what actually happens is that the shape shrinks, slowly, the way a bruise shrinks — from purple to green to yellow to *huh, when did that go away?*
+
+In the meantime, I will be over here, in a 68-degree house, yelling at nobody about the thermostat.
+
+The thermostat is winning.
+
+But at least I have opinions.`,
+  },
+  {
+    id: "15",
+    title: "The Raccoon, the Compost Heap, and the Surrender",
+    slug: "raccoon-compost-surrender",
+    category: "FIELD NOTES FROM THE FOREST",
+    excerpt:
+      "There's a raccoon who has decided the compost heap is his. I have tried everything. Last night I put the melon rind out and went inside.",
+    featuredImage: BLOG_PLACEHOLDER,
+    publishedAt: "April 7, 2026",
+    readingTime: "3 min read",
+    content: `There is a raccoon who has decided the compost heap is his. Not mine. Not shared. His.
+
+I have tried, in this order:
+
+The locking bin. He opened it. I have watched him do it on the trail camera my sister insisted I buy, and I still don't know how. At one point he appears to be turning the latch with his tiny little thumbs in a way that should require a labor union to discuss.
+
+Moving the bin. He found it.
+
+Bungee cords. He chewed through them. Slowly, over the course of a week. At no point did he vary his technique in a way that suggested he had considered alternatives.
+
+A cinderblock on the lid. He is sixteen pounds. The cinderblock is thirty-two. I do not know how he moves it. I have done the math and the math says: none of this should be possible.
+
+The motion-activated sprinkler. He enjoyed it.
+
+A new bin with what the man at the hardware store called a "critter-proof closure system." The raccoon, and I mean this sincerely, appeared to find this personally insulting. He opened it in twenty-one minutes. He stared directly into the trail camera before he left. I don't want to project, but he seemed smug.
+
+So last night I took the rind of a cantaloupe — one of the good ones from the farm stand, heavy in your hand — and I put it on top of the closed bin. Didn't lock anything. Didn't cinderblock anything. Just placed the rind up there like I was setting out a small offering at a shrine.
+
+Then I went inside, poured a glass of wine, and watched him on the trail camera from the couch.
+
+He came out of the treeline eleven minutes later. Stopped. Looked at the rind. Checked the perimeter. Came back. And then — I swear this is true — he ate the cantaloupe rind the way someone accepts an award.
+
+I raised my glass to the trail camera.
+
+I am not going to tell you the raccoon was a symbol. The raccoon does not want to be your symbol. The raccoon wants the cantaloupe.
+
+All I am saying is this: there are things I have been trying to control for longer than I care to admit. A neighbor who parks on my grass. A certain uncle who calls every December. The way my back seizes up if I sleep on my left side three nights in a row. The timing of my own body, which has stopped consulting me altogether.
+
+And it turns out, some nights, the most sophisticated magic I can perform is to put the melon rind out and go inside.
+
+Not every fight is yours to win.
+
+Some of them aren't even fights.
+
+Some of them are just raccoons.
+
+Eat up, buddy.`,
+  },
   {
     id: "10",
     title: "The Race I Shouldn't Have Won",
