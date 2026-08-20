@@ -28,10 +28,10 @@ export default function BookCard({ book }: BookCardProps) {
             className="object-contain"
             sizes="200px"
           />
-          {/* Coming Soon Flag */}
-          {book.comingSoon && (
+          {/* Coming Soon / Preorder Flag */}
+          {(book.comingSoon || book.preorder) && (
             <div className="absolute -top-2 -right-4 bg-ivy-gold text-ivy-dark font-raleway font-semibold text-xs uppercase tracking-wider px-3 py-1.5 rounded shadow-md rotate-12">
-              Coming Soon
+              {book.comingSoon ? "Coming Soon" : "Preorder"}
             </div>
           )}
         </div>

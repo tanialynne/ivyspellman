@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navigation from "../components/Navigation";
 import WitchyQuote from "../components/WitchyQuote";
 import Footer from "../components/Footer";
+import WhatsBrewing from "../components/WhatsBrewing";
 import { SectionHeader } from "../components/ui";
 import { BOOKS, BOOKS_PAGE, type Book } from "../constants/Books";
 import { IMAGES } from "../constants/Images";
@@ -87,10 +88,10 @@ function BookListingCard({ book }: { book: Book }) {
             fill
             className="object-contain"
           />
-          {/* Coming Soon Flag */}
-          {book.comingSoon && (
+          {/* Coming Soon / Preorder Flag */}
+          {(book.comingSoon || book.preorder) && (
             <div className="absolute -top-2 -right-4 bg-ivy-gold text-ivy-dark font-raleway font-semibold text-xs uppercase tracking-wider px-3 py-1.5 rounded shadow-md rotate-12">
-              Coming Soon
+              {book.comingSoon ? "Coming Soon" : "Preorder"}
             </div>
           )}
         </div>
@@ -157,6 +158,7 @@ export default function BooksPage() {
       <Navigation />
       <BooksHero />
       <BooksGrid books={BOOKS} />
+      <WhatsBrewing />
       <WitchyQuote />
       <Footer />
     </main>

@@ -102,7 +102,7 @@ function BookHero({ book }: { book: Book }) {
                 </GoldButton>
               ) : book.buyLink && (
                 <GoldButton as="a" href={book.buyLink} target="_blank" rel="noopener noreferrer">
-                  Buy On Amazon
+                  {book.preorder ? "Preorder On Amazon" : "Buy On Amazon"}
                 </GoldButton>
               )}
               {book.previewLink && (
