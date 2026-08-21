@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Navigation from "../../components/Navigation";
 import WitchyQuote from "../../components/WitchyQuote";
 import Footer from "../../components/Footer";
+import Newsletter from "../../components/Newsletter";
 import { ALL_POSTS, type BlogPost } from "../../constants/BlogPosts";
 import { IMAGES } from "../../constants/Images";
 
@@ -330,6 +331,7 @@ export default async function SingleBlogPostPage({
 
       <RelatedArticles currentPostId={post.id} />
       <WitchyQuote />
+      <Newsletter />
       <Footer />
     </main>
   );

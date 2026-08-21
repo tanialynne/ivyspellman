@@ -37,6 +37,56 @@ import { MACHA_CONTENT, CIRCE_CONTENT, SPRING_CONTENT, STARTING_LINE_CONTENT, SE
 // All blog posts - sorted by date (newest first)
 export const ALL_POSTS: BlogPost[] = [
   {
+    id: "20",
+    title: "I Finished the Series, and Nobody Is Handling It Well (Including Me)",
+    slug: "i-finished-the-series",
+    category: "LETTERS FROM THE FOREST",
+    excerpt:
+      "Ten books. One town. And a finale I need to tell you about before you preorder it, because you and I don't do unpleasant surprises.",
+    featuredImage: BLOG_PLACEHOLDER,
+    publishedAt: "August 20, 2026",
+    readingTime: "5 min read",
+    content: `A few weeks ago I typed the last sentence of the last book of Hot Flashes & Hexes, and then I sat in my chair and stared at the wall for a while, the way you do when something is finished and your body knows it before your brain gets the memo. The cat came in, assessed the situation, and left. She has never once respected a big moment.
+
+So. Here is the news, and then here is the part I actually need to say.
+
+The news: Hot Flashes & Hexes is complete. Ten books, one town, and every single hot flash accounted for. Crash & Burnout, Dana's book, came out August 14th, and if you have ever been let go from a job and taken it personally, Dana would like a word, preferably at the forge. Read the Room, Joey's book, arrives in September. And the finale, Mind Your Own Magic, lands in October.
+
+Which brings me to Margaret.
+
+---
+
+If you've read any of these books, you know Margaret Thistle. She's the one who shows up at the door with a casserole and a set of rules right when a woman's life starts catching fire, sometimes literally. She trained Cassie, and then Diane, and then all the rest of them, nine women in all, and in ten books she has never once answered a personal question. I did that on purpose. I was saving her.
+
+Book ten is hers. And I need to tell you what it is before you preorder it, because you and I don't do surprises of the unpleasant kind.
+
+It is not a romcom. It isn't a romance at all, and nobody gets married at the end of it. It's Margaret, on a Sunday, with the casserole made and the whole coven at her table, finally telling them the story she has spent fifty years not telling. A diner in Asheville in 1968. A man named Paul who ordered apple pie without looking at the menu. What she did, and what she left, and why she has been the woman with the casserole ever since.
+
+Nine women got their happy endings, and every one of those endings was earned at that kitchen table. The tenth book is the woman who set the table. She earned something different, and I wasn't willing to hand her a tidy wedding just to keep the pattern. She would have returned it, anyway. Margaret has never once kept anything she didn't ask for.
+
+Read it last. Please. It only works if you already know the nine women sitting at that table, and it works best if you love Margaret the way I do. And bring tissues. I'm not saying that as marketing. I cried writing it, and I am a woman who has watched her own plants die without flinching.
+
+---
+
+Now, before anyone starts grieving Fairhaven: I'm not done with it, and neither are you.
+
+There's a Christmas novella coming in December. It's Patti's. Yes, that Patti, the one at the diner who has poured your coffee in eight separate books and never once let anyone pour hers. Three weeks before the Christmas Eve wedding of the season, her magic wakes up, and it will not take no for an answer. The coffee pot pours for her. The best booth reserves itself. The bouquet toss refuses, and I mean physically refuses, to go to anyone else. The woman who cannot receive develops a power that will not ask permission, in the season of giving. I have been cackling about this for a month.
+
+And then, after that, a new town.
+
+Fairhaven is not the only place where the women are like this. Four states north, on a lake in Michigan, there's a faded old lodge that's about to hire a cook whose onion soup makes grown men cry in front of witnesses. There's a goose named Pancake with strong opinions about parking lots. There's a resident cat named Soot who talks, judges, and has seen absolutely everything before. The series is called The Witches of Birchwood Lake, it starts with a book called Where There's Smoke, and it is the same promise you've had from me since Cassie hexed her handyman: complete romances, happy endings you can count on, and magic with the manners of a raccoon.
+
+New town. Same coven energy. Bring your own casserole.
+
+---
+
+If you want to be first for all of it, the cover reveals and the novella and the day Birchwood opens for business, the Coven gets everything before anyone else does. You can join at the bottom of this page, and you'll also get The Familiar's Report, which is Luna's version of events, and yes, she names names.
+
+We're all doing our best out here. Some of us are just doing it with a talking cat.
+
+~ Ivy`,
+  },
+  {
     id: "19",
     title: "My Body Sent a Memo and I Didn't Read It",
     slug: "my-body-sent-a-memo",
