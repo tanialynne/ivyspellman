@@ -72,7 +72,7 @@ export default function Hero() {
           </DecorativeButton>
 
           <Link
-            href="/blog"
+            href="/free-chapter"
             className="font-lora font-medium text-lg md:text-xl text-ivy-cream hover:text-ivy-gold transition-colors duration-300"
           >
             {HERO_CONTENT.secondaryCta}

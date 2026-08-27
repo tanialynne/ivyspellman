@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 export const metadata: Metadata = {
   title: "Ivy Spellman | Witch. Author. Forest Dweller.",
   description:
-    "Messy magic for cynical souls. Witchy romcoms about midlife meltdowns, chaotic magic, and second chances. Essays, spells, and stories from a forest at the edge of nowhere.",
+    "Cozy witch romcoms about midlife meltdowns, chaotic magic, and second chances. Home of the Hot Flashes & Hexes series. Stories from a forest at the edge of nowhere.",
   openGraph: {
     title: "Ivy Spellman | Witch. Author. Forest Dweller.",
     description:

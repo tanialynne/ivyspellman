@@ -32,9 +32,9 @@ export const HERO_CONTENT = {
   preTitle: "Witch. Author. Forest dweller.",
   title: "Ivy Spellman",
   subtitle:
-    "Messy magic for cynical souls. Essays, spells, and stories from a forest at the edge of nowhere",
-  ctaButton: "Discover",
-  secondaryCta: "Start with the latest article →",
+    "Cozy witch romcoms about midlife meltdowns, chaotic magic, and second chances. Ten books of Hot Flashes & Hexes and counting — six hundred reviews in, the cat remains everyone's favorite. She knows.",
+  ctaButton: "Start the Series",
+  secondaryCta: "Or start with a free chapter →",
   headerCta: "Get A Free Chapter",
 };
 
