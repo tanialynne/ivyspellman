@@ -42,19 +42,18 @@ export async function POST(request: NextRequest) {
     const smtpPass = process.env.SMTP_PASS;
     const contactEmail = process.env.CONTACT_EMAIL || "hello@ivyspellman.com";
 
-    // If SMTP is not configured, log the message and return success
-    // This allows the form to work in development without email setup
+    // If SMTP is not configured, log the message for recovery and FAIL LOUDLY.
+    // A contact form must never claim success while discarding the message.
     if (!smtpHost || !smtpUser || !smtpPass) {
-      console.log("=== Contact Form Submission ===");
-      console.log(`Name: ${name}`);
-      console.log(`Email: ${email}`);
-      console.log(`Message: ${message}`);
-      console.log("================================");
-      console.log("Note: SMTP not configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS environment variables to enable email sending.");
+      console.error("=== Contact Form Submission (NOT DELIVERED - SMTP unconfigured) ===");
+      console.error(`Name: ${name}`);
+      console.error(`Email: ${email}`);
+      console.error(`Message: ${message}`);
+      console.error("Set SMTP_HOST, SMTP_USER, and SMTP_PASS environment variables to enable email sending.");
 
       return NextResponse.json(
-        { success: true, message: "Message received (email not configured - logged to console)" },
-        { status: 200 }
+        { error: "The contact form is temporarily unavailable. Please email hello@ivyspellman.com directly." },
+        { status: 500 }
       );
     }
 
