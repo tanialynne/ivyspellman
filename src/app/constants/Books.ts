@@ -502,6 +502,31 @@ export const BOOKS: Book[] = [
       },
     ],
   },
+  {
+    id: "10.5",
+    title: "Something Borrowed, Something Brewed",
+    slug: "something-borrowed-something-brewed",
+    description:
+      "Patti has poured coffee for thirty years and never once let anyone bring her a cup. Then her magic wakes up. A Christmas novella.",
+    longDescription:
+      "Patti Rooney has poured coffee at the Fairhaven Diner for thirty years and never once let anyone bring her a cup.\n\nThree weeks before the Christmas Eve wedding of the season, her magic wakes up\u2014and it will not take no for an answer. The coffee pot pours for her. The best booth reserves itself. The pie case has started making pointed suggestions.\n\nAnd the piano player she sent away in 1999 just walked back into her diner, folded his coat on the third stool, and ordered decaf.\n\nPatti is catering the wedding. Nobody asked, because nobody needed to. What nobody counted on\u2014least of all Patti\u2014is a season where the whole town, the whole coven, and the diner itself conspire to teach the woman who feeds everyone the one skill she never learned: being fed.\n\nA complete, closed-door Christmas novella set in Fairhaven, with the whole coven in attendance, one very opinionated cat, and a happily-ever-after twenty-seven years in the making. Lovely anytime; best with the series behind you.",
+    coverImage: "/images/Something-Borrowed-Something-Brewed-Cover.jpg",
+    buyLink: "https://www.amazon.com/dp/B0HGBKC2W2",
+    preorder: true,
+    whatThisBookIs: [
+      "A full Christmas novella in the Hot Flashes & Hexes world\u2014the coven at a wedding",
+      "Patti's story: the woman who feeds everyone learns to be fed",
+      "A second-chance romance twenty-seven years in the brewing",
+      "Complete, closed-door, and cliffhanger-free, like the rest of Fairhaven",
+    ],
+    youllLikeThisIf: [
+      "You want the whole coven back at one long table",
+      "Christmas weddings, diner coffee, and snow that squeaks are your love language",
+      "You've ever fed everyone and gone home to an empty plate",
+      "You believe some things should be delivered by goose, or at least by magic",
+    ],
+    testimonials: [],
+  },
 ];
 
 export const BOOKS_SECTION = {
@@ -532,8 +557,8 @@ export const WHATS_BREWING = {
     subtitle: "A Hot Flashes & Hexes Christmas Novella",
     description:
       "Patti has poured coffee at the Fairhaven Diner for thirty years and never once let anyone bring her a cup. Three weeks before the Christmas Eve wedding of the season, her magic wakes up\u2014and it will not take no for an answer. The coffee pot pours for her. The best booth reserves itself. The bouquet toss refuses to go to anyone else.",
-    coverImage: undefined,
-    releaseNote: "Coming December",
+    coverImage: "/images/Something-Borrowed-Something-Brewed-Cover.jpg",
+    releaseNote: "Preorder now \u2014 arrives December",
   } as UpcomingItem,
   birchwood: {
     seriesTitle: "The Witches of Birchwood Lake",
