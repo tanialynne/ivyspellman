@@ -569,7 +569,7 @@ export const WHATS_BREWING = {
         title: "Trick of the Light",
         subtitle: "The Birchwood Prequel Novella",
         description:
-          "How the lodge got its keeper\u2014and how Soot got his opinions. The story Birchwood tells before it tells you anything else.",
+          "How the lodge got its keeper. Soot was already there, and so were the opinions. The story Birchwood tells before it tells you anything else.",
         coverImage: "/images/birchwood/trick-of-the-light.jpg",
         releaseNote: "Coming October 2",
       },
