@@ -566,19 +566,19 @@ export const WHATS_BREWING = {
       "Fairhaven is not the only town where the women are like this. Four states north, on a lake in Michigan, a faded lodge is about to get a cook whose onion soup makes grown men cry, a goose named Pancake with strong opinions, and a resident talking cat named Soot who has seen it all before. A brand-new series of complete, cozy witch romances\u2014same promise, new town.",
     books: [
       {
+        title: "Trick of the Light",
+        subtitle: "The Birchwood Prequel Novella",
+        description:
+          "How the lodge got its keeper\u2014and how Soot got his opinions. The story Birchwood tells before it tells you anything else.",
+        coverImage: "/images/birchwood/trick-of-the-light.jpg",
+        releaseNote: "Coming October 2",
+      },
+      {
         title: "Where There's Smoke",
         subtitle: "Birchwood Lake, Book 1",
         description:
           "Laura Keller used to run one of the best farm-to-table restaurants downstate. Then the kitchen caught fire, the marriage ended, and the only offer left was four hours north at a lodge nobody had heard of in twenty years. The plan was simple: cook competently, want nothing, leave before the season turns. Then the bread started tasting like being loved.",
         coverImage: undefined, // e.g. "/images/birchwood/where-theres-smoke.jpg"
-        releaseNote: "Coming soon",
-      },
-      {
-        title: "Trick of the Light",
-        subtitle: "The Birchwood Prequel Novella",
-        description:
-          "How the lodge got its keeper\u2014and how Soot got his opinions. The story Birchwood tells before it tells you anything else.",
-        coverImage: undefined, // e.g. "/images/birchwood/trick-of-the-light.jpg"
         releaseNote: "Coming soon",
       },
     ] as UpcomingItem[],
