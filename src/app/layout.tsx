@@ -46,6 +46,23 @@ export const metadata: Metadata = {
     description:
       "Messy magic for cynical souls. Essays, spells, and stories from a forest at the edge of nowhere.",
     type: "website",
+    siteName: "Ivy Spellman",
+    url: "/",
+    images: [
+      {
+        url: "/og/default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ivy Spellman — cozy witch romcoms about midlife, magic, and the mess in between",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ivy Spellman | Witch. Author. Forest Dweller.",
+    description:
+      "Messy magic for cynical souls. Essays, spells, and stories from a forest at the edge of nowhere.",
+    images: ["/og/default.jpg"],
   },
 };
 
@@ -77,6 +94,36 @@ export default function RootLayout({
       <body
         className={`${cormorant.variable} ${raleway.variable} ${allura.variable} antialiased`}
       >
+        {/* Person + WebSite schema. Author sites are one of the few places
+            Google actively uses this markup; the site previously had none. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Person",
+                  "@id": "https://www.ivyspellman.com/#person",
+                  name: "Ivy Spellman",
+                  url: "https://www.ivyspellman.com",
+                  jobTitle: "Author",
+                  description:
+                    "Author of cozy witch romantic comedies about midlife, magic, and the mess in between.",
+                  image: "https://www.ivyspellman.com/og/default.jpg",
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://www.ivyspellman.com/#website",
+                  url: "https://www.ivyspellman.com",
+                  name: "Ivy Spellman",
+                  publisher: { "@id": "https://www.ivyspellman.com/#person" },
+                  inLanguage: "en-US",
+                },
+              ],
+            }),
+          }}
+        />
         {children}
       </body>
     </html>

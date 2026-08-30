@@ -19,6 +19,27 @@ const nextConfig: NextConfig = {
     scrollRestoration: true,
   },
 
+  // Security response headers. Low risk on a static brochure site with no
+  // logins, but free — and the first thing any scanner reports as missing.
+  // CSP is deliberately omitted: it needs report-only testing first against
+  // Next's inline scripts and Google Fonts before it can be enforced.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+          },
+        ],
+      },
+    ];
+  },
+
   compress: true,
   trailingSlash: false,
   poweredByHeader: false,
