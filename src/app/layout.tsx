@@ -28,6 +28,10 @@ const allura = Allura({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ivyspellman.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     template: "%s | Ivy Spellman",
     default: "Ivy Spellman | Witch. Author. Forest Dweller.",
@@ -53,11 +57,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* lazyOnload, not afterInteractive: gtag was costing ~12s of main-thread
+            bootup and two long tasks (7.9s + 3.9s) in Lighthouse mobile, which is
+            what drove Total Blocking Time to 32.8s. Analytics does not need to run
+            before the reader can tap a book link. */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
