@@ -48,6 +48,7 @@ next-env.d.ts
 # Markdown notes
 *.md
 !README.md
+!CLAUDE.md
 
 # Claude
 .claude/
