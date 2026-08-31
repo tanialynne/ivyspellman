@@ -55,6 +55,12 @@ plain text on a site whose product is book covers. Now:
   `layout.tsx` (sitewide) and `books/[slug]/page.tsx` (per book).
 - **Re-run the script after adding or re-covering a book.** Nothing fails loudly if
   you don't; the link just shares badly.
+- **Any page that declares its own `openGraph` block must declare `images` too.**
+  Next.js *replaces* the layout's `openGraph` rather than merging with it, so a
+  page-level block silently drops the share image. This bit us once already —
+  seven pages had `og:` tags with no image while `twitter:image` (not overridden)
+  worked fine, which made it look like the tags were present. When adding a page
+  with custom OG metadata, copy the `images` array too.
 - After deploying a new card, force a re-scrape in LinkedIn Post Inspector and
   Facebook Sharing Debugger — both cache aggressively and will keep serving the old
   preview otherwise.

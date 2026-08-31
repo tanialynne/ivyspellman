@@ -23,6 +23,14 @@ export const metadata: Metadata = {
     description:
       "Messy magic for cynical souls. Witchy romcoms about midlife meltdowns, chaotic magic, and second chances.",
     type: "website",
+    images: [
+      {
+        url: "/og/default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ivy Spellman — cozy witch romcoms about midlife, magic, and the mess in between",
+      },
+    ],
   },
 };
 

@@ -18,6 +18,14 @@ export const metadata: Metadata = {
     description:
       "Get the opening pages of Don't Hex the Handyman free.",
     type: "website",
+    images: [
+      {
+        url: "/og/default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ivy Spellman — cozy witch romcoms about midlife, magic, and the mess in between",
+      },
+    ],
   },
 };
 
