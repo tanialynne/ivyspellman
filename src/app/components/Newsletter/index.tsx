@@ -1,5 +1,6 @@
-"use client";
-
+// Server component by design: a Kit script embed — no React state. Client parents
+// can still import it and pass handlers; keeping it out of the client bundle
+// removes it from every page's hydration cost.
 import Image from "next/image";
 import Script from "next/script";
 import { GoldButton } from "../ui";

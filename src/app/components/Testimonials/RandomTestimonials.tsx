@@ -1,6 +1,6 @@
-"use client";
-
-import { useState, useEffect } from "react";
+// Server component. Testimonials are selected at render (build time for static
+// pages). Previously this picked on mount and rendered an EMPTY section until
+// hydration, which cost both bundle size and a visible content flash.
 import Image from "next/image";
 import { ALL_REVIEWS, getRandomTestimonials } from "../../constants/Books";
 import { IMAGES } from "../../constants/Images";
@@ -56,52 +56,7 @@ export default function RandomTestimonials({
   variant = "dark",
   showBackground = true,
 }: RandomTestimonialsProps) {
-  const [testimonials, setTestimonials] = useState<typeof ALL_REVIEWS>([]);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setTestimonials(getRandomTestimonials(count));
-    setMounted(true);
-  }, [count]);
-
-  // Don't render until mounted to avoid hydration mismatch
-  if (!mounted) {
-    return (
-      <section className="relative py-20 md:py-32">
-        {showBackground && (
-          <div className="absolute inset-0 z-0">
-            <Image
-              src={IMAGES.booksBackground}
-              alt=""
-              fill
-              className="object-cover object-center"
-              quality={90}
-            />
-          </div>
-        )}
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="flex flex-col items-center gap-5 mb-16">
-            <Image
-              src={IMAGES.headerDivider}
-              alt=""
-              width={162}
-              height={8}
-              className="opacity-90"
-            />
-            <h2 className="font-cormorant font-semibold text-3xl md:text-[40px] text-ivy-cream text-center">
-              {title}
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Placeholder cards for SSR */}
-            {Array.from({ length: count }).map((_, index) => (
-              <div key={index} className={`${variant === "dark" ? "bg-[#0d0d0d]" : "bg-[#37290c]"} rounded-md h-[300px] animate-pulse`} />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const testimonials = getRandomTestimonials(count);
 
   return (
     <section className={showBackground ? "relative py-20 md:py-32" : "bg-ivy-dark py-20 md:py-32"}>

@@ -4,7 +4,14 @@ import Hero from "./components/Hero";
 import BooksSection from "./components/Books";
 import JournalSection from "./components/Journal";
 import Newsletter from "./components/Newsletter";
-import GallerySection from "./components/Gallery";
+import dynamic from "next/dynamic";
+
+// Gallery is genuinely interactive (scroll carousel) so it must stay a client
+// component — but it sits below the fold, so defer its JS until the browser is
+// past first paint instead of hydrating it on load.
+const GallerySection = dynamic(() => import("./components/Gallery"), {
+  loading: () => <div className="min-h-[400px]" aria-hidden="true" />,
+});
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {

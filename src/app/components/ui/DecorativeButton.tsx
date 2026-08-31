@@ -1,5 +1,6 @@
-"use client";
-
+// Server component by design: presentational only — no hooks, no handlers of its own. Client parents
+// can still import it and pass handlers; keeping it out of the client bundle
+// removes it from every page's hydration cost.
 import { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
 import Image from "next/image";
 

@@ -1,6 +1,7 @@
-"use client";
-
-import { useState, useEffect } from "react";
+// Server component. The quote is chosen at render (build time for static pages),
+// so it stays fixed until the next deploy rather than changing per visit — a
+// deliberate trade: it removes this section from the client bundle entirely and
+// eliminates the flash of the placeholder quote on load.
 
 // Witchy quotes in Ivy's voice
 const WITCHY_QUOTES = [
@@ -63,13 +64,8 @@ const WITCHY_QUOTES = [
  * Displays a random quote in Ivy's voice as a footer divider
  */
 export default function WitchyQuote() {
-  const [quote, setQuote] = useState(WITCHY_QUOTES[0]);
-
-  useEffect(() => {
-    // Pick a random quote on mount
-    const randomIndex = Math.floor(Math.random() * WITCHY_QUOTES.length);
-    setQuote(WITCHY_QUOTES[randomIndex]);
-  }, []);
+  const quote =
+    WITCHY_QUOTES[Math.floor(Math.random() * WITCHY_QUOTES.length)];
 
   return (
     <section className="relative py-16 md:py-20 overflow-hidden bg-[#37290c]">
