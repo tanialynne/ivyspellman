@@ -1,11 +1,9 @@
 // Server component by design: a Kit script embed — no React state. Client parents
 // can still import it and pass handlers; keeping it out of the client bundle
 // removes it from every page's hydration cost.
-import Image from "next/image";
 import Script from "next/script";
 import { GoldButton } from "../ui";
-import { NEWSLETTER_CONTENT } from "../../constants/SiteContent";
-import { IMAGES } from "../../constants/Images";
+import { NEWSLETTER_CONTENT, HOME_CONTENT } from "../../constants/SiteContent";
 
 interface NewsletterProps {
   variant?: "default" | "compact";
@@ -74,10 +72,10 @@ export default function Newsletter({ variant = "default" }: NewsletterProps) {
 
         <div className="flex flex-col items-center lg:items-start gap-5 w-full max-w-full lg:max-w-[282px]">
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-[10px]">
-            <h3 className="font-lora font-semibold text-lg text-ivy-cream">
+            <p className="jb-fh" style={{ marginBottom: 6 }}>
               {NEWSLETTER_CONTENT.footerTitle}
-            </h3>
-            <p className="font-lora text-sm text-ivy-cream leading-relaxed whitespace-pre-line">
+            </p>
+            <p className="text-[15px] leading-relaxed whitespace-pre-line text-ivy-gray">
               {NEWSLETTER_CONTENT.footerDescription}
             </p>
           </div>
@@ -102,21 +100,21 @@ export default function Newsletter({ variant = "default" }: NewsletterProps) {
                 type="email"
                 name="email_address"
                 placeholder={NEWSLETTER_CONTENT.placeholder}
-                className="formkit-input w-full h-[40px] px-[14px] pr-[100px] py-[10px] bg-transparent border border-ivy-cream text-ivy-cream font-lora text-sm placeholder:text-ivy-cream/70 focus:border-ivy-gold transition-colors"
+                className="formkit-input w-full h-[46px] pl-5 pr-[110px] rounded-full bg-ivy-dark/60 border border-ivy-gold/30 text-ivy-cream font-raleway text-sm placeholder:text-ivy-cream/50 focus:border-ivy-gold transition-colors"
                 required
                 autoComplete="email"
               />
               <button
                 type="submit"
                 data-element="submit"
-                className="formkit-submit absolute right-0 top-0 h-[40px] px-[22px] bg-ivy-dark-light border border-ivy-cream text-ivy-cream font-lora text-sm hover:bg-ivy-dark transition-colors"
+                className="formkit-submit absolute right-[4px] top-[4px] h-[38px] px-5 rounded-full bg-gradient-to-b from-[#f0d27f] to-[#d4aa45] text-[#1c1206] font-raleway font-bold text-[11px] uppercase tracking-[0.16em] hover:brightness-110 transition"
               >
                 <span className="formkit-spinner hidden">
                   <span></span>
                   <span></span>
                   <span></span>
                 </span>
-                <span>{NEWSLETTER_CONTENT.submitText}</span>
+                <span>Join</span>
               </button>
             </div>
           </form>
@@ -130,101 +128,64 @@ export default function Newsletter({ variant = "default" }: NewsletterProps) {
       {/* Kit Form Script */}
       <Script src="https://f.convertkit.com/ckjs/ck.5.js" strategy="lazyOnload" />
 
-      <section
-        id="newsletter"
-        className="relative py-20"
-        style={{ backgroundColor: "#37290c" }}
-      >
-        <div className="max-w-[1085px] mx-auto px-6 md:px-[72px]">
-          {/* Card with background image */}
-          <div className="relative overflow-hidden rounded-sm">
-            {/* Card Background Image */}
+      <section id="newsletter" className="jb jb-sec jb-coven" data-stars="20">
+        <div className="jb-wrap jb-center">
+          <span className="ivy-swirl center" />
+          <p className="jb-eyebrow center">{HOME_CONTENT.coven.eyebrow}</p>
+          <h2>
+            {HOME_CONTENT.coven.title} <em>{HOME_CONTENT.coven.titleEm}</em>
+          </h2>
+          <p className="jb-lede" style={{ margin: "0 auto" }}>
+            {HOME_CONTENT.coven.text}
+          </p>
+
+          {/* Kit Form */}
+          <form
+            action={`https://app.kit.com/forms/${NEWSLETTER_CONTENT.formId}/subscriptions`}
+            className="seva-form formkit-form mx-auto mt-8 w-full max-w-[520px]"
+            method="post"
+            data-sv-form={NEWSLETTER_CONTENT.formId}
+            data-uid={NEWSLETTER_CONTENT.formId}
+            data-format="inline"
+            data-version="5"
+            data-options={KIT_OPTIONS}
+          >
+            <ul
+              className="formkit-alert formkit-alert-error"
+              data-element="errors"
+              data-group="alert"
+            ></ul>
             <div
-              className="absolute inset-0 z-0"
-              style={{ backgroundColor: "#37290c" }}
+              data-element="fields"
+              data-stacked="false"
+              className="seva-fields formkit-fields flex flex-wrap justify-center gap-3"
             >
-              <Image
-                src={IMAGES.joinCircleBackground}
-                alt=""
-                fill
-                className="object-cover object-center"
-                quality={90}
+              <label htmlFor="newsletter-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="newsletter-email"
+                className="formkit-input flex-[1_1_260px] rounded-full border border-ivy-gold/30 bg-ivy-dark/50 px-5 py-4 font-raleway text-[15px] text-ivy-cream placeholder:text-ivy-cream/50 focus:border-ivy-gold"
+                name="email_address"
+                aria-label="Email address"
+                placeholder="Your email"
+                required
+                type="email"
+                autoComplete="email"
               />
+              <GoldButton type="submit" data-element="submit" className="formkit-submit">
+                <span className="formkit-spinner hidden">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <span>{NEWSLETTER_CONTENT.buttonText}</span>
+              </GoldButton>
             </div>
-
-            {/* Content */}
-            <div className="relative z-10 py-10 px-6 md:px-[72px]">
-              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-[91px]">
-                {/* Text Content */}
-                <div className="flex flex-col gap-5 lg:w-[521px]">
-                  <h2 className="font-cormorant font-semibold text-3xl md:text-4xl text-ivy-cream">
-                    {NEWSLETTER_CONTENT.title}
-                  </h2>
-                  <p className="font-lora text-lg text-ivy-cream/90 leading-relaxed">
-                    {NEWSLETTER_CONTENT.description}
-                  </p>
-                </div>
-
-                {/* Kit Form */}
-                <form
-                  action={`https://app.kit.com/forms/${NEWSLETTER_CONTENT.formId}/subscriptions`}
-                  className="seva-form formkit-form flex flex-col gap-[10px] w-full lg:w-[328px]"
-                  method="post"
-                  data-sv-form={NEWSLETTER_CONTENT.formId}
-                  data-uid={NEWSLETTER_CONTENT.formId}
-                  data-format="inline"
-                  data-version="5"
-                  data-options={KIT_OPTIONS}
-                >
-                  <ul
-                    className="formkit-alert formkit-alert-error"
-                    data-element="errors"
-                    data-group="alert"
-                  ></ul>
-                  <div
-                    data-element="fields"
-                    data-stacked="true"
-                    className="seva-fields formkit-fields flex flex-col gap-[17px]"
-                  >
-                    <div className="formkit-field flex flex-col gap-[11px]">
-                      <label
-                        htmlFor="newsletter-email"
-                        className="font-lora text-sm text-ivy-cream"
-                      >
-                        Email
-                      </label>
-                      <input
-                        id="newsletter-email"
-                        className="formkit-input h-[44px] px-4 bg-transparent border border-ivy-cream/40 text-ivy-cream font-lora text-sm placeholder:text-ivy-cream/50 focus:border-ivy-gold transition-colors w-full"
-                        name="email_address"
-                        aria-label="Email Address"
-                        placeholder="Your email address"
-                        required
-                        type="email"
-                        autoComplete="email"
-                      />
-                    </div>
-                    <GoldButton
-                      type="submit"
-                      data-element="submit"
-                      className="formkit-submit w-full"
-                    >
-                      <span className="formkit-spinner hidden">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </span>
-                      <span>{NEWSLETTER_CONTENT.buttonText}</span>
-                    </GoldButton>
-                  </div>
-
-                  <p className="font-lora text-[10px] text-ivy-cream/70 text-center">
-                    {NEWSLETTER_CONTENT.disclaimer}
-                  </p>
-                </form>
-              </div>
-            </div>
-          </div>
+            <p className="mt-4 font-raleway text-[13px] italic text-ivy-gray">
+              {NEWSLETTER_CONTENT.disclaimer}.
+            </p>
+          </form>
         </div>
       </section>
     </>

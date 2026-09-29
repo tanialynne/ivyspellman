@@ -28,7 +28,7 @@ while ((m = re.exec(src))) {
   books.push({ title: m[1].replace(/\\"/g, '"'), slug: m[2], cover: m[3] });
 }
 
-const GOLD = '#d4af37', CREAM = '#f5f1e8', DARK = '#0d0d0d';
+const GOLD = '#e2be62', CREAM = '#f6efe2', DARK = '#160b2a';
 
 function fileUri(p) {
   const abs = path.join(ROOT, 'public', p.replace(/^\//, ''));
@@ -45,21 +45,21 @@ const shell = (inner) => `<!doctype html><html><head><meta charset="utf-8">
   body{width:1200px;height:630px;overflow:hidden;background:${DARK};
        font-family:Raleway,-apple-system,sans-serif;color:${CREAM};}
   .card{position:relative;width:1200px;height:630px;display:flex;align-items:center;
-        background:radial-gradient(ellipse 90% 70% at 25% 30%, #1a1a1a 0%, ${DARK} 70%);}
+        background:radial-gradient(ellipse 90% 90% at 70% 35%, #3a1a63 0%, #2a1245 40%, ${DARK} 85%);}
   .card::after{content:"";position:absolute;inset:28px;border:1px solid ${GOLD}55;pointer-events:none}
 </style></head><body>${inner}</body></html>`;
 
 const defaultCard = shell(`
   <div class="card" style="flex-direction:column;justify-content:center;text-align:center;padding:0 110px">
     <div style="font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:${GOLD};margin-bottom:26px">
-      Witch · Author · Forest Dweller
+      Cozy Witch Romantic Fantasy
     </div>
     <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:88px;font-weight:700;line-height:1;letter-spacing:.01em">
       Ivy Spellman
     </div>
     <div style="width:120px;height:1px;background:${GOLD};margin:34px auto"></div>
-    <div style="font-size:26px;font-weight:300;color:#d9d3c6;line-height:1.45;max-width:760px">
-      Cozy witch romcoms about midlife, magic,<br>and the mess in between.
+    <div style="font-size:26px;font-weight:300;color:#cfc6d8;line-height:1.45;max-width:760px">
+      Midlife magic and comedy. Sentient houses,<br>talking cats, and closed-door happy endings.
     </div>
   </div>`);
 
@@ -76,7 +76,7 @@ function bookCard(b) {
         ${b.title.replace(/&/g, '&amp;').replace(/</g, '&lt;')}
       </div>
       <div style="width:88px;height:1px;background:${GOLD};margin-bottom:24px"></div>
-      <div style="font-size:23px;font-weight:300;color:#d9d3c6">Ivy Spellman</div>
+      <div style="font-size:23px;font-weight:300;color:#cfc6d8">Ivy Spellman</div>
     </div>
   </div>`);
 }

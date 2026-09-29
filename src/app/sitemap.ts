@@ -3,7 +3,7 @@ import { BOOKS } from "./constants/Books";
 import { ALL_POSTS } from "./constants/BlogPosts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://ivyspellman.com";
+  const baseUrl = "https://www.ivyspellman.com";
 
   // Static pages
   const staticPages = [

@@ -1,103 +1,32 @@
-// Server component. Testimonials are selected at render (build time for static
-// pages). Previously this picked on mount and rendered an EMPTY section until
-// hydration, which cost both bundle size and a visible content flash.
-import Image from "next/image";
-import { ALL_REVIEWS, getRandomTestimonials } from "../../constants/Books";
-import { IMAGES } from "../../constants/Images";
-
-interface TestimonialCardProps {
-  quote: string;
-  author: string;
-  variant?: "dark" | "light";
-}
-
-/**
- * Testimonial Card Component
- */
-function TestimonialCard({ quote, author, variant = "dark" }: TestimonialCardProps) {
-  const bgClass = variant === "dark" ? "bg-[#0d0d0d]" : "bg-[#37290c]";
-
-  return (
-    <div className={`${bgClass} rounded-md flex flex-col items-center gap-[30px] px-8 md:px-[54px] py-10 md:py-[45px]`}>
-      {/* Quote Icon */}
-      <Image
-        src={IMAGES.quoteIcon}
-        alt=""
-        width={30}
-        height={40}
-        className="h-[40px] w-auto"
-      />
-
-      <p className="font-lora text-lg text-ivy-cream text-center leading-relaxed">
-        {quote}
-      </p>
-
-      <p className="font-lora text-lg text-ivy-cream text-center">
-        — {author}
-      </p>
-    </div>
-  );
-}
+// Server component: a titled band of shuffling 5-star reader reviews. The first three are
+// fixed at build so the HTML has real quotes in it; ReviewShuffle deals more on click.
+import { READER_REVIEWS, BOOK1_STATS } from "../../constants/Reviews";
+import { Eyebrow } from "../Page";
+import ReviewShuffle from "../Home/ReviewShuffle";
 
 interface RandomTestimonialsProps {
-  title: string;
-  count?: number;
+  title?: string;
+  eyebrow?: string;
+  /** Kept for existing call sites; the band always uses the jewel plum ground now. */
   variant?: "dark" | "light";
   showBackground?: boolean;
+  ground?: "plum2" | "teal" | "wine" | "navy";
 }
 
-/**
- * Random Testimonials Section
- * Client component that displays random testimonials with unique author names
- */
 export default function RandomTestimonials({
-  title,
-  count = 3,
-  variant = "dark",
-  showBackground = true,
+  title = "What readers are saying",
+  eyebrow = "Five-star reader reviews",
+  ground = "plum2",
 }: RandomTestimonialsProps) {
-  const testimonials = getRandomTestimonials(count);
-
   return (
-    <section className={showBackground ? "relative py-20 md:py-32" : "bg-ivy-dark py-20 md:py-32"}>
-      {showBackground && (
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={IMAGES.booksBackground}
-            alt=""
-            fill
-            className="object-cover object-center"
-            quality={90}
-          />
-        </div>
-      )}
-
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12">
-        {/* Section Header */}
-        <div className="flex flex-col items-center gap-5 mb-16">
-          <Image
-            src={IMAGES.headerDivider}
-            alt=""
-            width={162}
-            height={8}
-            className="opacity-90"
-          />
-          <h2 className="font-cormorant font-semibold text-3xl md:text-[40px] text-ivy-cream text-center capitalize">
-            {title}
-          </h2>
-        </div>
-
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard
-              key={index}
-              quote={testimonial.quote}
-              author={testimonial.author}
-              variant={variant}
-            />
-          ))}
-        </div>
+    <section className={`jb jb-sec jb-${ground}`} data-stars="16">
+      <div className="jb-wrap">
+        <Eyebrow center>{eyebrow}</Eyebrow>
+        <h2 className="jb-center">{title}</h2>
+        <ReviewShuffle reviews={READER_REVIEWS} initial={[0, 7, 16]} label="Conjure three more" />
+        <p className="jb-stat">
+          <b>{BOOK1_STATS.rating} stars</b> across <b>{BOOK1_STATS.reviewCount} reviews</b> for Book 1
+        </p>
       </div>
     </section>
   );

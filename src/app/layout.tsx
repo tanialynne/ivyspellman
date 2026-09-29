@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Cormorant_Garamond, Raleway, Allura } from "next/font/google";
 import "./globals.css";
+import "./jewel.css";
+import Magic from "./components/Magic";
 
 const GA_MEASUREMENT_ID = "G-BF0W2N2GNK";
 
@@ -29,25 +31,23 @@ const allura = Allura({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ivyspellman.com"),
-  alternates: {
-    canonical: "/",
-  },
+  // No site-wide canonical here: Next.js would hand "/" to every page that doesn't set
+  // its own, telling Google each page is a copy of the homepage. Pages set their own.
   title: {
     template: "%s | Ivy Spellman",
-    default: "Ivy Spellman | Witch. Author. Forest Dweller.",
+    default: "Ivy Spellman | Cozy Witch Romantic Fantasy with Midlife Magic and Comedy",
   },
   description:
-    "Messy magic for cynical souls. Essays, spells, and stories from a forest at the edge of nowhere.",
+    "Cozy witch romantic fantasy with midlife magic and comedy. Funny, witchy, closed-door romances with sentient houses and talking cats.",
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Ivy Spellman | Witch. Author. Forest Dweller.",
+    title: "Ivy Spellman | Cozy Witch Romantic Fantasy with Midlife Magic and Comedy",
     description:
-      "Messy magic for cynical souls. Essays, spells, and stories from a forest at the edge of nowhere.",
+      "Cozy witch romantic fantasy with midlife magic and comedy. Funny, witchy, closed-door romances with sentient houses and talking cats.",
     type: "website",
     siteName: "Ivy Spellman",
-    url: "/",
     images: [
       {
         url: "/og/default.jpg",
@@ -59,9 +59,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ivy Spellman | Witch. Author. Forest Dweller.",
+    title: "Ivy Spellman | Cozy Witch Romantic Fantasy with Midlife Magic and Comedy",
     description:
-      "Messy magic for cynical souls. Essays, spells, and stories from a forest at the edge of nowhere.",
+      "Cozy witch romantic fantasy with midlife magic and comedy. Funny, witchy, closed-door romances with sentient houses and talking cats.",
     images: ["/og/default.jpg"],
   },
 };
@@ -72,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-US">
       <head>
         {/* lazyOnload, not afterInteractive: gtag was costing ~12s of main-thread
             bootup and two long tasks (7.9s + 3.9s) in Lighthouse mobile, which is
@@ -109,7 +109,8 @@ export default function RootLayout({
                   url: "https://www.ivyspellman.com",
                   jobTitle: "Author",
                   description:
-                    "Author of cozy witch romantic comedies about midlife, magic, and the mess in between.",
+                    "Author of cozy witch romantic fantasy with midlife magic and comedy, including the Hot Flashes & Hexes series.",
+                  knowsAbout: ["Cozy fantasy", "Paranormal romance", "Romantic comedy", "Later in life romance"],
                   image: "https://www.ivyspellman.com/og/default.jpg",
                 },
                 {
@@ -125,6 +126,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <Magic />
       </body>
     </html>
   );

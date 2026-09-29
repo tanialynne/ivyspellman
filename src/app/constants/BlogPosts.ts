@@ -74,7 +74,7 @@ There's a Christmas novella coming in December. It's Patti's. Yes, that Patti, t
 
 And then, after that, a new town.
 
-Fairhaven is not the only place where the women are like this. Four states north, on a lake in Michigan, there's a faded old lodge that's about to hire a cook whose onion soup makes grown men cry in front of witnesses. There's a goose named Pancake with strong opinions about parking lots. There's a resident cat named Soot who talks, judges, and has seen absolutely everything before. The series is called The Witches of Birchwood Lake, it starts with a book called Where There's Smoke, and it is the same promise you've had from me since Cassie hexed her handyman: complete romances, happy endings you can count on, and magic with the manners of a raccoon.
+Fairhaven is not the only place where the women are like this. Four states north, on a lake in Michigan, there's a faded old lodge that's about to hire a cook whose onion soup makes grown men cry in front of witnesses. There's a goose named Pancake with strong opinions about parking lots. There's a resident cat named Soot who talks, judges, and has seen absolutely everything before. The series is called The Witches of Birchwood Lake, it starts with a book called Back Burner, and it is the same promise you've had from me since Cassie hexed her handyman: complete romances, happy endings you can count on, and magic with the manners of a raccoon.
 
 New town. Same coven energy. Bring your own casserole.
 

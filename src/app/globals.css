@@ -2,12 +2,18 @@
 
 /* Custom CSS Variables for theming */
 @theme {
-  --color-ivy-gold: #d4af37;
-  --color-ivy-gold-light: #c6b56f;
-  --color-ivy-cream: #f5f1e8;
-  --color-ivy-dark: #0d0d0d;
-  --color-ivy-dark-light: #141414;
-  --color-ivy-gray: #b8b8b8;
+  /* Jewel Box palette (Sept 2026): the cover grounds, gold filigree, warm cream. */
+  --color-ivy-gold: #e2be62;
+  --color-ivy-gold-light: #f0d27f;
+  --color-ivy-cream: #f6efe2;
+  --color-ivy-dark: #0c0a18;
+  --color-ivy-dark-light: #151126;
+  --color-ivy-gray: #cfc6d8;
+  --color-jewel-plum: #2a1245;
+  --color-jewel-navy: #101a44;
+  --color-jewel-wine: #3b0f22;
+  --color-jewel-emerald: #0d2e25;
+  --color-jewel-teal: #0c3139;
 }
 
 /* Base styles */
@@ -48,7 +54,7 @@
 
   /* Gold gradient text */
   .text-gradient-gold {
-    background: linear-gradient(180deg, #d4af37 0%, #c6b56f 100%);
+    background: linear-gradient(180deg, #f0d27f 0%, #d4aa45 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -57,8 +63,8 @@
 
 /* Custom scrollbar - elegant dark theme */
 :root {
-  --track: #0d0d0d;
-  --thumb: #d4af37;
+  --track: #0c0a18;
+  --thumb: #e2be62;
   --thumb-hover: #c6b56f;
 }
 
@@ -87,7 +93,7 @@ html::-webkit-scrollbar-thumb:hover {
 /* Decorative button styles */
 .btn-decorative {
   position: relative;
-  background: #141414;
+  background: #151126;
   border: none;
   padding: 1rem 2rem;
   color: #f5f1e8;
@@ -108,8 +114,8 @@ html::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    #d4af37 10%,
-    #d4af37 90%,
+    #e2be62 10%,
+    #e2be62 90%,
     transparent 100%
   );
 }
@@ -123,12 +129,12 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .btn-decorative:hover {
-  background: #1a1a1a;
+  background: #1f1838;
 }
 
 /* Card styles with gold border */
 .card-elegant {
-  background: #141414;
+  background: #151126;
   border: 0.5px solid #c6b56f;
   position: relative;
 }
@@ -155,7 +161,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 /* Focus states for keyboard navigation */
 *:focus-visible {
-  outline: 2px solid #d4af37 !important;
+  outline: 2px solid #e2be62 !important;
   outline-offset: 2px !important;
 }
 
@@ -173,5 +179,5 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .link-underline:hover {
-  text-decoration-color: #d4af37;
+  text-decoration-color: #e2be62;
 }

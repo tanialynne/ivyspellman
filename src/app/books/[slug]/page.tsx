@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Navigation from "../../components/Navigation";
-import WitchyQuote from "../../components/WitchyQuote";
+import Link from "next/link";
+import Newsletter from "../../components/Newsletter";
+import { Eyebrow, SectionHead, flagFor, type Ground } from "../../components/Page";
 import Footer from "../../components/Footer";
 import { RandomTestimonials } from "../../components/Testimonials";
 import { GoldButton } from "../../components/ui";
-import { BOOKS, type Book } from "../../constants/Books";
-import { IMAGES } from "../../constants/Images";
+import { BOOKS, SERIES, booksInSeries, type Book, type SeriesKey } from "../../constants/Books";
 
 /**
  * Generate metadata for individual book pages
@@ -64,71 +65,55 @@ export function generateStaticParams() {
   }));
 }
 
+const GROUNDS: Record<SeriesKey, Ground> = { hfh: "plum", birchwood: "emerald" };
+
 /**
- * Book Hero Section
- * Background image with book cover and details
+ * Book hero: cover as an object on the left, the whole pitch on the right.
  */
 function BookHero({ book }: { book: Book }) {
+  const series = SERIES.find((s) => s.key === book.series)!;
+  const flag = flagFor(book);
+  const paragraphs = book.longDescription.split("\n\n");
   return (
-    <section className="relative pt-32 pb-20 min-h-[700px]">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={IMAGES.singleBookBackground}
-          alt=""
-          fill
-          className="object-cover object-center"
-          quality={90}
-          priority
-        />
-      </div>
-
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row items-start gap-12 md:gap-[112px]">
-          {/* Book Cover */}
-          <div className="relative w-[200px] md:w-[284px] h-[300px] md:h-[428px] flex-shrink-0 mx-auto md:mx-0">
-            <Image
-              src={book.coverImage}
-              alt={book.title}
-              fill
-              className="object-contain"
-              priority
-            />
+    <section className={`jb-sec jb-pagehero jb-${GROUNDS[book.series]}`} data-stars="18">
+      <div className="jb-wrap">
+        <div className="jb-bookhero">
+          <div className="jb-cover ivy-floaty" data-burst>
+            <Image src={book.coverImage} alt={`${book.title} by Ivy Spellman`} width={720} height={1100} priority sizes="(max-width: 900px) 260px, 380px" />
+            {flag && <span className="flag">{flag}</span>}
           </div>
-
-          {/* Book Details */}
-          <div className="flex flex-col gap-[30px] max-w-[950px]">
-            <div className="flex flex-col gap-[26px]">
-              <h1 className="font-lora font-medium text-4xl md:text-5xl lg:text-[60px] text-ivy-cream leading-tight">
-                {book.title}
-              </h1>
-
-              <p className="font-lora text-lg md:text-xl text-ivy-cream">
-                {book.description}
-              </p>
-
-              <p className="font-lora text-lg text-ivy-cream leading-relaxed">
-                {book.longDescription}
-              </p>
+          <div>
+            <Eyebrow>
+              <Link href={`/books#${series.anchor}`}>{series.name}</Link> · {book.seriesLabel}
+            </Eyebrow>
+            <h1>{book.title}</h1>
+            <p className="jb-hook">{book.description}</p>
+            <div className="jb-body jb-blurb">
+              {paragraphs.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
             </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              {book.comingSoon ? (
-                <GoldButton as="a" href={book.buyLink || "#"} target="_blank" rel="noopener noreferrer">
-                  Coming Soon
-                </GoldButton>
-              ) : book.buyLink && (
+            <div className="jb-row">
+              {book.buyLink ? (
                 <GoldButton as="a" href={book.buyLink} target="_blank" rel="noopener noreferrer">
-                  {book.preorder ? "Preorder On Amazon" : "Buy On Amazon"}
+                  {book.preorder ? "Preorder on Amazon" : "Read it on Amazon"}
                 </GoldButton>
+              ) : (
+                <span className="jb-soon">{book.releaseNote || "Coming soon"}</span>
               )}
-              {book.previewLink && (
-                <GoldButton as="a" href={book.previewLink}>
-                  Read The First Chapter
-                </GoldButton>
+              {book.previewLink ? (
+                <Link className="jb-ghost" href={book.previewLink}>
+                  Read the first chapter
+                </Link>
+              ) : (
+                !book.buyLink && (
+                  <Link className="jb-ghost" href="#newsletter">
+                    Tell me when it&apos;s out
+                  </Link>
+                )
               )}
             </div>
+            <p className="jb-fine">A cozy witch romantic fantasy with midlife magic and comedy · closed door · happy ending</p>
           </div>
         </div>
       </div>
@@ -137,81 +122,62 @@ function BookHero({ book }: { book: Book }) {
 }
 
 /**
- * Book Details Section
- * What This Book Is / You'll Like This If...
+ * What this book is / You'll like this if: two soft panels, equal weight.
  */
 function BookDetails({ book }: { book: Book }) {
   return (
-    <section className="bg-ivy-dark py-20 md:py-32">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-        <div className="flex flex-col lg:flex-row items-start justify-center gap-16 lg:gap-[125px]">
-          {/* What This Book Is */}
-          <div className="flex flex-col gap-[30px] w-full lg:w-[430px]">
-            <div className="flex flex-col items-center gap-5">
-              <Image
-                src={IMAGES.headerDivider}
-                alt=""
-                width={162}
-                height={8}
-                className="opacity-90"
-              />
-              <h2 className="font-cormorant font-semibold text-3xl md:text-[40px] text-ivy-cream text-center">
-                What This Book Is
-              </h2>
-            </div>
-
-            <ul className="flex flex-col gap-5 text-ivy-cream">
-              {book.whatThisBookIs.map((item, index) => (
-                <li
-                  key={index}
-                  className="font-lora text-lg flex items-start gap-3"
-                >
-                  <span className="text-ivy-gold mt-1">•</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Vertical Divider - Desktop */}
-          <div className="hidden lg:block w-px h-[268px] bg-ivy-cream/30 self-center" />
-
-          {/* Horizontal Divider - Mobile */}
-          <div className="lg:hidden w-full h-px bg-ivy-cream/30" />
-
-          {/* You'll Like This If... */}
-          <div className="flex flex-col gap-[30px] w-full lg:w-[430px]">
-            <div className="flex flex-col items-center gap-5">
-              <Image
-                src={IMAGES.headerDivider}
-                alt=""
-                width={162}
-                height={8}
-                className="opacity-90"
-              />
-              <h2 className="font-cormorant font-semibold text-3xl md:text-[40px] text-ivy-cream text-center">
-                You&apos;ll Like This If...
-              </h2>
-            </div>
-
-            <ul className="flex flex-col gap-5 text-ivy-cream">
-              {book.youllLikeThisIf.map((item, index) => (
-                <li
-                  key={index}
-                  className="font-lora text-lg flex items-start gap-3"
-                >
-                  <span className="text-ivy-gold mt-1">•</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+    <section className="jb-sec jb-ink" style={{ paddingBlock: "90px" }}>
+      <div className="jb-wrap jb-two">
+        <div className="jb-panel">
+          <Eyebrow>What this book is</Eyebrow>
+          <ul className="jb-likes">
+            {book.whatThisBookIs.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="jb-panel">
+          <Eyebrow>You&apos;ll like this if</Eyebrow>
+          <ul className="jb-likes">
+            {book.youllLikeThisIf.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
   );
 }
 
+/**
+ * The series in reading order, current book ringed in gold.
+ */
+function ReadingOrder({ book }: { book: Book }) {
+  const series = SERIES.find((s) => s.key === book.series)!;
+  const books = booksInSeries(book.series);
+  const idx = books.indexOf(book);
+  const next = books[idx + 1];
+  return (
+    <section className={`jb-sec jb-${book.series === "hfh" ? "navy" : "teal"}`} data-stars="10">
+      <div className="jb-wrap">
+        <SectionHead
+          split
+          eyebrow="Reading order"
+          title={series.name}
+          lede={next ? `Up next: ${next.title}. Every book is a complete romance, so you can also jump in anywhere.` : series.intro}
+        />
+        <div className="jb-order" style={books.length < 6 ? { gridTemplateColumns: `repeat(${books.length}, minmax(0, 170px))` } : undefined}>
+          {books.map((b) => (
+            <Link key={b.slug} href={`/books/${b.slug}`} className={b.slug === book.slug ? "here" : undefined} aria-current={b.slug === book.slug ? "page" : undefined}>
+              <Image src={b.coverImage} alt={`${b.title} cover`} width={240} height={360} sizes="150px" />
+              <span>{b.seriesLabel}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /**
  * Single Book Page
@@ -229,8 +195,11 @@ export default async function SingleBookPage({
     notFound();
   }
 
+  const series = SERIES.find((s) => s.key === book.series)!;
+  const seriesPosition = book.seriesPosition;
+
   return (
-    <main className="bg-ivy-dark min-h-screen">
+    <main className="jb bg-ivy-dark min-h-screen">
       {/* Book schema — generated from the same BOOKS entry the page renders,
           so it can never drift from what's on screen. */}
       <script
@@ -238,42 +207,62 @@ export default async function SingleBookPage({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Book",
-            name: book.title,
-            author: {
-              "@type": "Person",
-              name: "Ivy Spellman",
-              "@id": "https://www.ivyspellman.com/#person",
-            },
-            url: `https://www.ivyspellman.com/books/${book.slug}`,
-            image: `https://www.ivyspellman.com${book.coverImage}`,
-            description: book.description,
-            inLanguage: "en-US",
-            bookFormat: "https://schema.org/EBook",
-            genre: "Paranormal Romance",
-            ...(book.buyLink
-              ? {
-                  offers: {
-                    "@type": "Offer",
-                    url: book.buyLink,
-                    availability: book.comingSoon
-                      ? "https://schema.org/PreOrder"
-                      : "https://schema.org/InStock",
-                  },
-                }
-              : {}),
+            "@graph": [
+              {
+                "@type": "Book",
+                "@id": `https://www.ivyspellman.com/books/${book.slug}#book`,
+                name: book.title,
+                alternativeHeadline: "A Cozy Witch Romantic Fantasy with Midlife Magic and Comedy",
+                author: { "@id": "https://www.ivyspellman.com/#person" },
+                url: `https://www.ivyspellman.com/books/${book.slug}`,
+                image: `https://www.ivyspellman.com${book.coverImage}`,
+                description: book.description,
+                abstract: book.longDescription,
+                inLanguage: "en-US",
+                bookFormat: "https://schema.org/EBook",
+                genre: ["Cozy fantasy", "Paranormal romance", "Romantic comedy", "Later in life romance"],
+                ...(seriesPosition
+                  ? {
+                      position: seriesPosition,
+                    }
+                  : {}),
+                isPartOf: {
+                  "@type": "BookSeries",
+                  "@id": `https://www.ivyspellman.com/#${series.anchor}`,
+                  name: series.name,
+                },
+                ...(book.buyLink
+                  ? {
+                      offers: {
+                        "@type": "Offer",
+                        url: book.buyLink,
+                        availability: book.comingSoon || book.preorder
+                          ? "https://schema.org/PreOrder"
+                          : "https://schema.org/InStock",
+                      },
+                    }
+                  : {}),
+              },
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://www.ivyspellman.com" },
+                  { "@type": "ListItem", position: 2, name: "Books", item: "https://www.ivyspellman.com/books" },
+                  { "@type": "ListItem", position: 3, name: book.title, item: `https://www.ivyspellman.com/books/${book.slug}` },
+                ],
+              },
+            ],
           }),
         }}
       />
       <Navigation />
       <BookHero book={book} />
       <BookDetails book={book} />
-      <RandomTestimonials
-        title="Whispers From the Readers"
-        variant="dark"
-        showBackground={true}
-      />
-      <WitchyQuote />
+      <ReadingOrder book={book} />
+      {book.series === "hfh" && (
+        <RandomTestimonials title="Whispers from the readers" eyebrow="Five-star reviews of the series opener" ground="teal" />
+      )}
+      <Newsletter />
       <Footer />
     </main>
   );

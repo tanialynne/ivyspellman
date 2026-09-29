@@ -36,20 +36,21 @@ export default function GoldButton({
   ...props
 }: Props) {
   const sizeClasses = size === "large"
-    ? "px-10 py-5 text-lg"
-    : "px-8 py-4 text-base";
+    ? "px-10 py-5 text-sm"
+    : "px-8 py-4 text-[0.8rem]";
 
   const baseClasses = `
     inline-flex items-center justify-center
     ${sizeClasses}
-    font-raleway font-medium
-    uppercase tracking-widest
-    text-ivy-dark
-    bg-ivy-gold
-    rounded
+    font-raleway font-bold
+    uppercase tracking-[0.18em]
+    text-[#1c1206]
+    bg-gradient-to-b from-[#f0d27f] to-[#d4aa45]
+    rounded-full
+    shadow-[0_10px_30px_-10px_rgba(226,190,98,0.6)]
     cursor-pointer
     transition-all duration-300 ease-in-out
-    hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(201,162,39,0.3)] hover:bg-[#a98309]
+    hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_12px_32px_-8px_rgba(226,190,98,0.7)]
     active:translate-y-0
     disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none
     ${fullWidth ? "w-full" : ""}

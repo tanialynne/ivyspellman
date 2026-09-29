@@ -68,17 +68,11 @@ export default function WitchyQuote() {
     WITCHY_QUOTES[Math.floor(Math.random() * WITCHY_QUOTES.length)];
 
   return (
-    <section className="relative py-16 md:py-20 overflow-hidden bg-[#37290c]">
-      <div className="max-w-[800px] mx-auto px-6 md:px-12 text-center">
-        {/* Quote */}
-        <blockquote className="flex flex-col gap-4">
-          <p className="font-lora text-xl md:text-2xl text-ivy-cream leading-relaxed italic">
-            &ldquo;{quote.quote}&rdquo;
-          </p>
-          <cite className="font-lora text-base text-ivy-cream/70 not-italic">
-            {quote.context}
-          </cite>
-        </blockquote>
+    <section className="jb jb-sec jb-navy jb-quote" data-stars="12" style={{ paddingBlock: "84px" }}>
+      <div className="jb-wrap">
+        <span className="ivy-swirl center" />
+        <blockquote>&ldquo;{quote.quote}&rdquo;</blockquote>
+        <cite>{quote.context.replace(/^— /, "")}</cite>
       </div>
     </section>
   );

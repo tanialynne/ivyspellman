@@ -5,7 +5,7 @@
 
 export const IMAGES = {
   // Hero section
-  heroBackground: "/images/hero-bg.jpg",
+  heroBackground: "/images/bg-jewel-plum.jpg",
 
   // Decorative elements - ordered left to right, top to bottom
   leaf1: "/images/leaf1.png", // top-left positions
@@ -20,11 +20,11 @@ export const IMAGES = {
   buttonMain: "/images/button-main.svg",
 
   // Section backgrounds
-  booksBackground: "/images/books-bg.jpg",
-  booksPageBackground: "/images/books-bg-bookspage.jpg",
-  glimpsesBackground: "/images/glimpses-bg.jpg",
-  singleBookBackground: "/images/single-book-bg.jpg",
-  joinCircleBackground: "/images/join-circle-bg.jpg",
+  booksBackground: "/images/bg-jewel-wine.jpg",
+  booksPageBackground: "/images/bg-jewel-navy.jpg",
+  glimpsesBackground: "/images/bg-jewel-teal.jpg",
+  singleBookBackground: "/images/bg-jewel-midnight.jpg",
+  joinCircleBackground: "/images/bg-jewel-plum.jpg",
 
   // Blog section
   featuredBlogImage: "/images/journal-main.jpg",
@@ -53,7 +53,10 @@ export const IMAGES = {
 
   // About page
   ivySpellman: "/images/ivyspellman.jpg",
-  aboutBackground: "/images/journal-bg.jpg",
+  aboutBackground: "/images/bg-jewel-emerald.jpg",
+  journalBackground: "/images/bg-jewel-teal.jpg",
+  freeChapterBackground: "/images/bg-jewel-navy.jpg",
+  contactBackground: "/images/bg-jewel-plum.jpg",
   aboutLeaf: "/images/about-leaf.png",
   readBooksIcon: "/images/read-books-icon.png",
   readJournalIcon: "/images/read-journal-icon.png",
