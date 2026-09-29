@@ -26,11 +26,16 @@ All copy and catalog data are static constants under `src/app/constants/`:
 | `BlogPosts.ts` | Post metadata + short content; long posts import from `BlogContent.ts` |
 | `SiteContent.ts` | Nav links, hero copy, section headings |
 | `Images.ts` / `Gallery.ts` | Image paths |
+| `Reviews.ts` | Verbatim 5-star reader reviews (`READER_REVIEWS`) and `BOOK1_STATS` (rating, review count, rank lines). `ALL_REVIEWS` in `Books.ts` derives from it. Update the stats by hand when they move. |
 
 ### Adding a book — the full checklist
 
 1. Add the entry to `BOOKS` in `Books.ts` (title, slug, blurbs, `coverImage`,
-   `buyLink`, and `preorder`/`comingSoon` if applicable).
+   `buyLink`, and `preorder`/`comingSoon` if applicable), plus `series` (`"hfh"` or
+   `"birchwood"`; add a new key to `SeriesKey` and `SERIES` for a new series),
+   `seriesLabel` ("Book 3", "Prequel novella"), `seriesPosition` for numbered books, and
+   `releaseNote` ("Coming October 9") when there's no buy link yet. The nav menu, books page,
+   reading-order row, and series schema all group by `series`.
 2. Drop the cover in `public/images/` — web-sized JPEG, ~150–200 KB, **not** the
    print master.
 3. **Run `node scripts/generate-og.mjs`.** This is the step that is easy to forget
@@ -49,7 +54,7 @@ The site had **no `og:image` at all** until Aug 2026 — every shared link rende
 plain text on a site whose product is book covers. Now:
 
 - `scripts/generate-og.mjs` renders cards with Chrome headless from the brand palette
-  (gold `#d4af37`, cream `#f5f1e8`, dark `#0d0d0d`): `og/default.jpg` sitewide, plus
+  (Jewel Box: gold `#e2be62`, cream `#f6efe2`, plum ground): `og/default.jpg` sitewide, plus
   `og/<slug>.jpg` per book showing that book's cover and title.
 - Wired via `openGraph.images` + `twitter.card: "summary_large_image"` in
   `layout.tsx` (sitewide) and `books/[slug]/page.tsx` (per book).
@@ -65,10 +70,25 @@ plain text on a site whose product is book covers. Now:
   Facebook Sharing Debugger — both cache aggressively and will keep serving the old
   preview otherwise.
 
+## Jewel Box design (Sept 2026)
+
+- Palette tokens are in `globals.css` (`ivy-*` plus `jewel-plum/navy/wine/emerald/teal`); homepage section styles and the whimsy CSS are in `src/app/jewel.css` (`jb-*`, `ivy-*`).
+- Homepage sections are server components in `components/Home/`; the only client piece there is `ReviewShuffle`.
+- `components/Magic` (mounted once in `layout.tsx`) adds twinkling stars to any element with `data-stars="n"`, draws a gold flourish into any `<span class="ivy-swirl">`, throws sparkles on hover over `[data-burst]` and pill buttons, and trails fairy dust behind a mouse. It does nothing visible for reduced-motion users.
+- Inner pages are built from `components/Page` (`PageHero`, `SectionHead`, `BookTile`, `Eyebrow`) on the same jewel grounds. No double-line frames, leaf PNGs, or book-stack icons: those were the old forest design.
+- Birchwood marketing rule (from the Back Burner launch guide): never say a kitchen fire took Laura's restaurant.
+
+## Canonicals
+
+**Every page sets its own `alternates.canonical`.** The root layout deliberately has none: a canonical of `/` in the layout is inherited by every page that doesn't override it, which told Google that /books, /about, etc. were duplicates of the homepage (shipped that way until Sept 2026). Client pages (`contact`) put metadata in a sibling `layout.tsx`.
+
 ## Structured data
 
-`Person` + `WebSite` JSON-LD live in `layout.tsx`; `Book` JSON-LD is emitted on each
-`/books/[slug]` page, generated from the same `BOOKS` entry the page renders (so it
+`Person` + `WebSite` JSON-LD live in `layout.tsx`; the homepage adds `WebPage`, a `BookSeries`
+for Hot Flashes & Hexes, and an `ItemList` in reading order; blog posts emit `BlogPosting` +
+`BreadcrumbList`. Reviews are intentionally NOT marked up (self-serving review markup on an
+author's own site is ignored or penalized by Google). `Book` JSON-LD (with series position and
+breadcrumbs) is emitted on each `/books/[slug]` page, generated from the same `BOOKS` entry the page renders (so it
 cannot drift from what's on screen). Preorder vs in-stock in `offers` is derived from
 the `comingSoon` flag. Adding a book needs no schema work — it follows automatically.
 

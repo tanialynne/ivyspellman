@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Navigation from "../components/Navigation";
+import { PageHero } from "../components/Page";
 import Footer from "../components/Footer";
 import { SITE_CONFIG } from "../constants/SiteContent";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy Policy",
   description:
     "Privacy policy for Ivy Spellman's website. Learn how we collect, use, and protect your personal information.",
   openGraph: {
+    url: "/privacy",
     title: "Privacy Policy | Ivy Spellman",
     description: "Privacy policy for Ivy Spellman's website.",
     type: "website",
@@ -27,15 +30,12 @@ export const metadata: Metadata = {
  */
 export default function PrivacyPage() {
   return (
-    <main className="bg-ivy-dark min-h-screen">
+    <main className="jb bg-ivy-dark min-h-screen">
       <Navigation />
 
-      {/* Privacy Content */}
-      <section className="pt-32 pb-20 md:pb-32">
-        <div className="max-w-[800px] mx-auto px-6 md:px-12">
-          <h1 className="font-cormorant font-semibold text-4xl md:text-5xl lg:text-[60px] text-ivy-gold leading-tight mb-12">
-            Privacy Policy
-          </h1>
+      <PageHero eyebrow="The fine print" title="Privacy" em="policy" ground="plum" stars={12} lede="The short version: your email is used to send you the things you asked for, and nothing else." />
+      <section className="jb-sec jb-ink" style={{ paddingTop: 70 }}>
+        <div className="jb-wrap jb-prose">
 
           <div className="flex flex-col gap-8 text-ivy-cream">
             <p className="font-lora text-sm text-ivy-cream/70">

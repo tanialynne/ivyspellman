@@ -1,73 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Navigation from "../components/Navigation";
 import WitchyQuote from "../components/WitchyQuote";
 import Footer from "../components/Footer";
 import { GoldButton } from "../components/ui";
-import { IMAGES } from "../constants/Images";
-
-/**
- * Contact Hero Section
- * Background image with decorative frame, title, and description
- */
-function ContactHero() {
-  return (
-    <section className="relative min-h-[60vh] md:min-h-[70vh] flex items-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={IMAGES.aboutBackground}
-          alt=""
-          fill
-          className="object-cover object-center"
-          priority
-          quality={90}
-        />
-      </div>
-
-      {/* Decorative Double Frame Border */}
-      <div className="absolute top-[100px] left-[20px] right-[20px] bottom-[40px] md:top-[93px] md:left-[50px] md:right-[50px] md:bottom-[40px] border border-ivy-cream/50 pointer-events-none" />
-      <div className="absolute top-[112px] left-[32px] right-[32px] bottom-[52px] md:top-[111px] md:left-[68px] md:right-[68px] md:bottom-[58px] border border-ivy-cream/50 pointer-events-none" />
-
-      {/* Decorative Leaf Elements - Left side */}
-      <div className="absolute left-0 bottom-[20px] md:bottom-[40px] w-[82px] md:w-[163px] h-[123px] md:h-[245px] pointer-events-none z-20">
-        <Image src={IMAGES.leaf1} alt="" fill className="object-contain" />
-      </div>
-
-      {/* Decorative Leaf Elements - Right side */}
-      <div className="absolute right-0 bottom-[20px] md:bottom-[40px] w-[82px] md:w-[163px] h-[123px] md:h-[245px] pointer-events-none z-20">
-        <Image src={IMAGES.leaf2} alt="" fill className="object-contain" />
-      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-12 md:px-20 lg:px-[120px] py-32 w-full">
-        <div className="flex flex-col items-center text-center max-w-[700px] mx-auto gap-[30px]">
-          {/* Star Ornament */}
-          <Image
-            src={IMAGES.starOrnament}
-            alt=""
-            width={68}
-            height={68}
-            className="opacity-90"
-          />
-
-          <div className="flex flex-col gap-5">
-            <h1 className="font-cormorant font-semibold text-4xl md:text-5xl lg:text-[60px] text-ivy-gold leading-none">
-              Reach Through the Veil
-            </h1>
-
-            <p className="font-lora font-medium text-lg md:text-xl text-ivy-cream leading-relaxed">
-              Questions about the books? Want to chat about magic, midlife, or
-              whether cats are actually judging us? (They are.)
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+import { PageHero, Eyebrow } from "../components/Page";
 
 /**
  * Contact Form Section
@@ -142,25 +80,22 @@ function ContactForm() {
   };
 
   return (
-    <section className="bg-ivy-dark py-20 md:py-32">
-      <div className="max-w-[900px] mx-auto px-6 md:px-12">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-[91px] items-start">
-          {/* Text Content */}
-          <div className="flex flex-col gap-5 lg:w-1/2">
-            <h2 className="font-cormorant font-semibold text-3xl md:text-[40px] text-ivy-cream">
-              Get In Touch
-            </h2>
-            <p className="font-lora text-lg text-ivy-cream/80 leading-relaxed">
-              Got something to say? A spell gone wrong? Book club questions?
-              Drop a message. The geese will deliver it. Eventually. Luna will
-              judge it, but she judges everything.
-            </p>
+    <section className="jb-sec jb-ink" style={{ paddingTop: 80 }}>
+      <div className="jb-wrap">
+        <div className="jb-contact">
+          <div className="jb-panel">
+            <Eyebrow>Good to know</Eyebrow>
+            <ul className="jb-likes">
+              <li>Book club questions, reader mail, and spells gone wrong are all welcome.</li>
+              <li>Review copies and ARC requests: say which series you read.</li>
+              <li>Luna reads everything first. She will judge it. She judges everything.</li>
+            </ul>
           </div>
 
           {/* Form */}
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-[17px] w-full lg:w-1/2"
+            className="jb-panel flex flex-col gap-5"
           >
             {/* Honeypot field - hidden from real users */}
             <div className="absolute opacity-0 -z-10" aria-hidden="true">
@@ -177,11 +112,8 @@ function ContactForm() {
             </div>
 
             {/* Name Field */}
-            <div className="flex flex-col gap-[11px]">
-              <label
-                htmlFor="name"
-                className="font-lora text-sm text-ivy-cream"
-              >
+            <div className="jb-field">
+              <label htmlFor="name">
                 Name
               </label>
               <input
@@ -190,17 +122,14 @@ function ContactForm() {
                 type="text"
                 value={formData.name}
                 onChange={handleChange}
-                className="h-[44px] px-4 bg-transparent border border-ivy-cream/40 text-ivy-cream font-lora text-base placeholder:text-ivy-cream/50 focus:border-ivy-gold transition-colors"
+                className="jb-input"
                 disabled={status === "loading" || status === "success"}
               />
             </div>
 
             {/* Email Field */}
-            <div className="flex flex-col gap-[11px]">
-              <label
-                htmlFor="email"
-                className="font-lora text-sm text-ivy-cream"
-              >
+            <div className="jb-field">
+              <label htmlFor="email">
                 Email
               </label>
               <input
@@ -209,17 +138,14 @@ function ContactForm() {
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="h-[44px] px-4 bg-transparent border border-ivy-cream/40 text-ivy-cream font-lora text-base placeholder:text-ivy-cream/50 focus:border-ivy-gold transition-colors"
+                className="jb-input"
                 disabled={status === "loading" || status === "success"}
               />
             </div>
 
             {/* Message Field */}
-            <div className="flex flex-col gap-[11px]">
-              <label
-                htmlFor="message"
-                className="font-lora text-sm text-ivy-cream"
-              >
+            <div className="jb-field">
+              <label htmlFor="message">
                 Message
               </label>
               <textarea
@@ -228,19 +154,19 @@ function ContactForm() {
                 value={formData.message}
                 onChange={handleChange}
                 rows={5}
-                className="px-4 py-3 bg-transparent border border-ivy-cream/40 text-ivy-cream font-lora text-base placeholder:text-ivy-cream/50 focus:border-ivy-gold transition-colors resize-none"
+                className="jb-input resize-none"
                 disabled={status === "loading" || status === "success"}
               />
             </div>
 
             {/* Error Message */}
             {status === "error" && errorMessage && (
-              <p className="font-lora text-sm text-red-400">{errorMessage}</p>
+              <p className="text-sm text-[#f6a3a3]">{errorMessage}</p>
             )}
 
             {/* Success Message */}
             {status === "success" && (
-              <p className="font-lora text-sm text-ivy-gold">
+              <p className="text-sm text-ivy-gold">
                 Message sent! I&apos;ll get back to you soon.
               </p>
             )}
@@ -270,9 +196,15 @@ function ContactForm() {
  */
 export default function ContactPage() {
   return (
-    <main className="bg-ivy-dark min-h-screen">
+    <main className="jb bg-ivy-dark min-h-screen">
       <Navigation />
-      <ContactHero />
+      <PageHero
+        eyebrow="Contact"
+        title="Reach through"
+        em="the veil"
+        ground="plum"
+        lede="Questions about the books? Want to talk about magic, midlife, or whether cats are actually judging us? (They are.) Drop a message. The geese will deliver it. Eventually."
+      />
       <ContactForm />
       <WitchyQuote />
       <Footer />

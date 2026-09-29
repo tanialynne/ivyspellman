@@ -8,8 +8,8 @@ export const SITE_CONFIG = {
   name: "Ivy Spellman",
   tagline: "Witch. Author. Forest dweller.",
   description:
-    "Messy magic for cynical souls. Essays, spells, and stories from a forest at the edge of nowhere",
-  copyright: "2025 Ivy Spellman. All rights reserved.",
+    "Cozy witch romantic fantasy with midlife magic and comedy. Funny, witchy, closed-door romances with sentient houses and talking cats.",
+  copyright: "2026 Ivy Spellman. All rights reserved.",
 };
 
 // Navigation links (no Home - logo serves as home link)
@@ -32,7 +32,7 @@ export const HERO_CONTENT = {
   preTitle: "Witch. Author. Forest dweller.",
   title: "Ivy Spellman",
   subtitle:
-    "Cozy witch romcoms about midlife meltdowns, chaotic magic, and second chances. Ten books of Hot Flashes & Hexes and counting — six hundred reviews in, the cat remains everyone's favorite. She knows.",
+    "Cozy witch romcoms about midlife meltdowns, chaotic magic, and second chances. Ten books of Hot Flashes & Hexes and counting. Eight hundred reviews in, the cat remains everyone's favorite. She knows.",
   ctaButton: "Start the Series",
   secondaryCta: "Or start with a free chapter →",
   headerCta: "Get A Free Chapter",
@@ -116,5 +116,61 @@ export const LEAD_MAGNET_CONTENT = {
         author: "Bri",
       },
     ],
+  },
+};
+
+// Jewel Box homepage (Sept 2026)
+export const HOME_CONTENT = {
+  hero: {
+    eyebrow: "Cozy witch romantic fantasy",
+    titleLines: ["Midlife is when", "the magic", "shows up."], // middle line renders in gold italic
+    deck: "Hot flashes that set things on fire. Houses with opinions. A cat who judges everyone. Laugh-out-loud romances for women who were told they were too much, and turned out to be exactly enough.",
+    primaryCta: "Start the series",
+    secondaryCta: "Read chapter one free",
+  },
+  promise: [
+    { big: "Funny, witchy, cozy", small: "Laugh-out-loud magic" },
+    { big: "Midlife heroines", small: "Every one over forty" },
+    { big: "Always a romance", small: "Closed door, happy ending" },
+    { big: "Sentient houses", small: "and talking cats" },
+  ],
+  start: {
+    eyebrow: "Start here · Hot Flashes & Hexes, Book 1",
+    hook: "One badly worded spell. One grumpy Scottish handyman who can't leave. She just wanted her sink fixed.",
+  },
+  shelf: {
+    eyebrow: "The complete series",
+    intro:
+      "One town, ten witches, and a coven that shows up with casseroles. Each book is its own complete romance with a happy ending. The finale is on preorder, and so is the Christmas novella.",
+  },
+  reviews: {
+    eyebrow: "What readers keep telling us",
+    feature: { quote: "Hot flashes weren't funny until now.", author: "Laure Eccleston" },
+    shuffleLabel: "Conjure three more",
+  },
+  horizon: {
+    eyebrow: "In the cauldron",
+    items: [
+      {
+        key: "pe",
+        label: "Working title",
+        title: "Previously Enchanted",
+        text: "Women who wake things up. The things stay awake, remember everything, take sides, and cannot keep a secret. Starting with a set of very opinionated tools.",
+        foot: "Coming soon",
+      },
+      {
+        key: "bw",
+        label: "Working title",
+        title: "The Witches of Bellwether",
+        text: "Three midlife witches, one purple Victorian on the Gulf Coast, and a sorcerer stuck as a very disdainful cat. The Golden Girls, if the Golden Girls did hexes.",
+        foot: "In development",
+      },
+    ],
+  },
+  coven: {
+    eyebrow: "Join the coven",
+    title: "A free story,",
+    titleEm: "told by the cat",
+    text: "Sign up and get The Familiar's Report, Luna's version of what really happened in Don't Hex the Handyman. Then occasional letters from the forest, and first word on every new book.",
   },
 };

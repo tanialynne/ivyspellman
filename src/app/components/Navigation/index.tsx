@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Logo, GoldButton } from "../ui";
 import { NAV_LINKS, HERO_CONTENT } from "../../constants/SiteContent";
-import { BOOKS } from "../../constants/Books";
+import { SERIES, booksInSeries, type SeriesKey } from "../../constants/Books";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 /**
@@ -16,6 +16,8 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isBooksDropdownOpen, setIsBooksDropdownOpen] = useState(false);
   const [isMobileBooksOpen, setIsMobileBooksOpen] = useState(false);
+  const [openSeries, setOpenSeries] = useState<SeriesKey>("hfh");
+  const [mobileSeries, setMobileSeries] = useState<SeriesKey | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Prevent body scroll when menu is open
@@ -42,7 +44,7 @@ export default function Navigation() {
   }, []);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50">
+    <header className="jb absolute top-0 left-0 right-0 z-50">
       <nav className="max-w-[1440px] mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
         {/* Logo - Already links to Home */}
         <Logo />
@@ -63,37 +65,62 @@ export default function Navigation() {
                   />
                 </button>
 
-                {/* Books Dropdown */}
+                {/* Books menu: series on the left, the hovered series' books slide out on the right */}
                 {isBooksDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-2 bg-ivy-dark border border-ivy-cream/20 rounded-sm shadow-lg min-w-[260px] max-h-[70vh] overflow-y-auto">
-                    <Link
-                      href="/books"
-                      className="block px-4 py-3 font-montserrat font-medium text-base text-ivy-cream hover:text-ivy-gold hover:bg-ivy-dark-light transition-colors border-b border-ivy-cream/10"
-                      onClick={() => setIsBooksDropdownOpen(false)}
-                    >
-                      All Books
-                    </Link>
-                    <div className="px-4 pt-3 pb-1 font-montserrat font-semibold text-[11px] uppercase tracking-wider text-ivy-gold">
-                      Hot Flashes &amp; Hexes
-                    </div>
-                    {BOOKS.map((book, index) => (
-                      <Link
-                        key={book.id}
-                        href={`/books/${book.slug}`}
-                        className="block px-4 py-2.5 font-montserrat text-base text-ivy-cream hover:text-ivy-gold hover:bg-ivy-dark-light transition-colors"
-                        onClick={() => setIsBooksDropdownOpen(false)}
-                      >
-                        <span className="text-ivy-cream/50 mr-2 tabular-nums">{index + 1}.</span>
-                        {book.title}
-                      </Link>
-                    ))}
-                    <Link
-                      href="/books#brewing"
-                      className="block px-4 py-3 font-montserrat font-medium text-base text-ivy-gold hover:text-ivy-cream hover:bg-ivy-dark-light transition-colors border-t border-ivy-cream/10"
-                      onClick={() => setIsBooksDropdownOpen(false)}
-                    >
-                      What&apos;s Brewing Next
-                    </Link>
+                  <div
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 flex rounded-2xl border border-ivy-gold/25 bg-ivy-dark/95 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8)] backdrop-blur-md overflow-hidden"
+                    onKeyDown={(e) => e.key === "Escape" && setIsBooksDropdownOpen(false)}
+                  >
+                    <ul className="w-[270px] py-3 border-r border-ivy-gold/15">
+                      {SERIES.map((series) => (
+                        <li key={series.key}>
+                          <Link
+                            href={`/books#${series.anchor}`}
+                            onMouseEnter={() => setOpenSeries(series.key)}
+                            onFocus={() => setOpenSeries(series.key)}
+                            onClick={() => setIsBooksDropdownOpen(false)}
+                            aria-haspopup="true"
+                            aria-expanded={openSeries === series.key}
+                            className={`flex items-center justify-between gap-3 px-5 py-3.5 font-cormorant text-[21px] leading-tight transition-colors ${
+                              openSeries === series.key ? "text-ivy-gold bg-white/[0.04]" : "text-ivy-cream hover:text-ivy-gold"
+                            }`}
+                          >
+                            <span>
+                              {series.name}
+                              <span className="block mt-1 font-raleway text-[10px] font-bold uppercase tracking-[0.18em] text-ivy-gray/70">
+                                {series.status}
+                              </span>
+                            </span>
+                            <ChevronDown size={16} className="-rotate-90 flex-shrink-0" />
+                          </Link>
+                        </li>
+                      ))}
+                      <li className="mt-2 border-t border-ivy-gold/15 pt-2">
+                        <Link
+                          href="/books"
+                          className="block px-5 py-2.5 font-raleway text-[11px] font-bold uppercase tracking-[0.2em] text-ivy-gold hover:text-ivy-cream"
+                          onClick={() => setIsBooksDropdownOpen(false)}
+                        >
+                          All books ✦
+                        </Link>
+                      </li>
+                    </ul>
+                    <ul className="w-[300px] py-3 max-h-[70vh] overflow-y-auto" aria-label={`${SERIES.find((x) => x.key === openSeries)?.name} books`}>
+                      {booksInSeries(openSeries).map((book) => (
+                        <li key={book.slug}>
+                          <Link
+                            href={`/books/${book.slug}`}
+                            className="flex items-baseline gap-3 px-5 py-2 font-raleway text-[15px] text-ivy-cream hover:text-ivy-gold hover:bg-white/[0.04] transition-colors"
+                            onClick={() => setIsBooksDropdownOpen(false)}
+                          >
+                            <span className="w-7 flex-shrink-0 text-right font-cormorant italic text-ivy-gold/80">
+                              {book.seriesPosition ?? "✦"}
+                            </span>
+                            {book.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
               </div>
@@ -151,33 +178,41 @@ export default function Navigation() {
                     />
                   </button>
 
-                  {/* Mobile Books Submenu */}
+                  {/* Mobile Books Submenu: series first, then that series' books */}
                   {isMobileBooksOpen && (
-                    <div className="flex flex-col items-center gap-3 mt-4 w-full max-h-[45vh] overflow-y-auto border-y border-ivy-cream/10 py-3">
-                      <Link
-                        href="/books"
-                        className="font-montserrat text-lg text-ivy-cream/80 hover:text-ivy-gold transition-colors"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        All Books
-                      </Link>
-                      {BOOKS.map((book, index) => (
-                        <Link
-                          key={book.id}
-                          href={`/books/${book.slug}`}
-                          className="font-montserrat text-base text-ivy-cream/80 hover:text-ivy-gold transition-colors"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          <span className="text-ivy-cream/40 mr-2 tabular-nums">{index + 1}.</span>
-                          {book.title}
-                        </Link>
+                    <div className="flex flex-col items-center gap-2 mt-4 w-full max-h-[55vh] overflow-y-auto border-y border-ivy-cream/10 py-3">
+                      {SERIES.map((series) => (
+                        <div key={series.key} className="flex flex-col items-center w-full">
+                          <button
+                            onClick={() => setMobileSeries(mobileSeries === series.key ? null : series.key)}
+                            aria-expanded={mobileSeries === series.key}
+                            className="flex items-center gap-2 py-2 font-cormorant text-2xl text-ivy-cream hover:text-ivy-gold"
+                          >
+                            {series.name}
+                            <ChevronDown size={18} className={`transition-transform ${mobileSeries === series.key ? "rotate-180" : ""}`} />
+                          </button>
+                          {mobileSeries === series.key && (
+                            <div className="flex flex-col items-center gap-2 pb-3">
+                              {booksInSeries(series.key).map((book) => (
+                                <Link
+                                  key={book.slug}
+                                  href={`/books/${book.slug}`}
+                                  className="font-raleway text-base text-ivy-cream/80 hover:text-ivy-gold"
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                  {book.title}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       ))}
                       <Link
-                        href="/books#brewing"
-                        className="font-montserrat text-lg text-ivy-gold hover:text-ivy-cream transition-colors"
+                        href="/books"
+                        className="mt-2 font-raleway text-sm font-bold uppercase tracking-[0.2em] text-ivy-gold"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        What&apos;s Brewing Next
+                        All books
                       </Link>
                     </div>
                   )}

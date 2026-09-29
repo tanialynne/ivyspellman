@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navigation from "../../components/Navigation";
 import WitchyQuote from "../../components/WitchyQuote";
 import Footer from "../../components/Footer";
 import Newsletter from "../../components/Newsletter";
-import { ALL_POSTS, type BlogPost } from "../../constants/BlogPosts";
-import { IMAGES } from "../../constants/Images";
+import { ALL_POSTS } from "../../constants/BlogPosts";
+import { PageHero, SectionHead } from "../../components/Page";
 
 /**
  * Generate metadata for individual blog posts
@@ -29,10 +28,14 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: `${post.title} | Ivy Spellman`,
       description: post.excerpt,
       type: "article",
+      url: `/blog/${post.slug}`,
+      publishedTime: toISODate(post.publishedAt),
+      authors: ["Ivy Spellman"],
       images: [
         {
           url: "/og/default.jpg",
@@ -42,7 +45,19 @@ export async function generateMetadata({
         },
       ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Ivy Spellman`,
+      description: post.excerpt,
+      images: ["/og/default.jpg"],
+    },
   };
+}
+
+// "August 20, 2026" -> "2026-08-20" for schema and article:published_time.
+function toISODate(d: string): string | undefined {
+  const t = new Date(d);
+  return isNaN(t.getTime()) ? undefined : t.toISOString().slice(0, 10);
 }
 
 /**
@@ -54,244 +69,65 @@ export function generateStaticParams() {
   }));
 }
 
-/**
- * Article Hero Section
- * Full-width featured image with title overlay area below
- */
-function ArticleHero({ post }: { post: BlogPost }) {
-  return (
-    <section className="relative pt-[93px]">
-      {/* Featured Image - Fixed 400px height */}
-      <div className="relative w-full h-[400px]">
-        <Image
-          src={post.featuredImage || IMAGES.blogPlaceholder}
-          alt={post.title}
-          fill
-          className="object-cover object-center"
-          priority
-          quality={90}
-        />
-      </div>
-    </section>
-  );
+function inline(text: string) {
+  return text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/).map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) return <strong key={i}>{part.slice(2, -2)}</strong>;
+    if (part.startsWith("*") && part.endsWith("*") && part.length > 2) return <em key={i}>{part.slice(1, -1)}</em>;
+    return part;
+  });
 }
 
 /**
- * Article Header
- * Category, title, date, and reading time
- */
-function ArticleHeader({ post }: { post: BlogPost }) {
-  return (
-    <header className="flex flex-col gap-5 max-w-[754px]">
-      {/* Decorative Divider */}
-      <Image
-        src={IMAGES.headerDivider}
-        alt=""
-        width={162}
-        height={8}
-        className="opacity-90"
-      />
-
-      {/* Category */}
-      <span className="font-montserrat font-medium text-base text-ivy-gold uppercase tracking-wide">
-        {post.category}
-      </span>
-
-      {/* Title */}
-      <h1 className="font-cormorant font-semibold text-4xl md:text-5xl lg:text-[60px] text-ivy-cream leading-tight">
-        {post.title}
-      </h1>
-
-      {/* Date and Reading Time */}
-      <p className="font-lora font-medium text-base text-ivy-cream">
-        {post.publishedAt} {post.readingTime && `- ${post.readingTime}`}
-      </p>
-    </header>
-  );
-}
-
-/**
- * Article Content
- * Renders the blog post content with proper formatting
+ * Article body. Paragraphs split on blank lines; "## "/"### " headings, "- " lists,
+ * a bold first line as a subhead, and "---" as a sparkle divider.
  */
 function ArticleContent({ content }: { content: string }) {
-  // Split content into paragraphs and format
-  const paragraphs = content.split("\n\n");
-
   return (
-    <div className="prose prose-invert prose-lg max-w-none">
-      {paragraphs.map((paragraph, index) => {
-        // Check if it's a heading (starts with ### or ##)
-        if (paragraph.startsWith("### ")) {
+    <div className="jb-prose">
+      {content.split("\n\n").map((block, i) => {
+        const t = block.trim();
+        if (t === "---") return <hr key={i} />;
+        if (t.startsWith("### ")) return <h3 key={i}>{t.slice(4)}</h3>;
+        if (t.startsWith("## ")) return <h2 key={i}>{t.slice(3)}</h2>;
+        if (t.startsWith("- ")) {
           return (
-            <h3
-              key={index}
-              className="font-lora font-medium text-2xl md:text-[30px] text-ivy-gold mt-12 mb-6"
-            >
-              {paragraph.replace("### ", "")}
-            </h3>
-          );
-        }
-        if (paragraph.startsWith("## ")) {
-          return (
-            <h2
-              key={index}
-              className="font-lora font-medium text-2xl md:text-[30px] text-ivy-gold mt-12 mb-6"
-            >
-              {paragraph.replace("## ", "")}
-            </h2>
-          );
-        }
-
-        // Check if it's a list
-        if (paragraph.startsWith("- ")) {
-          const items = paragraph.split("\n").filter((line) => line.startsWith("- "));
-          return (
-            <ul key={index} className="list-disc list-inside space-y-2 my-6">
-              {items.map((item, itemIndex) => (
-                <li
-                  key={itemIndex}
-                  className="font-lora text-lg md:text-xl text-ivy-cream leading-relaxed"
-                >
-                  {item.replace("- ", "")}
-                </li>
+            <ul key={i}>
+              {t.split("\n").filter((l) => l.startsWith("- ")).map((l, j) => (
+                <li key={j}>{inline(l.slice(2))}</li>
               ))}
             </ul>
           );
         }
-
-        // Check if it's a bold heading (starts with **)
-        if (paragraph.startsWith("**") && paragraph.includes("**\n")) {
-          const [heading, ...rest] = paragraph.split("\n");
-          const headingText = heading.replace(/\*\*/g, "");
+        if (t.startsWith("**") && t.includes("**\n")) {
+          const [heading, ...rest] = t.split("\n");
           return (
-            <div key={index} className="my-8">
-              <h4 className="font-lora font-medium text-xl md:text-2xl text-ivy-cream mb-4">
-                {headingText}
-              </h4>
-              {rest.length > 0 && (
-                <p className="font-lora text-lg md:text-xl text-ivy-cream/90 leading-relaxed italic">
-                  {rest.join("\n").replace(/\*/g, "")}
-                </p>
-              )}
+            <div key={i}>
+              <h4>{heading.replace(/\*\*/g, "")}</h4>
+              {rest.length > 0 && <p>{inline(rest.join(" "))}</p>}
             </div>
           );
         }
-
-        // Regular paragraph - handle inline formatting
-        const formattedContent = paragraph
-          .split(/(\*[^*]+\*|\*\*[^*]+\*\*)/)
-          .map((part, partIndex) => {
-            if (part.startsWith("**") && part.endsWith("**")) {
-              return (
-                <strong key={partIndex} className="font-semibold">
-                  {part.slice(2, -2)}
-                </strong>
-              );
-            }
-            if (part.startsWith("*") && part.endsWith("*")) {
-              return (
-                <em key={partIndex} className="italic">
-                  {part.slice(1, -1)}
-                </em>
-              );
-            }
-            return part;
-          });
-
-        return (
-          <p
-            key={index}
-            className="font-lora text-lg md:text-xl text-ivy-cream leading-relaxed my-6"
-          >
-            {formattedContent}
-          </p>
-        );
+        return <p key={i}>{inline(t)}</p>;
       })}
     </div>
   );
 }
 
-/**
- * Related Article Card
- * Card with full-width image and content below
- */
-function RelatedArticleCard({ post }: { post: BlogPost }) {
-  return (
-    <Link
-      href={`/blog/${post.slug}`}
-      className="group flex flex-col bg-ivy-dark-light border border-[#c6b56f]/50 shadow-[0px_4px_14px_0px_rgba(0,0,0,0.45)] hover:border-ivy-gold transition-colors duration-300"
-    >
-      {/* Image */}
-      <div className="relative w-full h-[180px] md:h-[200px] overflow-hidden">
-        <Image
-          src={post.featuredImage || IMAGES.blogPlaceholder}
-          alt={post.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="flex flex-col gap-4 p-6">
-        {/* Category */}
-        <span className="font-montserrat font-medium text-sm text-ivy-gold uppercase tracking-wide">
-          {post.category}
-        </span>
-
-        {/* Title */}
-        <h3 className="font-lora font-medium text-lg md:text-xl text-ivy-cream group-hover:text-ivy-gold transition-colors duration-300 leading-tight line-clamp-2">
-          {post.title}
-        </h3>
-
-        {/* Excerpt */}
-        <p className="font-lora text-sm text-ivy-cream/80 leading-relaxed line-clamp-3">
-          {post.excerpt}
-        </p>
-
-        {/* Date */}
-        <p className="font-lora text-sm text-ivy-gray">
-          {post.publishedAt}
-        </p>
-      </div>
-    </Link>
-  );
-}
-
-/**
- * Related Articles Section
- * Shows 3 related articles as cards with books background
- */
 function RelatedArticles({ currentPostId }: { currentPostId: string }) {
-  // Get 3 random posts that aren't the current one
-  const otherPosts = ALL_POSTS.filter((post) => post.id !== currentPostId);
-  const relatedPosts = otherPosts.slice(0, 3);
-
+  const relatedPosts = ALL_POSTS.filter((post) => post.id !== currentPostId).slice(0, 3);
   if (relatedPosts.length === 0) return null;
-
   return (
-    <section className="relative py-20 md:py-32">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={IMAGES.booksBackground}
-          alt=""
-          fill
-          className="object-cover object-center"
-          quality={90}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-[1341px] mx-auto px-6 md:px-12">
-        {/* Section Header */}
-        <h2 className="font-cormorant font-semibold text-3xl md:text-5xl lg:text-[60px] text-ivy-cream mb-12 md:mb-16">
-          You Might Also Like
-        </h2>
-
-        {/* Articles Grid - 3 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <section className="jb-sec jb-teal" data-stars="10">
+      <div className="jb-wrap">
+        <SectionHead eyebrow="From the journal" title="Keep" em="reading" />
+        <div className="jb-postgrid">
           {relatedPosts.map((post) => (
-            <RelatedArticleCard key={post.id} post={post} />
+            <Link key={post.id} href={`/blog/${post.slug}`} className="jb-card" data-burst>
+              <small>{post.category}</small>
+              <h3>{post.title}</h3>
+              {post.excerpt && <p className="line-clamp-3">{post.excerpt}</p>}
+              <p className="meta">{post.publishedAt}</p>
+            </Link>
           ))}
         </div>
       </div>
@@ -316,27 +152,62 @@ export default async function SingleBlogPostPage({
   }
 
   return (
-    <main className="bg-ivy-dark min-h-screen">
+    <main className="jb bg-ivy-dark min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BlogPosting",
+                "@id": `https://www.ivyspellman.com/blog/${post.slug}#post`,
+                headline: post.title,
+                description: post.excerpt,
+                url: `https://www.ivyspellman.com/blog/${post.slug}`,
+                datePublished: toISODate(post.publishedAt),
+                author: { "@id": "https://www.ivyspellman.com/#person" },
+                publisher: { "@id": "https://www.ivyspellman.com/#person" },
+                image: "https://www.ivyspellman.com/og/default.jpg",
+                inLanguage: "en-US",
+                isPartOf: { "@id": "https://www.ivyspellman.com/#website" },
+                articleSection: post.category,
+              },
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://www.ivyspellman.com" },
+                  { "@type": "ListItem", position: 2, name: "Journal", item: "https://www.ivyspellman.com/blog" },
+                  { "@type": "ListItem", position: 3, name: post.title, item: `https://www.ivyspellman.com/blog/${post.slug}` },
+                ],
+              },
+            ],
+          }),
+        }}
+      />
       <Navigation />
-      <ArticleHero post={post} />
-
-      {/* Article Body */}
-      <article className="bg-ivy-dark py-16 md:py-20">
-        <div className="max-w-[886px] mx-auto px-6 md:px-12">
-          <div className="flex flex-col gap-12 md:gap-16">
-            <ArticleHeader post={post} />
-
-            {post.content ? (
-              <ArticleContent content={post.content} />
-            ) : (
-              <p className="font-lora text-lg text-ivy-cream/70 italic">
-                Full article content coming soon...
-              </p>
-            )}
-          </div>
+      <PageHero
+        center
+        eyebrow={post.category}
+        title={post.title}
+        ground="plum"
+        stars={16}
+        lede={
+          <p className="jb-lede">
+            {post.publishedAt}
+            {post.readingTime ? ` · ${post.readingTime}` : ""}
+          </p>
+        }
+      />
+      <article className="jb-sec jb-ink" style={{ paddingTop: 80 }}>
+        <div className="jb-wrap">
+          {post.content ? (
+            <ArticleContent content={post.content} />
+          ) : (
+            <p className="jb-prose italic">Full article coming soon.</p>
+          )}
         </div>
       </article>
-
       <RelatedArticles currentPostId={post.id} />
       <WitchyQuote />
       <Newsletter />
