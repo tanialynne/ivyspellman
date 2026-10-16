@@ -3,7 +3,7 @@
 // italic phrase, soft panels. No frames, no leaf PNGs.
 import Image from "next/image";
 import Link from "next/link";
-import type { Book } from "../../constants/Books";
+import { SERIES_GUIDE, SERIES_GUIDE_PROMISE, type Book } from "../../constants/Books";
 
 export type Ground = "plum" | "plum2" | "navy" | "wine" | "emerald" | "teal" | "ink" | "coven";
 
@@ -142,5 +142,49 @@ export function BookTile({ book, blurb = true }: { book: Book; blurb?: boolean }
       <h3>{book.title}</h3>
       {blurb && <p>{book.description}</p>}
     </Link>
+  );
+}
+
+/**
+ * "Which series is for you?": one card per series, used on /books and /free-stories.
+ * `hrefBase` prefixes the cards' #series anchors when the guide sits off the books page.
+ */
+export function SeriesGuide({
+  eyebrow = "Three towns, three moods",
+  ground = "plum",
+  hrefBase = "",
+}: {
+  eyebrow?: string;
+  ground?: Ground;
+  hrefBase?: string;
+}) {
+  return (
+    <section className={`jb-sec jb-${ground}`} aria-label="Which series is for you?">
+      <div className="jb-wrap">
+        <SectionHead center swirl eyebrow={eyebrow} title="Which series is for you?" />
+        <div className="jb-rgrid jb-guide">
+          {SERIES_GUIDE.map((g) => {
+            const inner = (
+              <>
+                <p className="t">{g.name}</p>
+                <p className="q">{g.feel}</p>
+                <p style={{ marginTop: 12, color: "var(--mist)" }}>{g.body}</p>
+                <p className="a">{g.forYou}</p>
+              </>
+            );
+            return g.href ? (
+              <a key={g.name} className="jb-r" href={hrefBase + g.href} data-burst>
+                {inner}
+              </a>
+            ) : (
+              <div key={g.name} className="jb-r">
+                {inner}
+              </div>
+            );
+          })}
+        </div>
+        <p className="jb-stat">{SERIES_GUIDE_PROMISE}</p>
+      </div>
+    </section>
   );
 }

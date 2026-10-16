@@ -59,7 +59,7 @@ export default function PrivacyPage() {
                 We may collect the following types of information:
               </p>
               <ul className="font-lora text-base leading-relaxed list-disc pl-6 flex flex-col gap-2">
-                <li><strong>Email Address:</strong> When you sign up for our newsletter or request a free chapter, we collect your email address.</li>
+                <li><strong>Email Address:</strong> When you sign up for our newsletter or request a free story, we collect your email address.</li>
                 <li><strong>Name:</strong> If provided, we may collect your first name for personalized communications.</li>
                 <li><strong>Usage Data:</strong> We may collect information about how you interact with our website using analytics tools.</li>
               </ul>
@@ -73,7 +73,7 @@ export default function PrivacyPage() {
                 We use your information to:
               </p>
               <ul className="font-lora text-base leading-relaxed list-disc pl-6 flex flex-col gap-2">
-                <li>Send you the free chapter you requested</li>
+                <li>Send you the free stories you requested</li>
                 <li>Send occasional newsletters about new books, articles, and updates</li>
                 <li>Improve our website and content based on usage patterns</li>
                 <li>Respond to your inquiries or requests</li>

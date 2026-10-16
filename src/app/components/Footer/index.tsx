@@ -24,7 +24,7 @@ export default function Footer() {
               </Link>
             ))}
             <Link href="/books">All books</Link>
-            <Link href="/free-chapter">Free chapter</Link>
+            <Link href="/free-stories">Free stories</Link>
           </nav>
           <nav className="jb-fcol" aria-label="Explore">
             <p className="jb-fh">Explore</p>

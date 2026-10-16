@@ -1,6 +1,6 @@
 // Server component: a titled band of shuffling 5-star reader reviews. The first three are
 // fixed at build so the HTML has real quotes in it; ReviewShuffle deals more on click.
-import { READER_REVIEWS, BOOK1_STATS } from "../../constants/Reviews";
+import { BOOK1_REVIEWS, BOOK1_STATS } from "../../constants/Reviews";
 import { Eyebrow } from "../Page";
 import ReviewShuffle from "../Home/ReviewShuffle";
 
@@ -23,7 +23,7 @@ export default function RandomTestimonials({
       <div className="jb-wrap">
         <Eyebrow center>{eyebrow}</Eyebrow>
         <h2 className="jb-center">{title}</h2>
-        <ReviewShuffle reviews={READER_REVIEWS} initial={[0, 7, 16]} label="Conjure three more" />
+        <ReviewShuffle reviews={BOOK1_REVIEWS} initial={[0, 7, 16]} label="Conjure three more" />
         <p className="jb-stat">
           <b>{BOOK1_STATS.rating} stars</b> across <b>{BOOK1_STATS.reviewCount} reviews</b> for Book 1
         </p>

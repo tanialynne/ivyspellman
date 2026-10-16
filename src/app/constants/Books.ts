@@ -1,4 +1,4 @@
-import { READER_REVIEWS } from "./Reviews";
+import { BOOK1_REVIEWS } from "./Reviews";
 
 /**
  * Books content
@@ -14,7 +14,12 @@ export interface Book {
   seriesLabel: string;
   /** Numbered position in the series (omit for novellas outside the numbered run). */
   seriesPosition?: number;
-  /** Shown instead of a buy button when there is no link yet, e.g. "Coming October 9". */
+  /** Amazon release day, "2026-11-27". Until that day (US Eastern time) the book is a
+   *  preorder and shows "Coming November 27"; from that day on it's simply for sale. Pages
+   *  regenerate hourly (`revalidate` in layout.tsx), so the switch happens on its own. */
+  releaseDate?: string;
+  /** Hand-written release text for a book with no date yet ("Coming soon"). Ignored once a
+   *  `releaseDate` is set; the date writes its own. */
   releaseNote?: string;
   title: string;
   slug: string;
@@ -22,8 +27,8 @@ export interface Book {
   longDescription: string;
   coverImage: string;
   buyLink?: string;
-  previewLink?: string;
   comingSoon?: boolean;
+  /** Only for a preorder with no `releaseDate`. Dated books work it out themselves. */
   preorder?: boolean;
   whatThisBookIs: string[];
   youllLikeThisIf: string[];
@@ -35,7 +40,7 @@ export interface Book {
 
 // All reader reviews - used for random testimonials across pages.
 // Sourced from constants/Reviews.ts (verbatim Amazon/BookSirens reader reviews).
-export const ALL_REVIEWS = READER_REVIEWS.map((r) => ({ quote: r.quote, author: r.author }));
+export const ALL_REVIEWS = BOOK1_REVIEWS.map((r) => ({ quote: r.quote, author: r.author }));
 
 /**
  * Get random testimonials ensuring no duplicate author names
@@ -64,7 +69,7 @@ export function getRandomTestimonials(
 }
 
 // Book covers - update these paths when you have all book images
-export const BOOKS: Book[] = [
+const BOOK_DATA: Book[] = [
   {
     id: "1",
     series: "hfh",
@@ -78,7 +83,6 @@ export const BOOKS: Book[] = [
       "Cassie Morgan's life is already a disaster: divorced, overlooked at work, and one hot flash away from setting something on fire. When she accidentally summons a grumpy Scottish handyman who literally cannot leave her property, things get complicated. Liam MacLeod has dealt with witches before—his ex-wife was one—and he's not impressed. But as Cassie's chaotic magic keeps throwing them together (sometimes literally), they both start wondering if this \"curse\" might be the best thing that ever happened to them. A laugh-out-loud midlife romance about second chances, found family, and learning you were never too much—you were just surrounded by the wrong people.",
     coverImage: "/images/Dont-Hex-the-Handyman-Generic.jpg",
     buyLink: "https://alsoby.me/r/amazon/B0GFGRB283?fc=us&ds=1",
-    previewLink: "/free-chapter",
     whatThisBookIs: [
       "A cozy chaos comedy where hot flashes trigger magic",
       "A sentient house with opinions about your love life",
@@ -114,7 +118,7 @@ export const BOOKS: Book[] = [
     series: "hfh",
     seriesLabel: "Book 2",
     seriesPosition: 2,
-    title: "Love Potion #9-1-1",
+    title: "Love Potion #911",
     slug: "love-potion-911",
     description:
       "Her best friend hexed her dating app. Now she's getting matches from 1986. Including her prom date. He still has the corsage.",
@@ -461,13 +465,13 @@ export const BOOKS: Book[] = [
     seriesPosition: 10,
     title: "Mind Your Own Magic",
     slug: "mind-your-own-magic",
+    releaseDate: "2026-10-23",
     description:
       "For fifty years Margaret Thistle held this town together. Nobody ever asked her why she was like this. The finale\u2014read it last.",
     longDescription:
       "For fifty years Margaret Thistle held this town together. Nobody ever asked her why she was like this.\n\nShe went to nine doors. Cassie's first, with a casserole and a diagnosis, and then Diane's and Valentina's and Gemma's and Ellie's and Kit's and Claire's and Dana's and Joey's. She taught nine women how to live with magic. She never told any of them how she learned.\n\nThere is a photograph in her kitchen drawer. A shoebox in her attic full of letters she told Cassie she burned. She did not burn them. She carried them through three cities and fifty years and she never threw a single one away.\n\nAsheville. Spring of 1968. Margaret is twenty-two and pours coffee at a diner on Patton Avenue, and a man walks in and folds his coat on the stool beside him and orders apple pie without looking at the menu. His name is Paul. He keeps coming back. He brings her a peach.\n\nThat was fifty years ago. This is Sunday. The casserole is made and the coven is at her table and Margaret is going to tell them all of it, from the diner to the leaving, and she is not going to soften one word of it.\n\nNine women are about to find out what their mentor is.\n\nPlease read this one last.\n\nA note before you start: the other nine books are cozy witch romcoms with a happily-ever-after you can count on. This one is not a romcom and it is not a romance. It is Margaret's confession, told out loud at her own kitchen table, and every page depends on you already knowing the nine women at it. If Fairhaven is new to you, start with Don't Hex the Handyman and come back when you are ready.",
     coverImage: "/images/Mind-Your-Own-Magic-Cover.jpg",
     buyLink: "https://alsoby.me/r/amazon/B0HBYSH6LX?fc=us&ds=1",
-    preorder: true,
     whatThisBookIs: [
       "The tenth and final book of Hot Flashes & Hexes\u2014the mentor origin story ten books in the making",
       "Not a romance: Margaret's confession, told at her own kitchen table",
@@ -504,13 +508,13 @@ export const BOOKS: Book[] = [
     seriesLabel: "Christmas novella",
     title: "Something Borrowed, Something Brewed",
     slug: "something-borrowed-something-brewed",
+    releaseDate: "2026-11-12",
     description:
       "Patti has poured coffee for thirty years and never once let anyone bring her a cup. Then her magic wakes up. A Christmas novella.",
     longDescription:
       "Patti Rooney has poured coffee at the Fairhaven Diner for thirty years and never once let anyone bring her a cup.\n\nThree weeks before the Christmas Eve wedding of the season, her magic wakes up\u2014and it will not take no for an answer. The coffee pot pours for her. The best booth reserves itself. The pie case has started making pointed suggestions.\n\nAnd the piano player she sent away in 1999 just walked back into her diner, folded his coat on the third stool, and ordered decaf.\n\nPatti is catering the wedding. Nobody asked, because nobody needed to. What nobody counted on\u2014least of all Patti\u2014is a season where the whole town, the whole coven, and the diner itself conspire to teach the woman who feeds everyone the one skill she never learned: being fed.\n\nA complete, closed-door Christmas novella set in Fairhaven, with the whole coven in attendance, one very opinionated cat, and a happily-ever-after twenty-seven years in the making. Lovely anytime; best with the series behind you.",
     coverImage: "/images/Something-Borrowed-Something-Brewed-Cover.jpg",
     buyLink: "https://alsoby.me/r/amazon/B0HGBKC2W2?fc=us&ds=1",
-    preorder: true,
     whatThisBookIs: [
       "A full Christmas novella in the Hot Flashes & Hexes world\u2014the coven at a wedding",
       "Patti's story: the woman who feeds everyone learns to be fed",
@@ -529,15 +533,15 @@ export const BOOKS: Book[] = [
     id: "bw-0",
     series: "birchwood",
     seriesLabel: "Prequel novella",
-    releaseNote: "Coming October 9",
     title: "Trick of the Light",
     slug: "trick-of-the-light",
+    releaseDate: "2026-10-09",
     description:
       "A traveling witch, an elderly crow, and the one goodbye a charming man keeps dodging. A short, tender Samhain prequel to The Witches of Birchwood Lake.",
     longDescription:
       "Erin Cassidy has spent her whole life helping other people say goodbye. A traveling witch with an elderly crow, a temperamental camper, and no fixed address, she comes to the little lake town of Birchwood for Samhain to help an old friend hold a failing lodge through one more winter, and to lead the town's vigil on the thinnest night of the year.\n\nShe did not plan on Charlie Larson.\n\nCharlie is in town for two weeks to empty his late grandmother's cottage, sell it, and be gone before the cold sets in, armed with an easy grin and a strict policy against feeling anything he can joke his way out of. But Erin's quiet magic has a way of holding open the doors people would rather keep shut, and the one goodbye Charlie keeps dodging is the one the whole long night is bending him toward.\n\nA short, tender prequel to The Witches of Birchwood Lake: a quiet, wistful Samhain love story about grief, second chances, and the courage it takes to let yourself be held. Come spring, the lodge's magic truly wakes, and the series turns it all the way up.",
     coverImage: "/images/birchwood/trick-of-the-light.jpg",
-    comingSoon: true,
+    buyLink: "https://alsoby.me/r/amazon/B0HB5Z55ZK?fc=us&ds=1",
     whatThisBookIs: [
       "A short, tender Samhain love story that opens The Witches of Birchwood Lake",
       "A witch who has made her peace with endings, and a man who can't stop joking his way out of one",
@@ -557,15 +561,15 @@ export const BOOKS: Book[] = [
     series: "birchwood",
     seriesLabel: "Book 1",
     seriesPosition: 1,
-    releaseNote: "Coming soon",
     title: "Back Burner",
     slug: "back-burner",
+    releaseDate: "2026-11-27",
     description:
       "Her magic trapped the one man trying to leave. The lodge has opinions. The goose has authority. Dinner is almost ready.",
     longDescription:
       "Laura Keller used to run one of the best farm-to-table restaurants downstate. Then the marriage collapsed, the restaurant went down with it, and the only job offer left was four hours north at a faded lake lodge nobody had heard of in twenty years.\n\nThe plan was simple. Cook competently. Want nothing. Leave before the season turns.\n\nThen the soup made a grown man cry in front of four witnesses. The bread tasted like being loved. The stove started flaring on its own every time Laura felt something she was not ready to feel. And a large, deeply opinionated goose named Pancake followed her in from the parking lot and refused to leave.\n\nHer magic also, very inconveniently, trapped the caretaker.\n\nCal Hoffman has spent twenty years holding this lodge together for a family that never thanked him. He was finally loading his truck to go. Now the truck will not start, the building will not let him leave, and the chef who did this to him keeps making food that makes him want to stay.\n\nThe lodge has opinions. The goose has authority. Dinner is almost ready.",
     coverImage: "/images/birchwood/back-burner.jpg",
-    comingSoon: true,
+    buyLink: "https://alsoby.me/r/amazon/B0HJ6FNQJ3?fc=us&ds=1",
     whatThisBookIs: [
       "A cozy witch romcom about a burned-out chef whose cooking starts telling the truth",
       "Grumpy caretaker meets sunshine chef, with forced proximity in a sentient lodge",
@@ -580,7 +584,124 @@ export const BOOKS: Book[] = [
     ],
     testimonials: [],
   },
+  {
+    id: "bw-2",
+    series: "birchwood",
+    seriesLabel: "Book 2",
+    seriesPosition: 2,
+    title: "Still Waters",
+    slug: "still-waters",
+    comingSoon: true,
+    description:
+      "The lake does whatever she feels, so five years ago she told it to go still. Then it opened a path of glass and brought home the man who left her.",
+    longDescription:
+      "Nancy Albright has run the Loon's Rest, a six-room inn on Birchwood Lake, for most of her life. She is good at it. She is good at everything, which is how nobody noticed that she stopped feeling anything five years ago, the morning her husband died.\n\nNancy is also a witch, though she has never once said so out loud. The lake does whatever she feels. So she asked it to go still, and it has stayed still for five years, flat and quiet as a held breath, and that suited her fine.\n\nThen the whole lake goes to glass and opens a path straight across itself, and a boat comes up it.\n\nDave Whitcomb left Birchwood at twenty-three to work the ore freighters, and he left Nancy along with it. He thought he was sparing her. She thought he went because she was too much. Thirty years, and neither of them ever said a word.\n\nNow the lodge down the shore needs a boat captain, every bed on the lake is booked, and the only room left is the spare on Nancy's own side of her own house. Her dog has already defected to him.\n\nWhich is a problem, because the whole town can see exactly how she feels about it.\n\nIt is written right there on the water.",
+    coverImage: "/images/birchwood/still-waters.jpg",
+    whatThisBookIs: [
+      "A second chance thirty years cold, with both people certain they were the one who ruined it",
+      "A midlife witch romcom where the magic is a feeling she cannot hide",
+      "One roof, one spare room, and absolutely nowhere to put a man you used to love",
+      "Closed-door heat, emotion over spice, and a complete happily-ever-after",
+    ],
+    youllLikeThisIf: [
+      "You've ever kept everything calm so nobody would notice you weren't",
+      "You love a second chance that took thirty years to come back around",
+      "You want a golden retriever named Tackle who considers the romance his project",
+      "You'd book a room on Birchwood Lake for the loons alone",
+    ],
+    testimonials: [],
+  },
+  {
+    id: "bw-3",
+    series: "birchwood",
+    seriesLabel: "Book 3",
+    seriesPosition: 3,
+    title: "Mist Opportunity",
+    slug: "mist-opportunity",
+    comingSoon: true,
+    description:
+      "She told the man sent to price her marina that he was her boyfriend. His whole job is seeing through things. Hers is not being seen.",
+    longDescription:
+      "Lisa Nowak runs the Birchwood Marina and the Gull & Anchor, the dock bar where the whole town ends up on a summer night. She knows every drink order and every boat on the lake. Most of Birchwood would struggle to describe her face.\n\nThat part is magic. Lisa is a witch, though she would never put it that way. She can pull the lake mist around anything she would rather nobody looked at too closely, and for most of her life that has included herself.\n\nThen a downstate firm sends a consultant to size up her marina for a sale she never asked for. Mark Halvorsen is polite, precise, and paid to see straight through anyone's hopeful story. He is also the first person in years who looks right at her.\n\nSo when he walks into a packed Gull & Anchor before anyone knows who he is, Lisa panics and introduces him as her boyfriend.\n\nNow the whole town is invested. The mist is working overtime. And Duchess, the white cockatoo who runs the marina gift shop, keeps saying the true thing out loud at the worst possible moment.\n\nThe fake part was supposed to be easy. It is the real part that has her worried.",
+    coverImage: "/images/birchwood/mist-opportunity.jpg",
+    whatThisBookIs: [
+      "Fake dating with the one man whose job is seeing through it",
+      "A marina owner who has spent her life hiding in plain sight, with a little magical help",
+      "Duchess, a white cockatoo with a diva streak and no sense of timing",
+      "End-of-summer lake nights, closed-door heat, and a complete happily-ever-after",
+    ],
+    youllLikeThisIf: [
+      "You know everybody's order and nobody ever asks for yours",
+      "You love a buttoned-up man who comes undone slowly",
+      "Fake dating is your favorite way to fall for real",
+      "You believe a bird should be allowed to say what everyone is thinking",
+    ],
+    testimonials: [],
+  },
+  {
+    id: "bw-4",
+    series: "birchwood",
+    seriesLabel: "Book 4",
+    seriesPosition: 4,
+    title: "Out of the Woods",
+    slug: "out-of-the-woods",
+    comingSoon: true,
+    description:
+      "The forest ranger everyone counts on has decided she is part of the scenery. The birches disagree, and so does the groundskeeper who has loved her for years.",
+    longDescription:
+      "Julie Bauer is the forest ranger the whole town counts on. She knows every trail on the ridge and every tree in the old birch grove on the lodge's land. She is steady and reliable, and she has decided that is all she will ever be, the kind of woman things happen near and never to.\n\nShe is also a witch, though she calls it a knack. The woods answer to what she feels. For years she has kept them quiet and rooted, every path exactly where she left it, the same way she has kept her friendship with Tom Lindgren.\n\nTom is the lodge groundskeeper, shy and kind and good with anything that grows. He has been quietly in love with Julie for years. Neither of them has ever said a word.\n\nThen a developer's surveyor turns up in the grove with a clipboard, and overnight the birches start leaning the wrong way. Saving the woods means working side by side with Tom, and the forest has started bending every trail straight toward him.\n\nBirch, her red fox, has opinions about all of it. Mostly he thinks she is being ridiculous.",
+    coverImage: "/images/birchwood/out-of-the-woods.jpg",
+    whatThisBookIs: [
+      "Friends to lovers between two people who have orbited each other for years",
+      "A forest that leans toward everything she won't say out loud",
+      "Birch, a red fox who keeps her counsel and disapproves of her choices",
+      "Peak fall color, cider and woodsmoke, closed-door heat, and a complete happily-ever-after",
+    ],
+    youllLikeThisIf: [
+      "You're the reliable one, and you've started to suspect that isn't the same as being chosen",
+      "You love a shy man who has been in the room the whole time",
+      "October is your favorite month and you'd like it to last a whole book",
+      "You'd trust a fox's opinion over most people's",
+    ],
+    testimonials: [],
+  },
 ];
+
+/** Today's date in US Eastern time, "2026-10-15". Amazon releases at midnight. */
+function todayEastern() {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
+}
+
+/** "2026-11-27" → "November 27". */
+function monthDay(date: string) {
+  return new Date(`${date}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", timeZone: "UTC" });
+}
+
+/** Has this book's release day arrived? Books without a date count as out. */
+export function isReleased(book: Book) {
+  return !book.releaseDate || todayEastern() >= book.releaseDate;
+}
+
+/**
+ * `preorder` and `releaseNote` are worked out from `releaseDate` each time a page reads them
+ * (getters), so every component that already checks `book.preorder` flips to "buy" on release
+ * day without being touched.
+ */
+function withReleaseStatus(book: Book): Book {
+  const { preorder, releaseNote, ...rest } = book;
+  return Object.defineProperties(rest as Book, {
+    preorder: {
+      enumerable: true,
+      get: () => (book.releaseDate ? !!book.buyLink && !isReleased(book) : preorder),
+    },
+    releaseNote: {
+      enumerable: true,
+      get: () => (book.releaseDate ? (isReleased(book) ? undefined : `Coming ${monthDay(book.releaseDate)}`) : releaseNote),
+    },
+  });
+}
+
+export const BOOKS: Book[] = BOOK_DATA.map(withReleaseStatus);
 
 export const BOOKS_SECTION = {
   title: "Hot Flashes & Hexes",
@@ -608,7 +729,7 @@ export const SERIES: {
     anchor: "hot-flashes-and-hexes",
     status: "Complete series · 10 books + a Christmas novella",
     intro:
-      "One town, ten witches, and a coven that shows up with casseroles. Each book is its own complete romance with a happy ending, and the whole series is written.",
+      "Where it all started. One town, ten witches, and a coven that shows up with casseroles. It starts laugh-out-loud funny and grows up with its women, all the way to a finale ten books in the making. It's all written, so you can binge it start to finish.",
   },
   {
     key: "birchwood",
@@ -616,9 +737,37 @@ export const SERIES: {
     anchor: "witches-of-birchwood-lake",
     status: "New series · starts this fall",
     intro:
-      "One magical year on one small up-north lake. A new witch comes into her power every season, and not one of them is under forty. Every book is one couple, one season, and one complete happily-ever-after.",
+      "Quieter magic, bigger feelings. One up-north lake, one grand old lodge with opinions, and one magical year told a season at a time. This is the series to sink into: found family, second chances, and magic woven through ordinary days. Every book is one couple, one season, and a complete happily-ever-after.",
   },
 ];
+
+// ─── "Which series is for you?" (Books page) ───
+// Previously Enchanted has no books on the site yet, so it lives here rather than in SERIES
+// (SERIES entries drive the nav, reading order, and schema, and all expect at least one book).
+export const SERIES_GUIDE = [
+  {
+    name: "Hot Flashes & Hexes",
+    feel: "Laugh first, then feel everything.",
+    body: "Where it all started. A laugh-out-loud small-town comedy that grows up with its women, ten books to a finale. Complete and ready to binge.",
+    forYou: "Start here if you want the whole big-hearted ride",
+    href: "#hot-flashes-and-hexes",
+  },
+  {
+    name: "The Witches of Birchwood Lake",
+    feel: "Quieter magic, bigger feelings.",
+    body: "A grand old lodge on an up-north lake, a found family of witches, and one magical year told a season at a time.",
+    forYou: "Start here if you like to settle in and stay awhile",
+    href: "#witches-of-birchwood-lake",
+  },
+  {
+    name: "Previously Enchanted",
+    feel: "Chaos comedy with kissing.",
+    body: "A witch's estate, sold off piece by piece, and none of it can keep a secret. A new town and a new heroine every book.",
+    forYou: "Coming 2027 · for when you want to laugh until you snort",
+  },
+];
+export const SERIES_GUIDE_PROMISE =
+  "Whichever door you walk through: heroines over forty, a closed door, a happily-ever-after every time, and magic that shows up when it's least convenient.";
 
 export function booksInSeries(key: SeriesKey) {
   return BOOKS.filter((b) => b.series === key);
@@ -654,7 +803,7 @@ export const WHATS_BREWING = {
         description:
           "A traveling witch, an elderly crow, and the one goodbye a charming man keeps dodging. A short, tender Samhain love story that opens the series.",
         coverImage: "/images/birchwood/trick-of-the-light.jpg",
-        releaseNote: "Coming October 9",
+        releaseNote: "Preorder now \u2014 arrives October 9",
       },
       {
         title: "Back Burner",
@@ -662,7 +811,7 @@ export const WHATS_BREWING = {
         description:
           "A burned-out chef, a goose named Pancake, and the grumpy caretaker her magic accidentally trapped. The lodge has opinions. The goose has authority. Dinner is almost ready.",
         coverImage: "/images/birchwood/back-burner.jpg",
-        releaseNote: "Coming soon",
+        releaseNote: "Preorder now",
       },
     ] as UpcomingItem[],
   },

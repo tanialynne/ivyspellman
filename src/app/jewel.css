@@ -42,15 +42,34 @@
 @media (max-width: 900px) { .jb-fan { height: 380px; } }
 @media (max-width: 560px) { .jb-fan { height: 330px; } }
 .jb-fan .glow { position: absolute; left: 50%; top: 48%; width: 420px; height: 420px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(226,190,98,.28), transparent 65%); }
-.jb-fan a { position: absolute; left: 50%; top: 50%; width: 210px; aspect-ratio: 2/3; transform-origin: 50% 100%; transition: transform .35s ease; }
+.jb-fan a { position: absolute; left: 50%; top: 50%; width: 210px; aspect-ratio: 2/3; transform-origin: 50% 100%; transition: translate .45s cubic-bezier(.2,.7,.2,1); }
 .jb-fan a img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; box-shadow: 0 30px 50px -18px rgba(0,0,0,.8), 0 0 0 1px rgba(226,190,98,.25); }
 .jb-fan a:nth-child(2) { transform: translate(calc(-50% - 150px), -44%) rotate(-16deg); z-index: 1; }
 .jb-fan a:nth-child(3) { transform: translate(calc(-50% - 76px), -49%) rotate(-8deg); z-index: 2; }
 .jb-fan a:nth-child(4) { transform: translate(-50%, -52%); z-index: 5; }
 .jb-fan a:nth-child(5) { transform: translate(calc(-50% + 76px), -49%) rotate(8deg); z-index: 2; }
 .jb-fan a:nth-child(6) { transform: translate(calc(-50% + 150px), -44%) rotate(16deg); z-index: 1; }
-.jb-fan a:hover { z-index: 6; }
+.jb-fan a:hover { translate: 0 -12px; }
+@media (prefers-reduced-motion: reduce) { .jb-fan a:hover { translate: none; } }
 @media (max-width: 900px) { .jb-fan a { width: 170px; } }
+/* Small laptops: the hero is still two columns, but they're narrow. Shrink the fan so the
+   covers stay out of the text column. */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .jb-fan { height: 440px; }
+  .jb-fan .glow { width: 340px; height: 340px; }
+  .jb-fan a { width: 160px; }
+  .jb-fan a:nth-child(2) { transform: translate(calc(-50% - 108px), -44%) rotate(-16deg); }
+  .jb-fan a:nth-child(3) { transform: translate(calc(-50% - 54px), -49%) rotate(-8deg); }
+  .jb-fan a:nth-child(5) { transform: translate(calc(-50% + 54px), -49%) rotate(8deg); }
+  .jb-fan a:nth-child(6) { transform: translate(calc(-50% + 108px), -44%) rotate(16deg); }
+}
+@media (min-width: 901px) and (max-width: 1000px) {
+  .jb-fan a { width: 140px; }
+  .jb-fan a:nth-child(2) { transform: translate(calc(-50% - 92px), -44%) rotate(-16deg); }
+  .jb-fan a:nth-child(3) { transform: translate(calc(-50% - 46px), -49%) rotate(-8deg); }
+  .jb-fan a:nth-child(5) { transform: translate(calc(-50% + 46px), -49%) rotate(8deg); }
+  .jb-fan a:nth-child(6) { transform: translate(calc(-50% + 92px), -44%) rotate(16deg); }
+}
 @media (max-width: 560px) {
   .jb-fan a { width: 124px; }
   .jb-fan a:nth-child(2) { transform: translate(calc(-50% - 78px), -44%) rotate(-14deg); }
@@ -110,6 +129,7 @@
 @media (max-width: 900px) { .jb-rgrid { grid-template-columns: 1fr; } }
 .jb-r { border: 1px solid var(--line); border-radius: 14px; padding: 28px 26px; background: rgba(255,255,255,.03); display: flex; flex-direction: column; }
 .jb-r .s { color: var(--gold); letter-spacing: .14em; font-size: 14px; margin-bottom: 10px; }
+.jb-r .s .off { opacity: .25; }
 .jb-r .t { font: 700 11px/1.4 var(--font-raleway); letter-spacing: .14em; text-transform: uppercase; color: var(--cream); margin-bottom: 10px; }
 .jb-r .q { font: italic 500 20px/1.45 var(--font-cormorant); color: var(--cream); }
 .jb-r .a { margin-top: auto; padding-top: 16px; font: 600 11px/1 var(--font-raleway); letter-spacing: .2em; text-transform: uppercase; color: var(--mist); }
@@ -182,6 +202,19 @@
 .jb-sechead.center .jb-lede { margin: 0 auto; }
 .jb-sechead.split { display: flex; justify-content: space-between; align-items: end; gap: 30px; flex-wrap: wrap; }
 .jb-sechead.split .jb-lede { max-width: 30em; }
+/* Keep the lede beside a long title (it wraps to two lines) rather than dropping under it */
+@media (min-width: 901px) {
+  .jb-sechead.split { flex-wrap: nowrap; }
+  .jb-sechead.split > div { flex: 0 1 auto; min-width: 0; }
+  .jb-sechead.split h2 { text-wrap: balance; }
+  .jb-sechead.split .jb-lede { flex: 0 1 30em; }
+}
+/* With four tiles a row, start the lede at the third tile so it lines up with the books below */
+@media (min-width: 1001px) {
+  .jb-sechead.split { display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 26px; }
+  .jb-sechead.split > div { grid-column: span 2; }
+  .jb-sechead.split .jb-lede { grid-column: span 2; max-width: none; }
+}
 
 /* cover presented as an object */
 .jb-cover { display: block; position: relative; }
@@ -309,3 +342,65 @@ a.jb-hcard:hover { transform: translateY(-4px); }
 .jb-latest { margin-top: 22px; padding: 16px 18px; border-radius: 12px; background: rgba(0,0,0,.2); border: 1px solid rgba(226,190,98,.2); }
 .jb-latest small { display: block; font: 700 9.5px/1 var(--font-raleway); letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
 .jb-latest span { font: 500 22px/1.2 var(--font-cormorant); color: var(--cream); }
+
+/* Books page: "Which series is for you?" */
+.jb-guide.jb-rgrid .jb-r .t { color: var(--gold); }
+.jb-guide.jb-rgrid .jb-r .q { font-size: 28px; line-height: 1.2; }
+.jb-guide.jb-rgrid .jb-r .a { line-height: 1.6; color: var(--cream); }
+
+/* Book page: "The first pages" excerpt on a sheet of cream paper */
+.jb-sec.jb-firstpages { overflow: clip; } /* hidden would break the sticky intro */
+.jb-firstpages .jb-wrap { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: 72px; align-items: start; }
+@media (max-width: 900px) { .jb-firstpages .jb-wrap { grid-template-columns: 1fr; gap: 40px; } }
+.jb-fp-intro { position: sticky; top: 120px; }
+@media (max-width: 900px) { .jb-fp-intro { position: static; } }
+.jb-firstpages h2 { font-size: clamp(48px, 6vw, 86px); line-height: .95; }
+.jb-fp-src { margin-top: 26px; font: 700 11px/1.9 var(--font-raleway); letter-spacing: .22em; text-transform: uppercase; color: var(--mist); }
+.jb-sheet { position: relative; max-width: 660px; padding: 64px 64px 44px; background: var(--cream); color: #2b1d33; border-radius: 3px;
+  box-shadow: 0 40px 70px -24px rgba(0,0,0,.75), 0 0 0 1px rgba(226,190,98,.35); }
+.jb-sheet::before { content: ""; position: absolute; inset: 10px -10px -10px 10px; z-index: -1; background: var(--cream); opacity: .3; border-radius: 3px; }
+@media (max-width: 600px) { .jb-sheet { padding: 40px 22px 30px; } }
+.jb-sheet .chap { text-align: center; font: 700 11px/1 var(--font-raleway); letter-spacing: .3em; text-transform: uppercase; color: #8a6a1f; }
+.jb-sheet h3 { text-align: center; font-size: 34px; margin: 14px 0 0; color: #2b1d33; }
+.jb-sheet .prose { margin-top: 34px; font: 400 21px/1.6 var(--font-cormorant), serif; }
+@media (max-width: 600px) { .jb-sheet .prose { font-size: 19px; } }
+.jb-sheet .prose p { text-indent: 1.4em; }
+.jb-sheet .prose p:first-child, .jb-sheet .prose .brk + p { text-indent: 0; }
+.jb-sheet .prose p:first-child::first-letter { float: left; font-size: 3.3em; line-height: .82; padding: 6px 8px 0 0; color: #8a6a1f; }
+.jb-sheet .prose .brk { text-indent: 0; text-align: center; margin: 22px 0; font-size: 13px; letter-spacing: .6em; color: #8a6a1f; }
+.jb-sheet .more { margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(138,106,31,.3); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.jb-sheet-link { font: 700 12px/1 var(--font-raleway); letter-spacing: .18em; text-transform: uppercase; color: #2b1d33; border-bottom: 1px solid #8a6a1f; padding-bottom: 4px; }
+
+/* /free-stories: one checkbox per series' free story */
+.jb-pick { border: 0; padding: 0; margin: 0 0 8px; display: grid; gap: 10px; }
+.jb-pick legend { margin-bottom: 12px; font: 700 10.5px/1 var(--font-raleway); letter-spacing: .22em; text-transform: uppercase; color: var(--mist); }
+.jb-pick-opt { display: flex; gap: 14px; align-items: center; padding: 14px 18px; border-radius: 14px; border: 1px solid rgba(226,190,98,.3); background: rgba(12,10,24,.45); cursor: pointer; transition: border-color .2s, background .2s; }
+.jb-pick-opt:hover, .jb-pick-opt:has(input:checked) { border-color: var(--gold); }
+.jb-pick-opt:has(input:checked) { background: rgba(226,190,98,.08); }
+.jb-pick-opt input { width: 20px; height: 20px; flex: none; align-self: flex-start; margin-top: 4px; accent-color: var(--gold); }
+.jb-pick-opt b { display: block; font: 500 22px/1.15 var(--font-cormorant), serif; color: var(--cream); }
+.jb-pick-opt i { display: block; margin-top: 4px; font: italic 500 17px/1.3 var(--font-cormorant), serif; color: #e6dccb; }
+.jb-pick-opt small { display: block; margin-top: 6px; font: 600 10.5px/1.4 var(--font-raleway); letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
+.jb-postcards { display: flex; flex-direction: column; max-width: 440px; margin: 0 auto; }
+@media (max-width: 900px) { .jb-postcards { display: none; } }
+/* The back of a postcard: message on the left, stamp and address on the right. Each card tucks
+   its blank bottom edge under the next one, so nothing written is ever covered. */
+.jb-postcard { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; aspect-ratio: 3 / 2; padding: 22px 22px 22px 24px; border-radius: 4px; background: var(--cream); color: #2b1d33;
+  box-shadow: 0 24px 40px -22px rgba(0,0,0,.8), 0 0 0 1px rgba(226,190,98,.35); }
+.jb-postcard + .jb-postcard { margin-top: -30px; }
+.jb-postcard:nth-child(1) { transform: rotate(-3deg); }
+.jb-postcard:nth-child(2) { transform: rotate(2deg) translateX(16px); }
+.jb-postcard:nth-child(3) { transform: rotate(-1.5deg) translateX(-4px); }
+.jb-postcard .msg { padding-right: 16px; border-right: 1px solid rgba(138,106,31,.35); }
+.jb-postcard .cover { display: block; width: 62%; aspect-ratio: 5 / 8; object-fit: cover; border-radius: 2px; transform: rotate(-2deg); box-shadow: 0 8px 16px -8px rgba(43,29,51,.6), 0 0 0 4px #fff; }
+.jb-postcard .cover.blank { display: grid; place-items: center; padding: 8px; text-align: center; background: #2a1245; color: var(--gold); font: 600 15px/1.1 var(--font-cormorant), serif; }
+.jb-postcard .line { margin-top: 12px; font: italic 500 16px/1.2 var(--font-cormorant), serif; color: #5a4560; }
+.jb-postcard .addr { position: relative; padding: 84px 0 0 18px; }
+.jb-postcard .stamp { position: absolute; top: 0; right: 0; width: 50px; height: 60px; display: grid; place-items: center; border: 2px dashed #8a6a1f; border-radius: 3px; background: #2a1245; }
+.jb-postcard .stamp svg { width: 20px; height: 20px; fill: var(--gold); }
+.jb-postcard .postmark { position: absolute; top: 12px; right: 46px; width: 66px; height: 66px; display: grid; place-items: center; text-align: center; border: 1.5px solid rgba(138,106,31,.55); border-radius: 50%; transform: rotate(-14deg);
+  font: 700 8px/1.25 var(--font-raleway); letter-spacing: .16em; text-transform: uppercase; color: rgba(138,106,31,.8); padding: 0 8px; }
+.jb-postcard .from { font: 700 9.5px/1.3 var(--font-raleway); letter-spacing: .2em; text-transform: uppercase; color: #8a6a1f; }
+.jb-postcard .title { margin-top: 6px; padding-bottom: 4px; font: 600 25px/1.05 var(--font-cormorant), serif; border-bottom: 1px solid rgba(43,29,51,.22); }
+.jb-postcard .name { margin-top: 8px; padding-bottom: 4px; font: italic 500 16px/1.15 var(--font-cormorant), serif; color: #5a4560; border-bottom: 1px solid rgba(43,29,51,.22); }
+.jb-postcard .rule { display: block; height: 22px; border-bottom: 1px solid rgba(43,29,51,.22); }

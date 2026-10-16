@@ -40,6 +40,12 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  // The old Chapter 0 lead magnet. It's printed in Book 1 now, so the signup moved to the
+  // per-series free stories.
+  async redirects() {
+    return [{ source: "/free-chapter", destination: "/free-stories", permanent: true }];
+  },
+
   compress: true,
   trailingSlash: false,
   poweredByHeader: false,
