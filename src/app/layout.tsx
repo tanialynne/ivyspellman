@@ -29,6 +29,10 @@ const allura = Allura({
   display: "swap",
 });
 
+// Rebuild pages at most hourly, so a book flips from preorder to "buy" on its release date
+// (see `releaseDate` in constants/Books.ts) without a redeploy.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ivyspellman.com"),
   // No site-wide canonical here: Next.js would hand "/" to every page that doesn't set

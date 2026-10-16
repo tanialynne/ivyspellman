@@ -34,8 +34,8 @@ export const HERO_CONTENT = {
   subtitle:
     "Cozy witch romcoms about midlife meltdowns, chaotic magic, and second chances. Ten books of Hot Flashes & Hexes and counting. Eight hundred reviews in, the cat remains everyone's favorite. She knows.",
   ctaButton: "Start the Series",
-  secondaryCta: "Or start with a free chapter →",
-  headerCta: "Get A Free Chapter",
+  secondaryCta: "Or start with a free story →",
+  headerCta: "Get A Free Story",
 };
 
 // Newsletter content
@@ -79,46 +79,6 @@ export const ABOUT_CONTENT = {
   },
 };
 
-// Lead magnet page content
-export const LEAD_MAGNET_CONTENT = {
-  eyebrow: "FREE CHAPTER",
-  title: "The Day Everything Cracked",
-  description:
-    "Get the opening pages of Don't Hex the Handyman and find out what happens when a midlife meltdown meets a mysterious spellbook.",
-  formButton: "Send The Chapter",
-  formHelper:
-    "If it's not there, check spam. (Even magic gets flagged sometimes. Rude.) See you inside. 🌙",
-  insideChapter: {
-    title: "Inside This Chapter",
-    paragraphs: [
-      "Cassie Morgan is having the worst day of her life. Her boss blamed her for someone else's mistake. The HOA bake sale queen thanked her for \"trying.\" Her cat barfed on her last clean jeans. And there's a mysterious package on her porch with her name written in calligraphy.",
-      "Inside? A cracked leather spellbook from a great-aunt she barely remembers.",
-      "She pours wine. She flips pages. One of them hums.",
-      "This is the prequel chapter to Don't Hex the Handyman—and the moment everything changes.",
-    ],
-  },
-  testimonials: {
-    title: "Trusted By Readers Who Prefer Forests Over Feeds.",
-    items: [
-      {
-        quote:
-          "I started smiling on the first paragraph and kept smiling the whole way through. This is a frigging adorable book.",
-        author: "Megan",
-      },
-      {
-        quote:
-          "A balm for my brain foggy, slightly sweaty, and definitely overwhelmed soul.",
-        author: "Sarah",
-      },
-      {
-        quote:
-          "If you're in that middle part of life where everything is changing—this is the book for you.",
-        author: "Bri",
-      },
-    ],
-  },
-};
-
 // Jewel Box homepage (Sept 2026)
 export const HOME_CONTENT = {
   hero: {
@@ -126,7 +86,7 @@ export const HOME_CONTENT = {
     titleLines: ["Midlife is when", "the magic", "shows up."], // middle line renders in gold italic
     deck: "Hot flashes that set things on fire. Houses with opinions. A cat who judges everyone. Laugh-out-loud romances for women who were told they were too much, and turned out to be exactly enough.",
     primaryCta: "Start the series",
-    secondaryCta: "Read chapter one free",
+    secondaryCta: "Read a free story",
   },
   promise: [
     { big: "Funny, witchy, cozy", small: "Laugh-out-loud magic" },
@@ -141,7 +101,8 @@ export const HOME_CONTENT = {
   shelf: {
     eyebrow: "The complete series",
     intro:
-      "One town, ten witches, and a coven that shows up with casseroles. Each book is its own complete romance with a happy ending. The finale is on preorder, and so is the Christmas novella.",
+      "One town, ten witches, and a coven that shows up with casseroles. Each book is its own complete romance with a happy ending.",
+    // Followed on the page by a line naming whichever books are still on preorder (from their release dates).
   },
   reviews: {
     eyebrow: "What readers keep telling us",
@@ -173,4 +134,26 @@ export const HOME_CONTENT = {
     titleEm: "told by the cat",
     text: "Sign up and get The Familiar's Report, Luna's version of what really happened in Don't Hex the Handyman. Then occasional letters from the forest, and first word on every new book.",
   },
+};
+
+// Free "before page one" stories, one per series (/free-stories).
+// One Kit form for all three. Each checkbox posts tags[] = that series' Kit tag ID, so the
+// reader is tagged with exactly what they picked. The Kit automation starts on "joins this
+// form" and its single email shows one block per tag ({% if subscriber.tags contains ... %}).
+// tagId: the tag_id in the tag's URL in Kit (Subscribers → click the tag).
+export const FREE_STORIES = {
+  formId: "9992781",
+  eyebrow: "Free stories",
+  title: "Before",
+  titleEm: "page one.",
+  lede: "Every series starts a little before the first book. Pick the towns you want to visit and the story of what happened right before lands in your inbox. Free, and you won't find it in any of the books.",
+  pickLegend: "Which stories do you want?",
+  options: [
+    { name: "Hot Flashes & Hexes", tag: "ivy-hfh-web-lead", tagId: "24224970", note: "Fairhaven, Virginia · 10 books, complete", story: { cover: "/images/stories/the-wingwoman.jpg", title: "The Wingwoman", about: "Diane's latest first date is going fine. Her wingwoman is not." }, postcard: { place: "Fairhaven, Virginia", line: "Laugh first, then feel everything." } },
+    { name: "Previously Enchanted", tag: "ivy-pe-web-lead", tagId: "24224976", note: "Coming 2027", story: { cover: "/images/stories/the-last-truck.jpg", title: "The Last Truck", about: "The house is being emptied, and the furniture is telling the movers everything about the woman next door." }, postcard: { place: "The estate sale", line: "None of it can keep a secret." } },
+    { name: "The Witches of Birchwood Lake", tag: "ivy-birchwood-web-lead", tagId: "24224972", note: "Birchwood, Michigan", story: { cover: "/images/stories/the-appraiser.jpg", title: "The Appraiser", about: "A man from Grand Rapids comes to put a price on a tired old lodge. The lodge, and its cat, have opinions." }, postcard: { place: "Birchwood, Michigan", line: "Quieter magic, bigger feelings." } },
+  ],
+  formButton: "Send my stories",
+  formHelper: "Tick as many as you like. If it's not in your inbox, check spam. (Even magic gets flagged sometimes. Rude.)",
+  successMessage: "Check your inbox. Your stories are on their way.",
 };

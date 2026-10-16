@@ -138,7 +138,7 @@ export default function Navigation() {
 
         {/* CTA Button - Desktop */}
         <div className="hidden lg:block">
-          <GoldButton as="a" href="/free-chapter">
+          <GoldButton as="a" href="/free-stories">
             {HERO_CONTENT.headerCta}
           </GoldButton>
         </div>
@@ -231,7 +231,7 @@ export default function Navigation() {
             <div className="pt-6">
               <GoldButton
                 as="a"
-                href="/free-chapter"
+                href="/free-stories"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {HERO_CONTENT.headerCta}

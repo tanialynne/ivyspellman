@@ -2,8 +2,8 @@
 // ReviewShuffle (a button) and the site-wide Magic effects in layout.tsx.
 import Image from "next/image";
 import Link from "next/link";
-import { BOOKS, WHATS_BREWING, booksInSeries } from "../../constants/Books";
-import { READER_REVIEWS, BOOK1_STATS } from "../../constants/Reviews";
+import { BOOKS, WHATS_BREWING, booksInSeries, type Book } from "../../constants/Books";
+import { BOOK1_REVIEWS, BOOK1_STATS } from "../../constants/Reviews";
 import { ALL_POSTS } from "../../constants/BlogPosts";
 import { HOME_CONTENT } from "../../constants/SiteContent";
 import { GoldButton } from "../ui";
@@ -35,7 +35,8 @@ function firstSentences(text: string, n: number) {
 
 export function JewelHero() {
   const h = HOME_CONTENT.hero;
-  const fan = [BOOKS[1], BOOKS[2], BOOKS[0], BOOKS[3], BOOKS[6]];
+  // Book 1 in front, 2 and 3 tucked behind it, 4 and 5 behind those
+  const fan = [BOOKS[3], BOOKS[1], BOOKS[0], BOOKS[2], BOOKS[4]];
   return (
     <section className="jb-sec jb-plum jb-hero" data-stars="22">
       <div className="jb-wrap jb-hero-grid">
@@ -51,7 +52,7 @@ export function JewelHero() {
             <GoldButton as="a" href="#start">
               {h.primaryCta}
             </GoldButton>
-            <Link className="jb-ghost" href="/free-chapter">
+            <Link className="jb-ghost" href="/free-stories">
               {h.secondaryCta}
             </Link>
           </div>
@@ -129,14 +130,29 @@ export function StartHere() {
                 Read it on Amazon
               </GoldButton>
             )}
-            <Link className="jb-ghost" href="/free-chapter">
-              Try chapter one free
+            <Link className="jb-ghost" href="/free-stories">
+              Read a free story first
             </Link>
           </div>
         </div>
       </div>
     </section>
   );
+}
+
+/** " The finale is on preorder." Names the Hot Flashes & Hexes books still on preorder, if any. */
+function preorderLine() {
+  const names = booksInSeries("hfh")
+    .filter((b) => b.preorder)
+    .map((b) => (b.seriesPosition === 10 ? "the finale" : b.seriesLabel.toLowerCase().includes("christmas") ? "the Christmas novella" : b.title));
+  if (!names.length) return null;
+  const list = names.length === 1 ? names[0] : `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
+  return ` ${list.charAt(0).toUpperCase()}${list.slice(1)} ${names.length === 1 ? "is" : "are"} on preorder.`;
+}
+
+/** "October 9" before release, "out now" after. */
+function releaseBadge(book: Book) {
+  return book.releaseNote?.replace(/^Coming /, "") || "out now";
 }
 
 export function SeriesShelf() {
@@ -151,7 +167,10 @@ export function SeriesShelf() {
               Ten books of <em>Hot Flashes &amp; Hexes</em>
             </h2>
           </div>
-          <p>{HOME_CONTENT.shelf.intro}</p>
+          <p>
+            {HOME_CONTENT.shelf.intro}
+            {preorderLine()}
+          </p>
         </div>
         <div className="jb-books">
           {booksInSeries("hfh").map((b) => (
@@ -190,10 +209,10 @@ export function Birchwood() {
           </p>
           <div className="jb-badges">
             <span>
-              Prequel: <b>{prequel.title}</b> · {prequel.releaseNote?.replace(/^Coming /, "")}
+              Prequel: <b>{prequel.title}</b> · {releaseBadge(prequel)}
             </span>
             <span>
-              Book 1: <b>{book1.title}</b> · {book1.releaseNote?.replace(/^Coming /, "").toLowerCase()}
+              Book 1: <b>{book1.title}</b> · {releaseBadge(book1)}
             </span>
           </div>
           <div className="jb-row">
@@ -228,7 +247,7 @@ export function ReaderReviews() {
           &ldquo;{r.feature.quote.replace(/ until now\.$/, "")} <em>until now.</em>&rdquo;
         </p>
         <p className="jb-who">{r.feature.author} · Amazon review</p>
-        <ReviewShuffle reviews={READER_REVIEWS} initial={[1, 4, 13]} label={r.shuffleLabel} />
+        <ReviewShuffle reviews={BOOK1_REVIEWS} initial={[1, 4, 13]} label={r.shuffleLabel} />
         <p className="jb-stat">
           <b>{BOOK1_STATS.rating} stars</b> across <b>{BOOK1_STATS.reviewCount} reviews</b> for Book 1 alone
         </p>

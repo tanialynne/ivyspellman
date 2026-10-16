@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { ReaderReview } from "../../constants/Reviews";
+import ReviewCard from "./ReviewCard";
 
 function pick(list: ReaderReview[], n: number, exclude: Set<number>) {
   const idx = list.map((_, i) => i).filter((i) => !exclude.has(i));
@@ -32,19 +33,9 @@ export default function ReviewShuffle({
   return (
     <>
       <div className="jb-rgrid" aria-live="polite">
-        {shown.map((i) => {
-          const r = reviews[i];
-          return (
-            <figure className="jb-r" key={i} data-burst>
-              <p className="s" aria-label="5 out of 5 stars">★★★★★</p>
-              <p className="t">{r.title}</p>
-              <blockquote className="q">&ldquo;{r.quote}&rdquo;</blockquote>
-              <figcaption className="a">
-                {r.author} · {r.source === "BookSirens" ? "Amazon, via BookSirens" : "Amazon"}
-              </figcaption>
-            </figure>
-          );
-        })}
+        {shown.map((i) => (
+          <ReviewCard key={i} review={reviews[i]} />
+        ))}
       </div>
       <div className="jb-center" style={{ marginTop: 28 }}>
         <button type="button" className="jb-ghost" onClick={next}>

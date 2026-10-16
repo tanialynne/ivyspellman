@@ -4,7 +4,7 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import { Horizon } from "../components/Home";
-import { PageHero, SectionHead, BookTile, type Ground } from "../components/Page";
+import { PageHero, SectionHead, BookTile, SeriesGuide, type Ground } from "../components/Page";
 import { GoldButton } from "../components/ui";
 import { SERIES, booksInSeries } from "../constants/Books";
 
@@ -52,6 +52,8 @@ export default function BooksPage() {
           ))}
         </div>
       </PageHero>
+
+      <SeriesGuide />
 
       {SERIES.map((s) => {
         const books = booksInSeries(s.key);

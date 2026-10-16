@@ -1,8 +1,8 @@
 /**
  * Reader reviews and Book 1 stats.
- * Quotes are verbatim from 5-star Amazon reviews of Don't Hex the Handyman (long ones are excerpted;
- * ARC disclosure lines are left off the excerpt, not the original). Add more in the same shape;
- * every review section on the site shuffles from this list.
+ * Quotes are verbatim (long ones are excerpted with "..."; ARC disclosure lines are left off the
+ * excerpt, not the original). Book 1's are 5-star Amazon reviews and feed every review shuffle on
+ * the site; other books' reviews show only on that book's own page (`reviewsFor`).
  *
  * Deliberately NOT used for aggregateRating/Review schema: Google treats an author's own site
  * marking up reviews of its own books as self-serving and ignores or penalizes it.
@@ -10,21 +10,28 @@
 
 export interface ReaderReview {
   author: string;
-  title: string;
+  /** The review's headline. BookSirens ARC reviews don't have one. */
+  title?: string;
   quote: string;
-  source: "Amazon" | "BookSirens";
+  /** "BookSirens" = posted to Amazon by a BookSirens reader; "ARC" = an advance reader's review
+   *  of a book that isn't out yet, shown as "Advance reader, via BookSirens". */
+  source: "Amazon" | "BookSirens" | "ARC";
   bookSlug: string;
+  /** Star rating; 5 if left off. `null` when the rating isn't known (the stars line is hidden). */
+  stars?: number | null;
 }
 
 // Update these by hand when the numbers move.
 export const BOOK1_STATS = {
   rating: "4.3",
-  reviewCount: "849",
-  bestsellerLine: "#2 in Later in Life Romance on Amazon",
+  reviewCount: "867",
+  bestsellerLine: "#1 in Later in Life Romance on Amazon",
   peakLine: "Hit #67 in the entire Kindle Store (March 31, 2026)",
 };
 
 const B1 = "dont-hex-the-handyman";
+const TOL = "trick-of-the-light";
+const BB = "back-burner";
 
 export const READER_REVIEWS: ReaderReview[] = [
   { author: "Laure Eccleston", title: "Hot flashes weren't funny until now.", quote: "This is a wonderfully entertaining closed door romantic comedy with a newly minted witch, an opinionated cat, a talking toaster who only speaks French, a house that develops its own personality, and a hard won happily ever after. I laughed until my sides hurt.", source: "Amazon", bookSlug: B1 },
@@ -69,7 +76,26 @@ export const READER_REVIEWS: ReaderReview[] = [
   { author: "Red", title: "very cute short read", quote: "Well written and adorable. The perfect cozy magic romance. I read it in less than a day.", source: "Amazon", bookSlug: B1 },
   { author: "Tonya", title: "Hilarious and heartwarming", quote: "An easy read with characters I enjoyed getting to know except the nosy neighbor. Nobody needs that but in the end who cares.", source: "Amazon", bookSlug: B1 },
   { author: "Rebecca", title: "cozy romance with humor and magic", quote: "Equal parts emotional rollercoaster and humor. Following along as she overcomes her fears of letting go and learning to love again will leave you smiling.", source: "BookSirens", bookSlug: B1 },
+  // Trick of the Light (Amazon, October 2026)
+  { author: "Erika Pollard", title: "A magical read!", stars: 4, quote: "Such a cozy little sneak peek into this series, full of magic, grief, healing, and purpose... Ivy's characters are lovable and magical. I'm very much looking forward to diving into the rest of her books!", source: "Amazon", bookSlug: TOL },
+  { author: "Barbmurfa", title: "Love this author", quote: "I found this author in kindle unlimited. I have read her first series and am looking forward to Margaret's story. I look forward to reading the next. I loved the crow.", source: "Amazon", bookSlug: TOL },
+  { author: "Samantha Land-Newton", title: "Great Witchy Fall Vibes", stars: 4, quote: "This is my first time reading anything by this author and I was pleasantly surprised! ... I enjoyed the witchy theme and the characters were fun and full of life! Each one had a role that even though it might have been small it all tied together very nicely.", source: "Amazon", bookSlug: TOL },
+
+  // Back Burner (BookSirens advance readers, September–October 2026)
+  { author: "Dylan", quote: "Back Burner deserves to be on the Front Burner of every reader's TBR list! Simply a magical ride from the very start! I loved all the characters and the writing style of Ivy Spellman deserves a lot of praise.", source: "ARC", bookSlug: BB },
+  { author: "cubidesfamily", quote: "Laura's a chef getting a second chance at this old lodge kitchen, except the building might be alive and her fire magic keeps lighting the stove without her asking. There's a talking cat named Soot and a goose called Pancake with a lot of opinions, and I was smiling the whole time.", source: "ARC", bookSlug: BB },
+  { author: "erikareadsitall", stars: 4, quote: "Ivy Spellman has won me over with her magical stories, and Back Burner was no exception! I love the characters, the small-town vibes, the message, and the romance - there isn't a thing I would change!", source: "ARC", bookSlug: BB },
+  { author: "lewdicekitsune", quote: "I'm absolutely in love with this book. It felt so magical, pun intended. While reading it felt like I could feel everything Laura felt and it was incredible.", source: "ARC", bookSlug: BB },
+  { author: "rmoriarty0224", stars: 4, quote: "Fun quick magical read. The authors writing style made me feel like I was sitting in the space watching my friends live around me... Great book for a light and warm, well written read.", source: "ARC", bookSlug: BB },
 ];
+
+/** Book 1's reviews: the pool every site-wide review shuffle deals from. */
+export const BOOK1_REVIEWS = READER_REVIEWS.filter((r) => r.bookSlug === B1);
+
+/** One book's reviews, for its own page. */
+export function reviewsFor(slug: string) {
+  return READER_REVIEWS.filter((r) => r.bookSlug === slug);
+}
 
 /** Short pull-quotes for tight spaces (tickers, hero proof lines). */
 export const PULL_QUOTES = [
